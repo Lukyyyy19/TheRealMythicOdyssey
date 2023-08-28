@@ -825,6 +825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   cardColor: {r: 0, g: 0, b: 0, a: 0}
+  prefab: {fileID: 0}
 --- !u!114 &525552506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,6 +859,50 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 525552505}
+          m_TargetAssemblyTypeName: Card, Assembly-CSharp
+          m_MethodName: DesInteraction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 5
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 525552505}
+          m_TargetAssemblyTypeName: Card, Assembly-CSharp
+          m_MethodName: FollwoCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 525552505}
+          m_TargetAssemblyTypeName: Card, Assembly-CSharp
+          m_MethodName: OnEndDarag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 525552505}
           m_TargetAssemblyTypeName: Card, Assembly-CSharp
           m_MethodName: DesInteraction
@@ -1191,7 +1236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &863262789
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1316,6 +1361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   cardColor: {r: 0, g: 0, b: 0, a: 0}
+  prefab: {fileID: 11400000, guid: aaa5951ba477faf4b8ffcc11c8526987, type: 2}
 --- !u!114 &922330386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,6 +1971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   cardColor: {r: 0, g: 0, b: 0, a: 0}
+  prefab: {fileID: 0}
 --- !u!114 &1349101104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,6 +2005,50 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1349101103}
+          m_TargetAssemblyTypeName: Card, Assembly-CSharp
+          m_MethodName: DesInteraction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 5
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1349101103}
+          m_TargetAssemblyTypeName: Card, Assembly-CSharp
+          m_MethodName: FollwoCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1349101103}
+          m_TargetAssemblyTypeName: Card, Assembly-CSharp
+          m_MethodName: OnEndDarag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 1349101103}
           m_TargetAssemblyTypeName: Card, Assembly-CSharp
           m_MethodName: DesInteraction
@@ -2462,7 +2553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd689588f7c87c4a833404299692293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 11400000, guid: aaa5951ba477faf4b8ffcc11c8526987, type: 2}
+  planePrefab: {fileID: 2809085498120959732, guid: 09aaf09c0d719b14fac91f290f6f6e09,
+    type: 3}
 --- !u!4 &1865970713
 Transform:
   m_ObjectHideFlags: 0
@@ -2836,6 +2928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   cardColor: {r: 0, g: 0, b: 0, a: 0}
+  prefab: {fileID: 0}
 --- !u!114 &2052194668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2869,6 +2962,50 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 2052194667}
+          m_TargetAssemblyTypeName: Card, Assembly-CSharp
+          m_MethodName: DesInteraction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 5
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2052194667}
+          m_TargetAssemblyTypeName: Card, Assembly-CSharp
+          m_MethodName: FollwoCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2052194667}
+          m_TargetAssemblyTypeName: Card, Assembly-CSharp
+          m_MethodName: OnEndDarag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 2052194667}
           m_TargetAssemblyTypeName: Card, Assembly-CSharp
           m_MethodName: DesInteraction
