@@ -73,7 +73,6 @@ public class PlayerManager : MonoBehaviour {
         {
             if(!_isAttacking)
             {
-                Debug.Log("Attacking");
                 StartCoroutine(_playerAttack.SpinAttack());
             }
         }
