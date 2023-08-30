@@ -7,7 +7,7 @@ public class Card : MonoBehaviour, IInteracteable
     public int value;
     [SerializeField] private Color cardColor;
     private Vector3 _startPos;
-
+    public CardsTypeSO prefab;
     private void Awake(){
         _startPos = transform.localPosition;
     }
@@ -34,7 +34,7 @@ public class Card : MonoBehaviour, IInteracteable
     }
 
     public void OnEndDarag(){
-        EventManager.instance.TriggerEvent("OnCardTrigger",null);
+        EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
     }
     // private void Start()
     // {
