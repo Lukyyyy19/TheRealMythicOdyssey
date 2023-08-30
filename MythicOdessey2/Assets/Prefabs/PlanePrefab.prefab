@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2321741282180607296}
   - component: {fileID: 5102017052774964873}
   - component: {fileID: 4009228599871949234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlanePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 477358235906523031}
   - component: {fileID: 8711421075014802661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.AI.Navigation;
 
 public class TestGrid : MonoBehaviour
 {
@@ -100,6 +101,8 @@ public class TestGrid : MonoBehaviour
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;
                 _ghostPlanes[gridPos].GetComponent<MeshRenderer>().material.color = new Color32(255,0,0,43);
             }
+            var builtNavMeshSurface = built.GetComponent<NavMeshSurface>();
+            EventManager.instance.TriggerEvent("OnUpdateNavMesh",builtNavMeshSurface);
         }
 
         else

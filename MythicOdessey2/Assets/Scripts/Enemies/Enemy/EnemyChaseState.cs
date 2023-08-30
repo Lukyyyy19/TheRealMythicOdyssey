@@ -32,6 +32,7 @@ public class EnemyChaseState : EnemyBaseState {
         // Ctx.transform.position = Vector3.MoveTowards(Ctx.transform.position, PlayerManager.instance.transform.position,
         //     Ctx.Speed * Time.deltaTime);
         //Ctx.Rb.velocity = (PlayerManager.Instance.transform.position - Ctx.transform.position) * Ctx.Speed * Time.fixedDeltaTime;
+        //Ctx.NavMeshAgent.speed *= 1*TimeManager.Instance.currentTimeScale;
         Ctx.NavMeshAgent.destination = PlayerManager.Instance.transform.position;
     }
 }

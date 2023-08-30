@@ -104,6 +104,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     private void Update()
     {
+       _navMeshAgent.speed = TimeManager.Instance.currentTimeScale == 1? 3.5f : 3.5f * TimeManager.Instance.currentTimeScale;
         _currentState.UpdateStates();
         var playerPosition = PlayerManager.Instance.transform.position;
        // _isPlayerInRange = Vector3.Distance(transform.position, playerPosition) <= _chaseRange;
