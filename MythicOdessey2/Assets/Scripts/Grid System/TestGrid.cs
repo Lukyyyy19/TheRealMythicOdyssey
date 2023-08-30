@@ -6,11 +6,25 @@ using UnityEngine;
 public class TestGrid : MonoBehaviour
 {
     // Start is called before the first frame update
-    public CardsTypeSO prefab;
+    
+    public GameObject planePrefab;
     private GridSystem<GridObject> grid;
+    private Dictionary<Vector2Int,GameObject> _ghostPlanes = new Dictionary<Vector2Int, GameObject>(); 
     void Start()
     {
-        grid = new GridSystem<GridObject>(10,10,10,Vector3.zero,(GridSystem<GridObject> g,int x, int z)=> new GridObject(g,x,z));    
+        grid = new GridSystem<GridObject>(10,10,10,Vector3.zero,(GridSystem<GridObject> g,int x, int z)=> new GridObject(g,x,z));
+        var planesParent = new GameObject("Planes");
+        for (int x = 0; x < 10; x++)
+        {
+            for (int y = 0; y < 10; y++)
+            {
+                var plane = Instantiate(planePrefab,grid.GetWorldPosition(x,y) + new Vector3(10,0,10)*.5f,Quaternion.identity,planesParent.transform);
+                plane.SetActive(false);
+                _ghostPlanes.Add(new Vector2Int(x,y),plane);
+                
+            }
+        }
+        planesParent.transform.position += Vector3.up * .1f; 
     }
 
     class GridObject {
@@ -40,35 +54,57 @@ public class TestGrid : MonoBehaviour
         }
     }
     private void OnEnable(){
-        EventManager.instance.AddAction("OnCardTrigger",(objects => {
-            grid.GetXY(Helper.GetMouseWorldPosition(),out int x, out int z);
-            var gridPositionList = prefab.GetGridPositionList(new Vector2Int(x, z));
-            var gridObject = grid.GetValue(x, z);
-
-            bool canBuild = true;
-            foreach (var gridPos in gridPositionList)
+        EventManager.instance.AddAction("OnOpenMenu",(objects => {
+            bool open = (bool) objects[0];
+            if(open)
             {
-                if (!grid.GetValue(gridPos.x, gridPos.y).CanBuild())
+                foreach (var plane in _ghostPlanes)
                 {
-                    canBuild = false;
-                    break;
+                    plane.Value.SetActive(true);
                 }
             }
-            if(canBuild)
-            {
-                Transform built;
-            //+ new Vector3(_cellSize,0,_cellSize)*.5f es porque no tenemos el anchor point una vez que el objeto lo tenga sacamos esa parte del codigo
-                built = Instantiate(prefab.prefab, grid.GetWorldPosition(x,z)+ new Vector3(10,0,10)*.5f, Quaternion.identity);
-                foreach (var gridPos in gridPositionList) 
-                {
-                    grid.GetValue(gridPos.x,gridPos.y).Transform = built;
-                }
-            }
-
             else
             {
-                Debug.Log("No se puede construir");
+                foreach (var plane in _ghostPlanes)
+                {
+                    plane.Value.SetActive(false);
+                }
             }
         } ));
+        EventManager.instance.AddAction("OnCardTrigger",(objects => { BuildObject((CardsTypeSO)objects[0]); } ));
+    }
+
+    private void BuildObject(CardsTypeSO prefab){
+        grid.GetXY(Helper.GetMouseWorldPosition(), out int x, out int z);
+        var gridPositionList = prefab.GetGridPositionList(new Vector2Int(x, z));
+        var gridObject = grid.GetValue(x, z);
+
+        bool canBuild = true;
+        foreach (var gridPos in gridPositionList)
+        {
+            if (!grid.GetValue(gridPos.x, gridPos.y).CanBuild())
+            {
+                canBuild = false;
+                break;
+            }
+        }
+
+        if (canBuild)
+        {
+            Transform built;
+            //+ new Vector3(_cellSize,0,_cellSize)*.5f es porque no tenemos el anchor point una vez que el objeto lo tenga sacamos esa parte del codigo
+            built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + new Vector3(10, 0, 10) * .5f,
+                Quaternion.identity);
+            foreach (var gridPos in gridPositionList)
+            {
+                grid.GetValue(gridPos.x, gridPos.y).Transform = built;
+                _ghostPlanes[gridPos].GetComponent<MeshRenderer>().material.color = new Color32(255,0,0,43);
+            }
+        }
+
+        else
+        {
+            Debug.Log("No se puede construir");
+        }
     }
 }

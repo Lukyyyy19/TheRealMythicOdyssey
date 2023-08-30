@@ -32,13 +32,11 @@ public class PlayerAttack
         debugAttack = true;
         _playerManager.IsAttacking = true;
         _anim.CrossFade("Pepe_Attack",0.1f);
-        var collisions = Physics.OverlapSphere(_transform.position, _attackRadius, 1);
+        var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);
         foreach (var collision in collisions)
         {
-            if (collision.transform.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.TakeDamage(1,true);
-            }
+            Debug.Log(collision.name);
+            collision.GetComponent<IDamageable>()?.TakeDamage(1);
         }
         yield return new WaitForSeconds(.3f);
         //_anim.SetTrigger("SpinAttack");
