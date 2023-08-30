@@ -8,7 +8,7 @@ public class TorqueSword : MonoBehaviour
     private void OnTriggerEnter(Collider other){
         if (TryGetComponent(out IDamageable damageable))
         {
-            damageable.TakeDamage(1,false);
+            damageable.TakeDamage(1);
         }
     }
 }

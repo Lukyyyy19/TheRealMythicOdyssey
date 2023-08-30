@@ -19,10 +19,10 @@ public class EnemyChaseState : EnemyBaseState {
     public override void UpdateState(){
         base.UpdateState();
        // if(Ctx.CanLookAtPlayer) Ctx.LookAtPlayer();
+        FollowPlayer();
     }
 
     public override void FixedUpdateState(){
-        FollowPlayer();
     }
 
     public override void ExitState(){
@@ -31,6 +31,7 @@ public class EnemyChaseState : EnemyBaseState {
     public void FollowPlayer(){
         // Ctx.transform.position = Vector3.MoveTowards(Ctx.transform.position, PlayerManager.instance.transform.position,
         //     Ctx.Speed * Time.deltaTime);
-        Ctx.Rb.velocity = (PlayerManager.Instance.transform.position - Ctx.transform.position) * Ctx.Speed * Time.fixedDeltaTime;
+        //Ctx.Rb.velocity = (PlayerManager.Instance.transform.position - Ctx.transform.position) * Ctx.Speed * Time.fixedDeltaTime;
+        Ctx.NavMeshAgent.destination = PlayerManager.Instance.transform.position;
     }
 }

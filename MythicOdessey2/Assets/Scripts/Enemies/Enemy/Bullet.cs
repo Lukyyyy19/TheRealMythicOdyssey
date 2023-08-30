@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(1000,false);
+        collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(1000);
         Debug.Log(collision.gameObject.name);
         Destroy(gameObject);
     }

@@ -36,10 +36,7 @@ public class PlayerAttack
         foreach (var collision in collisions)
         {
             Debug.Log(collision.name);
-            if (collision.transform.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.TakeDamage(1,true);
-            }
+            collision.GetComponent<IDamageable>()?.TakeDamage(1);
         }
         yield return new WaitForSeconds(.3f);
         //_anim.SetTrigger("SpinAttack");

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.VFX;
 using DG.Tweening;
+using UnityEngine.AI;
+
 public class EnemyStateMachine : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float _speed;
@@ -26,6 +28,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     protected EnemyBaseState _currentSubState;
     private EnemyManager _enemyManager;
     private Rigidbody _rb;
+    private NavMeshAgent _navMeshAgent;
 
     //private AudioSource _audio;
 
@@ -65,7 +68,8 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     public float Health => _health;
     public float MaxHealth => _maxHealth;
     public Animator Anim => _anim;
-
+    
+    public NavMeshAgent NavMeshAgent => _navMeshAgent;
 
     private void Awake()
     {
@@ -73,6 +77,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _rb = GetComponent<Rigidbody>();
         _maxAttackRange = _attackRange;
         _maxChaseRange = _chaseRange;
+        _navMeshAgent = GetComponent<NavMeshAgent>();
         //_audio = GetComponent<AudioSource>();
         //_healtBar = GetComponentInChildren<floatingHealthBar>();
         // if (TryGetComponent(out MeshRenderer mr))
@@ -100,7 +105,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     private void Update()
     {
         _currentState.UpdateStates();
-       // var playerPosition = PlayerManager.Instance.transform.position;
+        var playerPosition = PlayerManager.Instance.transform.position;
        // _isPlayerInRange = Vector3.Distance(transform.position, playerPosition) <= _chaseRange;
         //_isPlayerInAttackRange = Vector3.Distance(transform.position, playerPosition) <= _attackRange;
     }
@@ -141,11 +146,11 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     //     if (_health <= 0) Die();
     //
     // }
-    public void TakeDamage(int damage,bool wasAttacked){
+    public void TakeDamage(int damage){
         //if(_damageTaken)return;
-        _damageTaken = true;
         Debug.Log("Enemy took damage");
         _health -= damage;
+        _rb.AddForce((PlayerManager.Instance.transform.position - transform.position)*-1*5,ForceMode.Impulse);
         Debug.Log(_health);
         if (_health <= 0)
         {
@@ -171,6 +176,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     private void OnEnable(){
         EventManager.instance.AddAction("OnPlayerAttackFinished", (object[] args) => {
             _damageTaken = false;
+            _rb.velocity = Vector3.zero;
         });
     }
     
