@@ -184,7 +184,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a081bc776eb67384993db9b7dd211d24,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a081bc776eb67384993db9b7dd211d24,
         type: 3}
@@ -194,7 +194,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a081bc776eb67384993db9b7dd211d24,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a081bc776eb67384993db9b7dd211d24,
         type: 3}
@@ -458,7 +458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.30070573, y: -0, z: -0, w: 0.953717}
-  m_LocalPosition: {x: -0.00000023841858, y: 4.8697376, z: -7.691521}
+  m_LocalPosition: {x: -0.16970599, y: 5.640485, z: -6.3565493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1930,6 +1930,7 @@ MonoBehaviour:
   _requireNewAttackPress: 0
   _requireNewDashPress: 1
   _isDashing: 0
+  _collider: {fileID: 1115860895}
 --- !u!4 &1115860894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a081bc776eb67384993db9b7dd211d24,
@@ -3462,7 +3463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917141235}
   m_LocalRotation: {x: 0.4964001, y: 0.32275194, z: -0.20561564, w: 0.77919215}
-  m_LocalPosition: {x: -2.9883628, y: 9.063078, z: -2.9883626}
+  m_LocalPosition: {x: -2.0183628, y: 9.063078, z: -1.7783624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
