@@ -3,23 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [Serializable]
-public class PlayerMovement {
+public class PlayerMovement
+{
     // variables for player movement with the name starting with _ are private
-   [SerializeField] private float _speed = 5;
+    [SerializeField] private float _speed = 5;
     [SerializeField] private float _dashForce = 500;
     [SerializeField] private float _dashTime = .2f;
     private float _turnSpeed = 960f;
     private PlayerManager _playerManager;
     private Rigidbody _rb;
     private Transform _transform;
-
+    private Collider _colider;
     private float _timer;
     //crear constructor
-    public PlayerMovement(PlayerManager playerManager,Transform transform,Rigidbody rb)
+    public PlayerMovement(PlayerManager playerManager, Transform transform, Rigidbody rb, Collider collider)
     {
         _playerManager = playerManager;
         _transform = transform;
         _rb = rb;
+        _colider = collider;
     }
     private void Move()
     {
@@ -32,31 +34,36 @@ public class PlayerMovement {
         _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rotation, _turnSpeed * Time.deltaTime);
     }
 
-    public void Dash(){
+    public void Dash()
+    {
+        _colider.isTrigger = true;
         if (_timer < _dashTime)
         {
+            Debug.Log(_colider.isTrigger);
             _playerManager.IsDahing = true;
             Vector3 forceToApply = _playerManager.dir.ToIso() * _dashForce * TimeManager.Instance.currentTimeScale;
             _rb.velocity = Vector3.zero;
             _rb.AddForce(forceToApply, ForceMode.Impulse);
-            
         }
 
         _timer = 0;
         _playerManager.IsDahing = false;
         _playerManager.RequireNewDashPress = true;
+        _colider.isTrigger = false;
         return;
         // yield return new WaitForSeconds(_dashTime);
         // _playerManager.IsDahing = false;
     }
 
-    public void Update(){
+    public void Update()
+    {
         PlayerLookOnMovement();
-        if(_playerManager.IsDahing)
-            _timer+= Time.deltaTime;
+        if (_playerManager.IsDahing)
+            _timer += Time.deltaTime;
     }
 
-    public void FixedUpdate(){
+    public void FixedUpdate()
+    {
         Move();
     }
 }

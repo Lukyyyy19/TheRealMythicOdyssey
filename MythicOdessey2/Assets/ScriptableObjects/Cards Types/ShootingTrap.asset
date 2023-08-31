@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cae9336541bae642a7d1dccc8cdedf6, type: 3}
-  m_Name: BreakFloor
+  m_Name: ShootingTrap
   m_EditorClassIdentifier: 
-  nameString: BreakFloor
-  prefab: {fileID: 8602839332377155362, guid: f6acdbbb1a806b1489f6b9415ceb9d74, type: 3}
+  nameString: Shooting Trap
+  prefab: {fileID: 1924167378594671134, guid: 694c4a226ee160f41a3cedfb7f5e7338, type: 3}
   width: 1
   height: 1

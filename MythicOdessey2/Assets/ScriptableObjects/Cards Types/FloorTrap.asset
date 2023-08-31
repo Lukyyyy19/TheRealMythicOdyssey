@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FloorTrap
   m_EditorClassIdentifier: 
   nameString: Floor Trap
-  prefab: {fileID: 8571270798031543952, guid: 4fbd3f8a7831b5a4e9a0387a9dea9415, type: 3}
-  width: 2
-  height: 2
+  prefab: {fileID: 1076103351797228661, guid: cf3192095ae3dda4f8918741e9da2943, type: 3}
+  width: 1
+  height: 1
