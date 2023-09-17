@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting.Dependencies.NCalc;
 
 [Serializable]
 public class PlayerAttack
@@ -35,7 +36,7 @@ public class PlayerAttack
         var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);
         foreach (var collision in collisions)
         {
-            Debug.Log(collision.name);
+            if(collision.CompareTag("Player"))continue;
             collision.GetComponent<IDamageable>()?.TakeDamage(1);
         }
         yield return new WaitForSeconds(.3f);
