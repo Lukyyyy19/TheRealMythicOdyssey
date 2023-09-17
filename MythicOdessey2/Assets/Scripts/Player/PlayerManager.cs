@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour, IDamageable {
+public class PlayerManager : MonoBehaviour {
    static PlayerManager _instance;
     
     private Rigidbody _rb;
@@ -22,12 +22,6 @@ public class PlayerManager : MonoBehaviour, IDamageable {
     [SerializeField] private bool  _requireNewDashPress = true;
     [SerializeField] private bool _isDashing;
     private bool _isAttacking;
-
-    private float _maxHealth;
-    private float _health;
-
-    [SerializeField] private Material _mainMat;
-    private Color _startColor;
     public Rigidbody Rb => _rb;
     //setter for isattack
     public bool IsAttackPressed
@@ -69,8 +63,6 @@ public class PlayerManager : MonoBehaviour, IDamageable {
         _playerInputs = new PlayerInputs(this);
         _playerAttack = new PlayerAttack(this,_anim,_swordTransform);
         _playerInputs.ArtificialAwake();
-        _health = _maxHealth;
-        _startColor = _mainMat.color;
     }
 
     private void Update(){
@@ -122,25 +114,5 @@ public class PlayerManager : MonoBehaviour, IDamageable {
         Gizmos.color = Color.red;
         if(_playerAttack.debugAttack)
             Gizmos.DrawWireSphere(_swordTransform.position, _playerAttack.AttackRadius);
-    }
-
-    public void TakeDamage(int damage){
-        _health -= damage;
-        StartCoroutine(nameof(DamagedMat));
-        EventManager.instance.TriggerEvent("PlayerDamaged");
-    }
-
-    public void Die(){
-        //throw new NotImplementedException();
-    }
-
-    IEnumerator DamagedMat(){
-        _mainMat.SetFloat("Smoothness", 0f);
-        _mainMat.color = Color.black;
-        yield return new WaitForSeconds(.075f);
-        _mainMat.color = Color.white;
-        yield return new WaitForSeconds(.1f);
-        _mainMat.SetFloat("Smoothness", 0.5f);
-        _mainMat.color = _startColor;
     }
 }

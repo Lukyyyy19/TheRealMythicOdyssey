@@ -171,7 +171,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     {
         //gameObject.SetActive(false);
         EventManager.instance.TriggerEvent("CheckEnemies");
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
     private void OnEnable(){
         EventManager.instance.AddAction("OnPlayerAttackFinished", (object[] args) => {
