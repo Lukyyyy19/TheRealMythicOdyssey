@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:MythicOdessey2/Assets/Materials/Default.mat.meta
 guid: fb0812cf4927a27409e55d6a205270b0
+========
+guid: f9cb5f94f46151548a808c22bba65aec
+>>>>>>>> itaki:MythicOdessey2/Assets/Materials/Base.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
