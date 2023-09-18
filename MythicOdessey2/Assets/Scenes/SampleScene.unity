@@ -231,6 +231,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7664728788398519507, guid: a081bc776eb67384993db9b7dd211d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ee7549b6afd8df40973428b4d249c04, type: 2}
     - target: {fileID: -6763858364670572316, guid: a081bc776eb67384993db9b7dd211d24,
         type: 3}
       propertyPath: m_Layer
@@ -256,11 +261,31 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a081bc776eb67384993db9b7dd211d24,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321514657177891973, guid: a081bc776eb67384993db9b7dd211d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ee7549b6afd8df40973428b4d249c04, type: 2}
+    - target: {fileID: 6317578925029434746, guid: a081bc776eb67384993db9b7dd211d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ee7549b6afd8df40973428b4d249c04, type: 2}
     - target: {fileID: 8009987137999418058, guid: a081bc776eb67384993db9b7dd211d24,
         type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8567717000986892130, guid: a081bc776eb67384993db9b7dd211d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ee7549b6afd8df40973428b4d249c04, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a081bc776eb67384993db9b7dd211d24, type: 3}
 --- !u!1 &123594087
@@ -518,6 +543,7 @@ GameObject:
   - component: {fileID: 321445555}
   - component: {fileID: 321445554}
   - component: {fileID: 321445556}
+  - component: {fileID: 321445557}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -622,6 +648,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &321445557
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321445551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,7 +958,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &366521998
 MonoBehaviour:
@@ -2274,17 +2317,14 @@ MonoBehaviour:
     _speed: 5
     _dashForce: 0
     _dashTime: 0
-  _playerAttack:
-    _attackSpeed: 0
-    _attackRadius: 3
-    debugAttack: 0
   dir: {x: 0, y: 0, z: 0}
   _isAttackPressed: 0
   _isDashPressed: 0
-  _requireNewAttackPress: 0
+  _requireNewAttackPress: 1
   _requireNewDashPress: 1
   _isDashing: 0
-  _collider: {fileID: 1115860895}
+  _isAttacking: 0
+  _mainMat: {fileID: 2100000, guid: 5ee7549b6afd8df40973428b4d249c04, type: 2}
 --- !u!4 &1115860894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a081bc776eb67384993db9b7dd211d24,
@@ -3139,7 +3179,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &1602295942
 BoxCollider:
@@ -3879,6 +3919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1917141237}
   - component: {fileID: 1917141236}
+  - component: {fileID: 1917141238}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -3940,6 +3981,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 65, y: 45, z: 0}
+--- !u!114 &1917141238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917141235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65fd70dcccea46409df25322786f679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shakeIntensity: 28.6
+  _shakeTimer: 0.16
 --- !u!1 &1921693555
 GameObject:
   m_ObjectHideFlags: 0

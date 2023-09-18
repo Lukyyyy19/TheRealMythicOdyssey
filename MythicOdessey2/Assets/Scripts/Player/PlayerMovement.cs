@@ -39,7 +39,6 @@ public class PlayerMovement
         _colider.isTrigger = true;
         if (_timer < _dashTime)
         {
-            Debug.Log(_colider.isTrigger);
             _playerManager.IsDahing = true;
             Vector3 forceToApply = _playerManager.dir.ToIso() * _dashForce * TimeManager.Instance.currentTimeScale;
             _rb.velocity = Vector3.zero;

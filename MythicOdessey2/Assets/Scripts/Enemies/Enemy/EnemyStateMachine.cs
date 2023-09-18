@@ -153,11 +153,11 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         Debug.Log("Enemy took damage");
         _health -= damage;
         _rb.AddForce((PlayerManager.Instance.transform.position - transform.position) * -1 * 5, ForceMode.Impulse);
-        Debug.Log(_health);
-        if (_health <= 0)
-        {
-            Die();
-        }
+        // Debug.Log(_health);
+        // if (_health <= 0)
+        // {
+        //     Die();
+        // }
     }
 
     void Unstunt()
@@ -172,7 +172,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     public void Die()
     {
         //gameObject.SetActive(false);
-        // EventManager.instance.TriggerEvent("CheckEnemies");
+         EventManager.instance.TriggerEvent("CheckEnemies");
         // gameObject.SetActive(false);
     }
     private void OnEnable()

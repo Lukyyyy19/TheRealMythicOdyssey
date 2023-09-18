@@ -13,4 +13,10 @@ public class EnemyManager : MonoBehaviour
         _enemyStateMachine = GetComponent<EnemyStateMachine>();
         _states = new EnemyFactoryState(_enemyStateMachine);
     }
+    private void OnCollisionEnter(Collision collision){
+        if (collision.gameObject.TryGetComponent(out IDamageable damageable) && damageable is PlayerManager)
+        {
+            damageable.TakeDamage(1);
+        }
+    }
 }
