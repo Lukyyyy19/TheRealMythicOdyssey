@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
-using NavMeshBuilder = UnityEditor.AI.NavMeshBuilder;
 
 
 public class NavMeshManager : MonoBehaviour {
