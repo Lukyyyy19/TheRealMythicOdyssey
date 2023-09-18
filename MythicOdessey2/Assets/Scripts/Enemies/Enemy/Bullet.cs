@@ -8,15 +8,19 @@ public class Bullet : MonoBehaviour
 
     private float _timer;
 
-    void Awake()
-    {
-        Destroy(gameObject, life);
-    }
+    [HideInInspector]
+    public int damage;
 
-    void OnCollisionEnter(Collision collision)
+    [SerializeField] int speed;
+    // void Awake()
+    // {
+    //     Destroy(gameObject, life);
+    // }
+
+    void OnTriggerEnter(Collider other)
     {
-        collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(1000);
-        Debug.Log(collision.gameObject.name);
+        other.GetComponent<IDamageable>()?.TakeDamage(damage);
+        Debug.Log(other.name);
         Destroy(gameObject);
     }
 
@@ -27,6 +31,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        transform.Translate(Vector3.up * speed * Time.deltaTime * TimeManager.Instance.currentTimeScale);
     }
 
 
