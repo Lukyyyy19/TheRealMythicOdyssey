@@ -300,7 +300,6 @@ GameObject:
   - component: {fileID: 123594093}
   - component: {fileID: 123594092}
   - component: {fileID: 123594091}
-  - component: {fileID: 123594090}
   - component: {fileID: 123594089}
   m_Layer: 8
   m_Name: Plane (6)
@@ -344,18 +343,6 @@ MonoBehaviour:
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
   m_Area: 0
---- !u!114 &123594090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123594087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b41b64d9a9b2bf4fb09172492cd894f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &123594091
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -432,7 +419,6 @@ GameObject:
   - component: {fileID: 314799817}
   - component: {fileID: 314799816}
   - component: {fileID: 314799815}
-  - component: {fileID: 314799814}
   m_Layer: 8
   m_Name: Plane (7)
   m_TagString: Untagged
@@ -455,18 +441,6 @@ Transform:
   m_Father: {fileID: 1690118575}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &314799814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314799812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b41b64d9a9b2bf4fb09172492cd894f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &314799815
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -875,7 +849,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 66129a5b525138746b0dd0f2aa1639cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -943,7 +917,10 @@ MonoBehaviour:
   _stopChasing: 0
   _lookAtPlayer: 0
   _isEnemyWithSword: 0
-  _currentMat: {fileID: 0}
+  _mainMat: {fileID: 2100000, guid: 66129a5b525138746b0dd0f2aa1639cd, type: 2}
+  _matArray:
+  - {fileID: 2100000, guid: ec6aa765e3f9dfb45b53d9bb9b21fd73, type: 2}
+  - {fileID: 2100000, guid: 3376a9fb9d6695546a9e2fddf8c4513c, type: 2}
 --- !u!54 &366521997
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1122,6 +1099,7 @@ GameObject:
   - component: {fileID: 525552503}
   - component: {fileID: 525552505}
   - component: {fileID: 525552506}
+  - component: {fileID: 525552507}
   m_Layer: 6
   m_Name: Card1 (3)
   m_TagString: Untagged
@@ -1291,6 +1269,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &525552507
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525552501}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d341ce34a0c8cb5478a719c8ba32d5dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &545836996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,7 +1656,6 @@ GameObject:
   - component: {fileID: 883672976}
   - component: {fileID: 883672975}
   - component: {fileID: 883672974}
-  - component: {fileID: 883672977}
   m_Layer: 8
   m_Name: Plane (3)
   m_TagString: Untagged
@@ -1745,18 +1742,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883672972}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &883672977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883672972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b41b64d9a9b2bf4fb09172492cd894f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &922330381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,6 +1755,7 @@ GameObject:
   - component: {fileID: 922330383}
   - component: {fileID: 922330385}
   - component: {fileID: 922330386}
+  - component: {fileID: 922330387}
   m_Layer: 6
   m_Name: Card1
   m_TagString: Untagged
@@ -1810,7 +1796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.73393774, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1917,7 +1903,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 922330385}
           m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: DesInteraction
+          m_MethodName: OnEndDarag
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1929,7 +1915,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 922330385}
           m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: OnEndDarag
+          m_MethodName: DesInteraction
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1939,6 +1925,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &922330387
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922330381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d341ce34a0c8cb5478a719c8ba32d5dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &942818650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,7 +1957,6 @@ GameObject:
   - component: {fileID: 942818655}
   - component: {fileID: 942818654}
   - component: {fileID: 942818653}
-  - component: {fileID: 942818652}
   m_Layer: 8
   m_Name: Plane (4)
   m_TagString: Untagged
@@ -1974,18 +1979,6 @@ Transform:
   m_Father: {fileID: 1690118575}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &942818652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942818650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b41b64d9a9b2bf4fb09172492cd894f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &942818653
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2159,7 +2152,6 @@ GameObject:
   - component: {fileID: 1041562135}
   - component: {fileID: 1041562134}
   - component: {fileID: 1041562133}
-  - component: {fileID: 1041562136}
   m_Layer: 8
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -2246,18 +2238,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041562131}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1041562136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041562131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b41b64d9a9b2bf4fb09172492cd894f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1115860890 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a081bc776eb67384993db9b7dd211d24,
@@ -2358,6 +2338,7 @@ GameObject:
   - component: {fileID: 1155292808}
   - component: {fileID: 1155292807}
   - component: {fileID: 1155292806}
+  - component: {fileID: 1155292810}
   m_Layer: 6
   m_Name: Card1 (4)
   m_TagString: Untagged
@@ -2527,6 +2508,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155292804}
   m_CullTransparentMesh: 1
+--- !u!95 &1155292810
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155292804}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d341ce34a0c8cb5478a719c8ba32d5dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1167050898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,7 +2617,6 @@ GameObject:
   - component: {fileID: 1223846014}
   - component: {fileID: 1223846013}
   - component: {fileID: 1223846016}
-  - component: {fileID: 1223846017}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -2733,18 +2733,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 356e266b5467c20409aba266654e4abb, type: 2}
   m_BuildHeightMesh: 0
---- !u!114 &1223846017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223846011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b41b64d9a9b2bf4fb09172492cd894f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1285345711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2826,6 +2814,7 @@ GameObject:
   - component: {fileID: 1349101101}
   - component: {fileID: 1349101103}
   - component: {fileID: 1349101104}
+  - component: {fileID: 1349101105}
   m_Layer: 6
   m_Name: Card1 (1)
   m_TagString: Untagged
@@ -2995,6 +2984,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1349101105
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349101099}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d341ce34a0c8cb5478a719c8ba32d5dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1545902277
 GameObject:
   m_ObjectHideFlags: 0
@@ -3007,7 +3016,6 @@ GameObject:
   - component: {fileID: 1545902282}
   - component: {fileID: 1545902281}
   - component: {fileID: 1545902280}
-  - component: {fileID: 1545902279}
   m_Layer: 8
   m_Name: Plane (5)
   m_TagString: Untagged
@@ -3030,18 +3038,6 @@ Transform:
   m_Father: {fileID: 1690118575}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.221}
---- !u!114 &1545902279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545902277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b41b64d9a9b2bf4fb09172492cd894f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &1545902280
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3164,7 +3160,10 @@ MonoBehaviour:
   _stopChasing: 0
   _lookAtPlayer: 0
   _isEnemyWithSword: 0
-  _currentMat: {fileID: 0}
+  _mainMat: {fileID: 2100000, guid: 66129a5b525138746b0dd0f2aa1639cd, type: 2}
+  _matArray:
+  - {fileID: 2100000, guid: ec6aa765e3f9dfb45b53d9bb9b21fd73, type: 2}
+  - {fileID: 2100000, guid: 3376a9fb9d6695546a9e2fddf8c4513c, type: 2}
 --- !u!54 &1602295941
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3214,7 +3213,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 66129a5b525138746b0dd0f2aa1639cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3416,6 +3415,7 @@ Transform:
   - {fileID: 1545902278}
   - {fileID: 123594088}
   - {fileID: 314799813}
+  - {fileID: 1803551698}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3654,6 +3654,104 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710514046}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1803551697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803551698}
+  - component: {fileID: 1803551702}
+  - component: {fileID: 1803551701}
+  - component: {fileID: 1803551700}
+  m_Layer: 8
+  m_Name: Plane (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1803551698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803551697}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15, y: 0, z: 25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1690118575}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1803551700
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803551697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1803551701
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803551697}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1803551702
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803551697}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1848471598
 GameObject:
   m_ObjectHideFlags: 0
@@ -3666,7 +3764,6 @@ GameObject:
   - component: {fileID: 1848471602}
   - component: {fileID: 1848471601}
   - component: {fileID: 1848471600}
-  - component: {fileID: 1848471603}
   m_Layer: 8
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -3753,18 +3850,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848471598}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1848471603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848471598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b41b64d9a9b2bf4fb09172492cd894f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1855326136
 GameObject:
   m_ObjectHideFlags: 0
@@ -4249,6 +4334,7 @@ GameObject:
   - component: {fileID: 2052194665}
   - component: {fileID: 2052194667}
   - component: {fileID: 2052194668}
+  - component: {fileID: 2052194669}
   m_Layer: 6
   m_Name: Card1 (2)
   m_TagString: Untagged
@@ -4418,3 +4504,23 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &2052194669
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052194663}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d341ce34a0c8cb5478a719c8ba32d5dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

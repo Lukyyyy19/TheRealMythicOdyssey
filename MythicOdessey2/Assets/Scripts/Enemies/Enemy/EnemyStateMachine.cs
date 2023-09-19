@@ -1,9 +1,5 @@
-﻿using System;
-using Unity.Mathematics;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.VFX;
-using DG.Tweening;
 using UnityEngine.AI;
 
 public class EnemyStateMachine : MonoBehaviour, IDamageable
@@ -32,10 +28,10 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     //private AudioSource _audio;
 
-    [SerializeField] private Material _currentMat;
-    private Color _initalColor;
-
-
+    [SerializeField] private Material _mainMat;
+    private Color _startColor;
+   [SerializeField] private Material[] _matArray;
+    MeshRenderer _meshRenderer;
     //[SerializeField] private VisualEffect _bloodSplash;
 
     public Rigidbody Rb => _rb;
@@ -78,6 +74,8 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _maxAttackRange = _attackRange;
         _maxChaseRange = _chaseRange;
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _startColor = _mainMat.color;
+        _meshRenderer = GetComponentInChildren<MeshRenderer>();
         //_audio = GetComponent<AudioSource>();
         //_healtBar = GetComponentInChildren<floatingHealthBar>();
         // if (TryGetComponent(out MeshRenderer mr))
@@ -153,6 +151,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         Debug.Log("Enemy took damage");
         _health -= damage;
         _rb.AddForce((PlayerManager.Instance.transform.position - transform.position) * -1 * 5, ForceMode.Impulse);
+        StartCoroutine(nameof(DamagedMat));
         // Debug.Log(_health);
         // if (_health <= 0)
         // {
@@ -160,12 +159,12 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         // }
     }
 
-    void Unstunt()
-    {
-        _attackRange = _maxAttackRange;
-        _chaseRange = _maxChaseRange;
-        _currentMat.SetFloat("_Smoothness", 0.5f);
-    }
+    // void Unstunt()
+    // {
+    //     _attackRange = _maxAttackRange;
+    //     _chaseRange = _maxChaseRange;
+    //     _currentMat.SetFloat("_Smoothness", 0.5f);
+    // }
 
 
 
@@ -185,6 +184,13 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         });
     }
 
+    IEnumerator DamagedMat(){
+        _meshRenderer.material = _matArray[0];
+        yield return new WaitForSeconds(.075f);
+        _meshRenderer.material = _matArray[1];
+        yield return new WaitForSeconds(.1f);
+        _meshRenderer.material = _mainMat;
+    }
 
     private void OnDrawGizmos()
     {

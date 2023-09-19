@@ -34,6 +34,7 @@ public class TestGrid : MonoBehaviour
         planesParent.transform.position += Vector3.up * .1f;
         foreach (var startTile in startTiles)
         {
+            Debug.Log(startTile.name);
             grid.GetXY(startTile.position, out int x, out int y);
             grid.GetValue(x, y).Transform = startTile;
             _ghostPlanes[new Vector2Int(x, y)].GetComponent<MeshRenderer>().material.color = new Color32(255, 0, 0, 43);
@@ -128,6 +129,7 @@ public class TestGrid : MonoBehaviour
         else
         {
             Debug.Log("No se puede construir");
+            EventManager.instance.TriggerEvent("OnCantBuild");
         }
     }
 }
