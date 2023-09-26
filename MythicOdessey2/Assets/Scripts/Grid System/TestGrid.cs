@@ -13,19 +13,28 @@ public class TestGrid : MonoBehaviour
     private Dictionary<Vector2Int, GameObject> _ghostPlanes = new Dictionary<Vector2Int, GameObject>();
     public List<Transform> startTiles = new List<Transform>();
     public static TestGrid instance;
+    [SerializeField,Range(0,15)]int _cellSize = 4;
+    [SerializeField,Range(0,15)]int _width = 7;
+    [SerializeField,Range(0,15)]int _height = 7;
+    [SerializeField] Vector3 _originPosition;
     private void Awake()
     {
         instance = this;
     }
     void Start()
     {
-        grid = new GridSystem<GridObject>(10, 10, 10, Vector3.zero, (GridSystem<GridObject> g, int x, int z) => new GridObject(g, x, z));
+        grid = new GridSystem<GridObject>(_width, _height, _cellSize, _originPosition, (GridSystem<GridObject> g, int x, int z) => new GridObject(g, x, z), true);
         var planesParent = new GameObject("Planes");
-        for (int x = 0; x < 10; x++)
+        for (int x = 0; x < _width; x++)
         {
-            for (int y = 0; y < 10; y++)
+            for (int y = 0; y < _height; y++)
             {
-                var plane = Instantiate(planePrefab, grid.GetWorldPosition(x, y) + new Vector3(10, 0, 10) * .5f, Quaternion.identity, planesParent.transform);
+                if ((x == 0 && y == 0)) continue;
+                else if(x==_width-1 && y == 0) continue;
+                else if(x==0 && y == _height-1) continue;
+                else if(x==_width-1 && y == _height-1) continue;
+                var plane = Instantiate(planePrefab, grid.GetWorldPosition(x, y) + new Vector3(_cellSize, 0, _cellSize) * .5f, Quaternion.identity, planesParent.transform);
+                plane.transform.localScale = Vector3.one*(_cellSize/10f);
                 plane.SetActive(false);
                 _ghostPlanes.Add(new Vector2Int(x, y), plane);
 
@@ -115,8 +124,9 @@ public class TestGrid : MonoBehaviour
         {
             Transform built;
             //+ new Vector3(_cellSize,0,_cellSize)*.5f es porque no tenemos el anchor point una vez que el objeto lo tenga sacamos esa parte del codigo
-            built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + new Vector3(10, 0, 10) * .5f,
+            built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + new Vector3(_cellSize, 0.01f, _cellSize) * .5f,
                 Quaternion.identity);
+            built.transform.localScale = Vector3.one * (_cellSize / 10f);
             foreach (var gridPos in gridPositionList)
             {
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;
