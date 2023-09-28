@@ -10,8 +10,11 @@ public class SpikesTrap : MonoBehaviour {
     {
         yield return new WaitForSeconds(.6f);
         _spikes.SetActive(true);
-        if(_canAtack)
-            other.TakeDamage(1);
+        if (_canAtack)
+        {
+            other.TakeDamage(1,transform);
+            _canAtack = false;
+        }
         yield return new WaitForSeconds(1);
         _spikes.SetActive(false);
     }

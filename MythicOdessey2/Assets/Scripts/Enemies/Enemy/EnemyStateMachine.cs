@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -98,6 +99,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _factory.SetContext(this);
         _currentState = _factory.Root();
         _currentState.EnterState();
+        GameManager.Instance.enemies.Add(this);
     }
 
     private void Update()
@@ -145,18 +147,18 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     //     if (_health <= 0) Die();
     //
     // }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Transform attacker)
     {
         //if(_damageTaken)return;
         Debug.Log("Enemy took damage");
         _health -= damage;
-        _rb.AddForce((PlayerManager.Instance.transform.position - transform.position) * -1 * 5, ForceMode.Impulse);
+        _rb.AddForce((transform.position-attacker.position) * 5, ForceMode.Impulse);
         StartCoroutine(nameof(DamagedMat));
         // Debug.Log(_health);
-        // if (_health <= 0)
-        // {
-        //     Die();
-        // }
+        if (_health <= 0)
+        {
+            Die();
+        }
     }
 
     // void Unstunt()
@@ -170,18 +172,26 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        //remove from game amanger list enemis
+        GameManager.Instance.enemies.Remove(this);
+        
          EventManager.instance.TriggerEvent("CheckEnemies");
         // gameObject.SetActive(false);
     }
     private void OnEnable()
     {
-        EventManager.instance.AddAction("OnPlayerAttackFinished", (object[] args) =>
-        {
-            _damageTaken = false;
-            if (_rb != null)
-                _rb.velocity = Vector3.zero;
-        });
+        EventManager.instance.AddAction("OnPlayerAttackFinished", (object[] args) => { DamageTaken(); });
+    }
+
+    private void DamageTaken(){
+        _damageTaken = false;
+        if (_rb != null)
+            _rb.velocity = Vector3.zero;
+    }
+
+    private void OnDisable(){
+        EventManager.instance.RemoveAction("OnPlayerAttackFinished", (object[] args) => { DamageTaken(); });
     }
 
     IEnumerator DamagedMat(){
@@ -190,6 +200,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _meshRenderer.material = _matArray[1];
         yield return new WaitForSeconds(.1f);
         _meshRenderer.material = _mainMat;
+        _rb.velocity = Vector3.zero;
     }
 
     private void OnDrawGizmos()

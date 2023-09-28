@@ -27,15 +27,17 @@ public class Card : MonoBehaviour, IInteracteable
         transform.localPosition =
             _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
         _currentCard = false;
+        
     }
 
-    public void Interaction()
-    {
+    public void Interaction(){
+        
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
         _currentCard = true;
     }
 
     public void FollwoCursor(){
+        transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
         Vector3 newPos;
         newPos.x = Helper.GetMouseWorldPosition().x;
         newPos.y = Helper.GetMouseWorldPosition().y;
@@ -46,6 +48,7 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void OnEndDarag(){
         EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
+        transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
     }
 
     private void OnEnable(){

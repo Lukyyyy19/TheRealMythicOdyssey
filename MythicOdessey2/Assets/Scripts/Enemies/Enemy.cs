@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour,IDamageable {
     private bool _damageTaken;
     private float _health = 2;
-    public void TakeDamage(int damage){
+    public void TakeDamage(int damage,Transform attacker){
         if(_damageTaken)return;
         _damageTaken = true;
         Debug.Log("Enemy took damage");

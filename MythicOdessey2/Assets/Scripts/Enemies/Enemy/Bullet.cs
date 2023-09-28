@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<IDamageable>()?.TakeDamage(damage);
+        other.GetComponent<IDamageable>()?.TakeDamage(damage,transform);
         Debug.Log(other.name);
         Destroy(gameObject);
     }
