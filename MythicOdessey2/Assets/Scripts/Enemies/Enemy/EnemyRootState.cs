@@ -11,7 +11,6 @@ public class EnemyRootState : EnemyBaseState {
     public override void CheckSwitchStates() { }
 
     public override void EnterState() {
-        Debug.Log("asdasdad");
         SetSubState(Factory.Chase());
     }
 

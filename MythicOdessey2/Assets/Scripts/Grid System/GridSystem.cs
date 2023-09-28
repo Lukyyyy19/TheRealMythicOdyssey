@@ -75,4 +75,14 @@ public class GridSystem <T>{
         GetXY(worldPosition, out x, out y);
         return GetValue(x, y);
     }
+    
+    // public Vector2Int MoveObject(Vector2Int newPosition, Vector2Int currentPosition){
+    //     var value = GetValue(currentPosition.x, currentPosition.y);
+    //     var resultPosition = currentPosition + newPosition;
+    //     //GetXY(newPosition, out x, out y);
+    //     SetValue(resultPosition.x,resultPosition.y, value);
+    //     return resultPosition;
+    // }
+
+    
 }

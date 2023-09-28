@@ -9,7 +9,7 @@ public class TestGrid : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject planePrefab;
-    private GridSystem<GridObject> grid;
+    public GridSystem<GridObject> grid;
     private Dictionary<Vector2Int, GameObject> _ghostPlanes = new Dictionary<Vector2Int, GameObject>();
     public List<Transform> startTiles = new List<Transform>();
     public static TestGrid instance;
@@ -50,7 +50,7 @@ public class TestGrid : MonoBehaviour
         }
     }
 
-    class GridObject
+   public class GridObject
     {
         private GridSystem<GridObject> grid;
         private int x;
@@ -80,6 +80,10 @@ public class TestGrid : MonoBehaviour
         {
             return transform == null;
         }
+
+        public void ResetValue(){
+            transform = null;
+        }
     }
     private void OnEnable()
     {
@@ -102,6 +106,13 @@ public class TestGrid : MonoBehaviour
             }
         }));
         EventManager.instance.AddAction("OnCardTrigger", (objects => { BuildObject((CardsTypeSO)objects[0]); }));
+        EventManager.instance.AddAction("OnTrapDestroyed", (objects =>
+        {
+            Vector2Int pos = (Vector2Int)objects[0];
+            //grid.GetXY((Vector3)objects[0], out int x, out int z);
+            grid.GetValue(pos.x, pos.y).ResetValue();
+            UpdateGhostPlaneColors(pos);
+        }));
     }
 
     private void BuildObject(CardsTypeSO prefab)
@@ -113,6 +124,7 @@ public class TestGrid : MonoBehaviour
         bool canBuild = true;
         foreach (var gridPos in gridPositionList)
         {
+            Debug.Log(grid.GetValue(gridPos.x, gridPos.y).Transform);
             if (!grid.GetValue(gridPos.x, gridPos.y).CanBuild())
             {
                 canBuild = false;
@@ -127,13 +139,16 @@ public class TestGrid : MonoBehaviour
             built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + new Vector3(_cellSize, 0.01f, _cellSize) * .5f,
                 Quaternion.identity);
             built.transform.localScale = Vector3.one * (_cellSize / 10f);
+            built.TryGetComponent(out BombTrap bombTrap);
+            bombTrap._gridPosition = gridPositionList[0];
             foreach (var gridPos in gridPositionList)
             {
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;
-                _ghostPlanes[gridPos].GetComponent<MeshRenderer>().material.color = new Color32(255, 0, 0, 43);
+                Debug.Log(grid.GetValue(gridPos.x, gridPos.y).Transform.name);
+                _ghostPlanes[gridPos].GetComponent<GhostPlane>().SetColor(true);
             }
-            var builtNavMeshSurface = built.GetComponent<NavMeshSurface>();
-            EventManager.instance.TriggerEvent("OnUpdateNavMesh", builtNavMeshSurface);
+            // var builtNavMeshSurface = built.GetComponent<NavMeshSurface>();
+            // EventManager.instance.TriggerEvent("OnUpdateNavMesh", builtNavMeshSurface);
         }
 
         else
@@ -141,5 +156,9 @@ public class TestGrid : MonoBehaviour
             Debug.Log("No se puede construir");
             EventManager.instance.TriggerEvent("OnCantBuild");
         }
+    }
+
+   public void UpdateGhostPlaneColors(Vector2Int pos){
+        _ghostPlanes[pos].GetComponent<GhostPlane>().SetColor(!grid.GetValue(pos.x,pos.y).CanBuild());
     }
 }

@@ -47,7 +47,10 @@ public class Card : MonoBehaviour, IInteracteable
     }
 
     public void OnEndDarag(){
-        EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
+        if (_currentCard)
+        {
+            EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
+        }
         transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
     }
 
@@ -58,7 +61,11 @@ public class Card : MonoBehaviour, IInteracteable
             StartCoroutine(nameof(Shake));
             _currentCard = false;
         });
-        EventManager.instance.AddAction("OnOpenMenu", (x) => { transform.localEulerAngles = _startRotation;});
+        EventManager.instance.AddAction("OnOpenMenu", (x) => {
+            transform.localEulerAngles = _startRotation;
+            DesInteraction();
+            transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+        });
     }
     IEnumerator Shake(){
         _image.color = Color.red;
