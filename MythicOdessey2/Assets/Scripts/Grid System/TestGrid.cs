@@ -13,10 +13,12 @@ public class TestGrid : MonoBehaviour
     private Dictionary<Vector2Int, GameObject> _ghostPlanes = new Dictionary<Vector2Int, GameObject>();
     public List<Transform> startTiles = new List<Transform>();
     public static TestGrid instance;
+
     private void Awake()
     {
         instance = this;
     }
+
     void Start()
     {
         grid = new GridSystem<GridObject>(10, 10, 10, Vector3.zero, (GridSystem<GridObject> g, int x, int z) => new GridObject(g, x, z));
@@ -28,9 +30,9 @@ public class TestGrid : MonoBehaviour
                 var plane = Instantiate(planePrefab, grid.GetWorldPosition(x, y) + new Vector3(10, 0, 10) * .5f, Quaternion.identity, planesParent.transform);
                 plane.SetActive(false);
                 _ghostPlanes.Add(new Vector2Int(x, y), plane);
-
             }
         }
+
         planesParent.transform.position += Vector3.up * .1f;
         foreach (var startTile in startTiles)
         {
@@ -45,7 +47,9 @@ public class TestGrid : MonoBehaviour
         private GridSystem<GridObject> grid;
         private int x;
         private int z;
+
         private Transform transform;
+
         //transform getter and setter
         public Transform Transform
         {
@@ -59,6 +63,7 @@ public class TestGrid : MonoBehaviour
                 //     grid.onGridValueChanged(x,z);
             }
         }
+
         public GridObject(GridSystem<GridObject> grid, int x, int z)
         {
             this.grid = grid;
@@ -71,6 +76,7 @@ public class TestGrid : MonoBehaviour
             return transform == null;
         }
     }
+
     private void OnEnable()
     {
         EventManager.instance.AddAction("OnOpenMenu", (objects =>
@@ -114,15 +120,17 @@ public class TestGrid : MonoBehaviour
         {
             Transform built;
             //+ new Vector3(_cellSize,0,_cellSize)*.5f es porque no tenemos el anchor point una vez que el objeto lo tenga sacamos esa parte del codigo
-            built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + new Vector3(10, 0, 10) * .5f,
-                Quaternion.identity);
+            built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + new Vector3(10, 0, 10) * .5f, Quaternion.identity);
             foreach (var gridPos in gridPositionList)
             {
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;
                 _ghostPlanes[gridPos].GetComponent<MeshRenderer>().material.color = new Color32(255, 0, 0, 43);
             }
+            EventManager.instance.TriggerEvent("OnCardBuilt", prefab.manaCost);
+
             var builtNavMeshSurface = built.GetComponent<NavMeshSurface>();
             EventManager.instance.TriggerEvent("OnUpdateNavMesh", builtNavMeshSurface);
+            
         }
 
         else
