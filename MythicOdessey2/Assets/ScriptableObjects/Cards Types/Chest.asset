@@ -16,3 +16,4 @@ MonoBehaviour:
   prefab: {fileID: 842610022227244968, guid: ee9976bdcc4ab97478a7e75de345b56a, type: 3}
   width: 1
   height: 1
+  manaCost: 2

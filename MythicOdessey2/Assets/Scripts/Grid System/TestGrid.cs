@@ -21,6 +21,7 @@ public class TestGrid : MonoBehaviour
     {
         instance = this;
     }
+
     void Start()
     {
         grid = new GridSystem<GridObject>(_width, _height, _cellSize, _originPosition, (GridSystem<GridObject> g, int x, int z) => new GridObject(g, x, z), true);
@@ -37,9 +38,9 @@ public class TestGrid : MonoBehaviour
                 plane.transform.localScale = Vector3.one*(_cellSize/10f);
                 plane.SetActive(false);
                 _ghostPlanes.Add(new Vector2Int(x, y), plane);
-
             }
         }
+
         planesParent.transform.position += Vector3.up * .1f;
         foreach (var startTile in startTiles)
         {
@@ -55,7 +56,9 @@ public class TestGrid : MonoBehaviour
         private GridSystem<GridObject> grid;
         private int x;
         private int z;
+
         private Transform transform;
+
         //transform getter and setter
         public Transform Transform
         {
@@ -69,6 +72,7 @@ public class TestGrid : MonoBehaviour
                 //     grid.onGridValueChanged(x,z);
             }
         }
+
         public GridObject(GridSystem<GridObject> grid, int x, int z)
         {
             this.grid = grid;
@@ -85,6 +89,7 @@ public class TestGrid : MonoBehaviour
             transform = null;
         }
     }
+
     private void OnEnable()
     {
         EventManager.instance.AddAction("OnOpenMenu", (objects =>
@@ -147,6 +152,7 @@ public class TestGrid : MonoBehaviour
                 Debug.Log(grid.GetValue(gridPos.x, gridPos.y).Transform.name);
                 _ghostPlanes[gridPos].GetComponent<GhostPlane>().SetColor(true);
             }
+            EventManager.instance.TriggerEvent("OnCardBuilt", prefab.manaCost);
             // var builtNavMeshSurface = built.GetComponent<NavMeshSurface>();
             // EventManager.instance.TriggerEvent("OnUpdateNavMesh", builtNavMeshSurface);
         }

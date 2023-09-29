@@ -27,7 +27,6 @@ public class Card : MonoBehaviour, IInteracteable
         transform.localPosition =
             _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
         _currentCard = false;
-        
     }
 
     public void Interaction(){
@@ -42,7 +41,7 @@ public class Card : MonoBehaviour, IInteracteable
         newPos.x = Helper.GetMouseWorldPosition().x;
         newPos.y = Helper.GetMouseWorldPosition().y;
         newPos.z = -150f;
-        
+
         transform.position = Helper.GetMouseWorldPosition();
     }
 

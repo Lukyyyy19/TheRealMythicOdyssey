@@ -10,11 +10,14 @@ public class CardMenuManager : MonoBehaviour
     public bool menuOpen;
     public GameObject cardMenu;
     public static CardMenuManager Instance => _instance;
-    private void Awake(){
+
+    private void Awake()
+    {
         _instance = this;
     }
-    
-    public void OpenMenu(bool open){
+
+    public void OpenMenu(bool open)
+    {
         TimeManager.Instance.currentTimeScale = open ? 0.25f : 1;
         EventManager.instance.TriggerEvent("OnTimeChanged",TimeManager.Instance.currentTimeScale);
         EventManager.instance.TriggerEvent("OnOpenMenu",open);
