@@ -32,7 +32,7 @@ public class PlayerAttack {
         foreach (var collision in collisions)
         {
             if (collision.CompareTag("Player")) continue;
-            collision.GetComponent<IDamageable>()?.TakeDamage(1);
+            collision.GetComponent<IDamageable>()?.TakeDamage(1,_playerManager.transform);
         }
     
         yield return new WaitForSeconds(.3f);

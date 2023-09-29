@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3012789988155220925}
   - component: {fileID: 1762807012654920169}
   - component: {fileID: 3594860065154648612}
-  - component: {fileID: 9070808445979908116}
+  - component: {fileID: 1562778648818406235}
   m_Layer: 8
   m_Name: Shooting Trap
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &9070808445979908116
+--- !u!114 &1562778648818406235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,10 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4942021850192150242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29cbd88cf4225124c8654151a5b73d40, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ab5ce6cd46a59644aefa33dae470441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4436102503066872816, guid: d889be22d76e183419c47832dc81450f,
-    type: 3}
-  startTimer: 6
-  damage: 1
+  _radius: 3

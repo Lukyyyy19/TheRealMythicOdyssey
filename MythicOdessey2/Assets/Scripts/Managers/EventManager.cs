@@ -19,11 +19,11 @@ public class EventManager : MonoBehaviour
         if (eventDictionary.ContainsKey(actionName))
         {
             eventDictionary[actionName] += action;
-            Debug.Log($"añadiendo metodo a la key {actionName}");
+            //Debug.Log($"añadiendo metodo a la key {actionName}");
         } else
         {
             eventDictionary.Add(actionName, action);
-            print($"Creando key {actionName} y añadiendo");
+           // print($"Creando key {actionName} y añadiendo");
         }
     }
 
@@ -34,11 +34,11 @@ public class EventManager : MonoBehaviour
         if (eventDictionary.ContainsKey(actionName))
         {
             eventDictionary[actionName] -= action;
-            Debug.Log($"Removiendo metodo a la key {actionName}");
+            //Debug.Log($"Removiendo metodo a la key {actionName}");
         } else
         {
             //eventDictionary.Add(actionName, action);
-            print($"No existe la key {actionName} para remover");
+            //print($"No existe la key {actionName} para remover");
         }
     }
 
@@ -48,9 +48,9 @@ public class EventManager : MonoBehaviour
         if (eventDictionary.ContainsKey(actionName))
         {
             eventDictionary[actionName]?.Invoke(args);
-            Debug.Log($"LLamando al evento {actionName}");
-        } else
-            Debug.Log($"No contiene la key {actionName}");
+            //Debug.Log($"LLamando al evento {actionName}");
+        }
+           // Debug.Log($"No contiene la key {actionName}");
     }
 
 }

@@ -126,8 +126,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     //     if(_playerAttack.debugAttack)
     //         Gizmos.DrawWireSphere(_swordTransform.position, _playerAttack.AttackRadius);
     // }
-    public void TakeDamage(int damage)
-    {
+    public void TakeDamage(int damage, Transform attacker){
         _health -= damage;
         _playerHealthBar.SetHealth(_health);
         StartCoroutine(nameof(DamagedMat));

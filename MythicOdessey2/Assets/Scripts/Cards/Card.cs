@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour, IInteracteable
 {
@@ -9,24 +10,33 @@ public class Card : MonoBehaviour, IInteracteable
     [SerializeField] private Color cardColor;
     private Vector3 _startPos;
     public CardsTypeSO prefab;
-
-    private void Awake()
-    {
+    private Animator _animator;
+    private Image _image;
+    private Color _startColor;
+    private Vector3 _startRotation;
+    private bool _currentCard;
+    private void Awake(){
         _startPos = transform.localPosition;
+        _animator = GetComponent<Animator>();
+        _image = GetComponent<Image>();
+        _startColor = _image.color;
+        _startRotation = transform.localEulerAngles;
     }
 
-    public void DesInteraction()
-    {
-        transform.localPosition = _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
+    public void DesInteraction(){
+        transform.localPosition =
+            _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
+        _currentCard = false;
     }
 
-    public void Interaction()
-    {
+    public void Interaction(){
+        
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
+        _currentCard = true;
     }
 
-    public void FollwoCursor()
-    {
+    public void FollwoCursor(){
+        transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
         Vector3 newPos;
         newPos.x = Helper.GetMouseWorldPosition().x;
         newPos.y = Helper.GetMouseWorldPosition().y;
@@ -35,10 +45,35 @@ public class Card : MonoBehaviour, IInteracteable
         transform.position = Helper.GetMouseWorldPosition();
     }
 
-    public void OnEndDarag()
-    {
-        EventManager.instance.TriggerEvent("OnCardTrigger", prefab);
+    public void OnEndDarag(){
+        if (_currentCard)
+        {
+            EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
+        }
+        transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
     }
+
+    private void OnEnable(){
+        EventManager.instance.AddAction("OnCantBuild", (x) => {
+            if(!_currentCard)return;
+            _animator.CrossFade("Shake",.1f);
+            StartCoroutine(nameof(Shake));
+            _currentCard = false;
+        });
+        EventManager.instance.AddAction("OnOpenMenu", (x) => {
+            transform.localEulerAngles = _startRotation;
+            DesInteraction();
+            transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+        });
+    }
+    IEnumerator Shake(){
+        _image.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        _image.color = Color.white;
+        yield return new WaitForSeconds(.1f);
+        _image.color = _startColor;
+    }
+    
     // private void Start()
     // {
     //     text.text = value.ToString();

@@ -1,18 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+   public List<EnemyStateMachine> enemies = new List<EnemyStateMachine>();
+   //create singelton
+    static GameManager _instance;
+    public static GameManager Instance => _instance;
+    private void Awake(){
+        _instance = this;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnEnable(){
+        EventManager.instance.AddAction("CheckEnemies", (object[] args) => {
+            if (enemies.Count == 0)
+            {
+                Debug.Log("Ganaste");
+            }
+        });
+    }
+    private void OnDisable(){
+        EventManager.instance.RemoveAction("CheckEnemies", (object[] args) => {
+            if (enemies.Count == 0)
+            {
+                Debug.Log("Ganaste");
+            }
+        });
     }
 }

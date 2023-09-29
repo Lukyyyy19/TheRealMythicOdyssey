@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CardMenuManager : MonoBehaviour
 {
     static CardMenuManager _instance;
     public bool menuOpen;
-    [SerializeField] GameObject _cardMenu;
+    public GameObject cardMenu;
     public static CardMenuManager Instance => _instance;
 
     private void Awake()
@@ -18,8 +19,8 @@ public class CardMenuManager : MonoBehaviour
     public void OpenMenu(bool open)
     {
         TimeManager.Instance.currentTimeScale = open ? 0.25f : 1;
-        EventManager.instance.TriggerEvent("OnTimeChanged", TimeManager.Instance.currentTimeScale);
-        EventManager.instance.TriggerEvent("OnOpenMenu", open);
-        _cardMenu.SetActive(open);
+        EventManager.instance.TriggerEvent("OnTimeChanged",TimeManager.Instance.currentTimeScale);
+        EventManager.instance.TriggerEvent("OnOpenMenu",open);
+        cardMenu.SetActive(open);
     }
 }
