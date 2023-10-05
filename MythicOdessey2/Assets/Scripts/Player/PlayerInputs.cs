@@ -25,8 +25,8 @@ public class PlayerInputs
         _playerInput.PlayerActions.Attack.started += OnSlashInput;
         _playerInput.PlayerActions.Attack.canceled += OnSlashInput;
         
-        _playerInput.PlayerActions.Dash.started += OnDashInput;
-        _playerInput.PlayerActions.Dash.canceled += OnDashInput;
+        // _playerInput.PlayerActions.Dash.started += OnDashInput;
+        // _playerInput.PlayerActions.Dash.canceled += OnDashInput;
         
         _playerInput.PlayerActions.OpenCardMenu.started += OnOpenCardMenu;
         _playerInput.PlayerActions.OpenCardMenu.canceled += OnOpenCardMenu;
