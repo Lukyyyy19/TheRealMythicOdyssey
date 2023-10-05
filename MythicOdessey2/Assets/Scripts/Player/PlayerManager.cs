@@ -147,11 +147,15 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _playerHealthBar.SetHealth(_health);
         StartCoroutine(nameof(DamagedMat));
         EventManager.instance.TriggerEvent("PlayerDamaged");
+        if (_health <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
-        //throw new NotImplementedException();
+        LevelManager.instance.LoadScene("MainMenu");
     }
 
     IEnumerator DamagedMat()
