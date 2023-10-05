@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+[Serializable]
 public class PlayerAttack {
     [SerializeField] private float _attackSpeed = .5f;
     PlayerManager _playerManager;

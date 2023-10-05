@@ -1,4 +1,8 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IDamageable
@@ -24,13 +28,17 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private bool _requireNewDashPress = true;
     [SerializeField] private bool _isDashing;
     [SerializeField] private bool _isAttacking;
+    [SerializeField] private bool canUpdate = true;
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _health;
     [SerializeField] private int _maxMagic;
     [SerializeField] private int _magic;
     [SerializeField] private Material _mainMat;
+    [SerializeField] private GameObject _playerModel;
     private Color _startColor;
-
+    
+    private float _interactionRadius = 2f;
+    
     public Rigidbody Rb => _rb;
 
     //setter for isattack
@@ -71,7 +79,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (CardMenuManager.Instance.menuOpen) return;
+        if (CardMenuManager.Instance.menuOpen || !canUpdate) return;
         _playerMovement.Update();
         _playerAttack.Update();
         if (_isAttackPressed && !_requireNewAttackPress)
@@ -94,38 +102,46 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _playerMovement.FixedUpdate();
     }
 
-    private void OnEnable()
+    public void TryInteraction()
     {
-        _playerInputs.OnEnable();
-        EventManager.instance.AddAction("OnPlayerAttackFinished", (object[] args) =>
+        var collisions = Physics.OverlapSphere(transform.position, _interactionRadius);
+        var colList = new Dictionary<Collider, IInteracteable>();
+        foreach (var col in collisions)
         {
-            _isAttacking = false;
-            _requireNewAttackPress = true;
-        });
-        EventManager.instance.AddAction("OnTimeChanged", (object[] args) => { _anim.speed = (float)args[0]; });
-        
-        EventManager.instance.AddAction("OnCardBuilt", (object[] args) =>
+            col.TryGetComponent(out IInteracteable interacteable);
+            if(interacteable != null)
+                colList.Add(col,interacteable);
+        }
+        Debug.Log("Colisiones de interaccion son " + colList);
+        if (colList.Count > 0)
         {
-            _magic -= (int) args[0];
-            _playerMagicBar.SetMagic(_magic);
-        });
+            var first = colList.OrderBy(x => Vector3.Distance(x.Key.transform.position, transform.position)).First();
+            first.Value.Interaction();
+        }
     }
 
-    private void OnDisable()
+    public void EnterCannon()
     {
-        EventManager.instance.RemoveAction("OnPlayerAttackFinished", (object[] args) =>
-        {
-            _isAttacking = false;
-            _requireNewAttackPress = true;
-        });
-        EventManager.instance.RemoveAction("OnTimeChanged", (object[] args) => { _anim.speed = (float)args[0]; });
+        _playerModel.SetActive(false);
+        canUpdate = false;
     }
 
-    // private void OnDrawGizmos(){
-    //     Gizmos.color = Color.red;
-    //     if(_playerAttack.debugAttack)
-    //         Gizmos.DrawWireSphere(_swordTransform.position, _playerAttack.AttackRadius);
-    // }
+    public void ExitCannon(Vector3 destination)
+    {
+        Vector3 maxRange = new Vector3(17, 0, 17);
+        destination = Vector3.ClampMagnitude(destination, 17);
+        _playerModel.SetActive(true);
+        canUpdate = true;
+        transform.position = destination;
+        var collisions = Physics.OverlapSphere(transform.position, 3);
+        foreach (var collision in collisions)
+        {
+            if (collision.CompareTag("Player")) continue;
+            collision.GetComponent<IDamageable>()?.TakeDamage(1,transform);
+        }
+    }
+    
+    
     public void TakeDamage(int damage, Transform attacker){
         _health -= damage;
         _playerHealthBar.SetHealth(_health);
@@ -147,5 +163,51 @@ public class PlayerManager : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(.1f);
         _mainMat.SetFloat("Smoothness", 0.5f);
         _mainMat.color = _startColor;
+    }
+
+    private void OnEnable()
+    {
+        _playerInputs.OnEnable();
+        EventManager.instance.AddAction("OnPlayerAttackFinished", (object[] args) =>
+        {
+            _isAttacking = false;
+            _requireNewAttackPress = true;
+        });
+        EventManager.instance.AddAction("OnTimeChanged", (object[] args) => { _anim.speed = (float)args[0];
+            _rb.velocity = Vector3.zero;
+        });
+        
+        EventManager.instance.AddAction("OnCardBuilt", (object[] args) =>
+        {
+            _magic -= (int) args[0];
+            _playerMagicBar.SetMagic(_magic);
+        });
+    }
+
+    private void OnDisable()
+    {
+        EventManager.instance.RemoveAction("OnPlayerAttackFinished", (object[] args) =>
+        {
+            _isAttacking = false;
+            _requireNewAttackPress = true;
+        });
+        EventManager.instance.RemoveAction("OnTimeChanged", (object[] args) => { _anim.speed = (float)args[0];
+            _rb.velocity = Vector3.zero;
+        });
+        
+        EventManager.instance.RemoveAction("OnCardBuilt", (object[] args) =>
+        {
+            _magic -= (int) args[0];
+            _playerMagicBar.SetMagic(_magic);
+        });
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_swordTransform.position, _playerAttack.AttackRadius);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position,_interactionRadius);
     }
 }

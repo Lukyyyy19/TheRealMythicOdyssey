@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikesTrap : MonoBehaviour {
+public class SpikesTrap : Trap {
     private bool _canAtack;
     [SerializeField] GameObject _spikes;
     IEnumerator ActivateTrap(IDamageable other)

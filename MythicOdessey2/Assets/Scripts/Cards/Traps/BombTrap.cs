@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombTrap : MonoBehaviour {
+public class BombTrap : Trap {
     private bool _canAttack;
     [SerializeField] float _radius;
     //Crear una clase padre con esto
-    public Vector2Int _gridPosition;
+    
     private void Awake(){
         TestGrid.instance.grid.GetXY(transform.position, out int x, out int y);
         //TestGrid.instance.grid.GetValue(x,y).ResetValue();

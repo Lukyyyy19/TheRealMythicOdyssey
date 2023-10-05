@@ -194,7 +194,8 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         EventManager.instance.RemoveAction("OnPlayerAttackFinished", (object[] args) => { DamageTaken(); });
     }
 
-    IEnumerator DamagedMat(){
+    IEnumerator DamagedMat()
+    {
         _meshRenderer.material = _matArray[0];
         yield return new WaitForSeconds(.075f);
         _meshRenderer.material = _matArray[1];
