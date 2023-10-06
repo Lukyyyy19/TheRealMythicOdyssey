@@ -98,7 +98,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
-        if (CardMenuManager.Instance.menuOpen) return;
+        if (CardMenuManager.Instance.menuOpen || !canUpdate) return;
         _playerMovement.FixedUpdate();
     }
 
@@ -155,7 +155,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        LevelManager.instance.LoadScene("MainMenu");
+        //LevelManager.instance.LoadScene("MainMenu");
     }
 
     IEnumerator DamagedMat()
@@ -204,6 +204,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
             _magic -= (int) args[0];
             _playerMagicBar.SetMagic(_magic);
         });
+        _mainMat.color = _startColor;
     }
 
 

@@ -172,11 +172,10 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        gameObject.SetActive(false);
         //remove from game amanger list enemis
         GameManager.Instance.enemies.Remove(this);
-        
-         EventManager.instance.TriggerEvent("CheckEnemies");
+        EventManager.instance.TriggerEvent("CheckEnemies");
+        Destroy(gameObject);
         // gameObject.SetActive(false);
     }
     private void OnEnable()
