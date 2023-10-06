@@ -8,7 +8,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public List<EnemyStateMachine> enemies = new List<EnemyStateMachine>();
-    private int _enemiesKilled;
+    public int enemiesKilled;
     [SerializeField]
     private EnemyStateMachine _enemiesPrefab;
 
@@ -22,10 +22,18 @@ public class GameManager : MonoBehaviour
 
     private float _startTime = 2f;
     private float _currentTime;
-    private float _gameTime = 60;
+    [SerializeField]private float _gameTime = 1;
     private void Awake()
     {
+        if (_instance == null)
+        {
         _instance = this;
+        DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         //pauseMenu.SetActive(false);
         _currentTime = _startTime;
     }
@@ -34,8 +42,9 @@ public class GameManager : MonoBehaviour
     { 
         if(isPaused)return;
         _gameTime -= Time.deltaTime*TimeManager.Instance.currentTimeScale;
-        _text.text = Mathf.FloorToInt(_gameTime).ToString();
-        if(_gameTime<=0)PauseGame();
+        if(_text)
+            _text.text = Mathf.FloorToInt(_gameTime).ToString();
+        if(_gameTime<=0)LevelManager.instance.LoadScene("GameOver");
         if (_currentTime > 0)
         {
             _currentTime -= Time.deltaTime*TimeManager.Instance.currentTimeScale;
@@ -83,7 +92,7 @@ public class GameManager : MonoBehaviour
     {
         EventManager.instance.AddAction("CheckEnemies", (object[] args) =>
         {
-            _enemiesKilled++;
+            enemiesKilled++;
             if (enemies.Count == 0)
             {
                 Debug.Log("Ganaste");
@@ -95,7 +104,7 @@ public class GameManager : MonoBehaviour
     {
         EventManager.instance.RemoveAction("CheckEnemies", (object[] args) =>
         {
-            _enemiesKilled++;
+            enemiesKilled++;
             if (enemies.Count == 0)
             {
                 Debug.Log("Ganaste");

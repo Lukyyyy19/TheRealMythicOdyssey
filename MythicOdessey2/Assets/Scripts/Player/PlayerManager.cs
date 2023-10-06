@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private Color _startColor;
     
     private float _interactionRadius = 2f;
-    
+    private Collider _collider;
     public Rigidbody Rb => _rb;
 
     //setter for isattack
@@ -74,7 +74,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
         _playerHealthBar.SetMaxHealth(_maxHealth);
         _playerMagicBar.SetMaxMagic(_maxMagic);
-        
+        _collider = GetComponent<Collider>();
     }
 
     private void Update()
@@ -123,11 +123,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
     public void EnterCannon()
     {
         _playerModel.SetActive(false);
+        _collider.enabled = false;
         canUpdate = false;
     }
 
     public void ExitCannon(Vector3 destination)
     {
+        _collider.enabled = true;
         Vector3 maxRange = new Vector3(17, 0, 17);
         destination = Vector3.ClampMagnitude(destination, 17);
         _playerModel.SetActive(true);
@@ -155,7 +157,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        //LevelManager.instance.LoadScene("MainMenu");
+        LevelManager.instance.LoadScene("GameOver");
     }
 
     IEnumerator DamagedMat()

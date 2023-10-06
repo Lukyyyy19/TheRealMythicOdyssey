@@ -27,6 +27,9 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     private Rigidbody _rb;
     private NavMeshAgent _navMeshAgent;
 
+    private Transform _bait;
+
+    [SerializeField] private LayerMask _baitLayer;
     //private AudioSource _audio;
 
     [SerializeField] private Material _mainMat;
@@ -55,6 +58,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         set => _stopChasing = value;
     }
 
+    public Transform Bait => _bait;
     public bool CanLookAtPlayer => _lookAtPlayer;
     public bool IsPlayerInRange => _isPlayerInRange;
     public bool IsPlayerInAttackRange => _isPlayerInAttackRange;
@@ -107,6 +111,15 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _navMeshAgent.speed = TimeManager.Instance.currentTimeScale == 1 ? 3.5f : 3.5f * TimeManager.Instance.currentTimeScale;
         _currentState.UpdateStates();
         var playerPosition = PlayerManager.Instance.transform.position;
+        var colliders = Physics.OverlapSphere(transform.position, 8,_baitLayer);
+        if (colliders.Length > 0)
+        {
+            _bait = colliders[0].transform;
+        }
+        else
+        {
+            _bait = null;
+        }
         // _isPlayerInRange = Vector3.Distance(transform.position, playerPosition) <= _chaseRange;
         //_isPlayerInAttackRange = Vector3.Distance(transform.position, playerPosition) <= _attackRange;
     }

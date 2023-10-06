@@ -140,6 +140,9 @@ MonoBehaviour:
   _stopChasing: 0
   _lookAtPlayer: 0
   _isEnemyWithSword: 0
+  _baitLayer:
+    serializedVersion: 2
+    m_Bits: 512
   _mainMat: {fileID: 2100000, guid: 66129a5b525138746b0dd0f2aa1639cd, type: 2}
   _matArray:
   - {fileID: 2100000, guid: ec6aa765e3f9dfb45b53d9bb9b21fd73, type: 2}
