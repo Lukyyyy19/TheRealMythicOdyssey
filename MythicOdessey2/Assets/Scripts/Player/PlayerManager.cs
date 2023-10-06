@@ -139,7 +139,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        LevelManager.instance.LoadScene("MainMenu");
+        LevelManager.instance.LoadScene("GameOver");
     }
 
     IEnumerator DamagedMat()
