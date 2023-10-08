@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision){
         if (collision.gameObject.TryGetComponent(out IDamageable damageable) && damageable is PlayerManager)
         {
-            damageable.TakeDamage(1);
+            damageable.TakeDamage(1,transform);
         }
     }
 }

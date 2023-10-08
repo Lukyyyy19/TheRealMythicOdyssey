@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 2632981751596771995}
   - component: {fileID: 1158471578555792303}
   - component: {fileID: 6206993705742799085}
+  - component: {fileID: 2040531358166532446}
   m_Layer: 8
   m_Name: Tramp Base
   m_TagString: Untagged
@@ -211,6 +212,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spikes: {fileID: 4547735917597142770}
+--- !u!65 &2040531358166532446
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219284063320766603}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1.15, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1604244172929025778
 GameObject:
   m_ObjectHideFlags: 0

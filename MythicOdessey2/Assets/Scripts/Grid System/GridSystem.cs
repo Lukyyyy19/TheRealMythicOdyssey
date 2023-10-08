@@ -10,19 +10,28 @@ public class GridSystem <T>{
     private T[,] _gridArray;
     private float _cellSize;
     private Vector3 _originPosition;
+    private bool _cutCorners;
     public delegate void OnGridValueChangedDelegate(int x, int y);
     public event OnGridValueChangedDelegate onGridValueChanged;
-    public GridSystem(int width, int height, float cellSize, Vector3 originPosition,Func<GridSystem<T>,int , int, T> createGridObject){
+    public GridSystem(int width, int height, float cellSize, Vector3 originPosition,Func<GridSystem<T>,int , int, T> createGridObject,bool cutCorners = false){
         _width = width;
         _height = height;
         _cellSize = cellSize;
         _originPosition = originPosition;
-        
+        _cutCorners = cutCorners;
         _gridArray = new T[width, height];
         
         // for loops
         for (int x = 0; x < _gridArray.GetLength(0); x++){
             for (int y = 0; y < _gridArray.GetLength(1); y++){
+                if (_cutCorners)
+                {
+                    
+                if ((x == 0 && y == 0)) continue;
+                else if(x==_width-1 && y == 0) continue;
+                else if(x==0 && y == _height-1) continue;
+                else if(x==_width-1 && y == _height-1) continue;
+                }
                 Debug.DrawLine(GetWorldPosition(x,y),GetWorldPosition(x,y+1),Color.white,100f);
                 Debug.DrawLine(GetWorldPosition(x,y),GetWorldPosition(x+1,y),Color.white,100f);
                 _gridArray[x, y] = createGridObject(this,x,y);
@@ -66,4 +75,14 @@ public class GridSystem <T>{
         GetXY(worldPosition, out x, out y);
         return GetValue(x, y);
     }
+    
+    // public Vector2Int MoveObject(Vector2Int newPosition, Vector2Int currentPosition){
+    //     var value = GetValue(currentPosition.x, currentPosition.y);
+    //     var resultPosition = currentPosition + newPosition;
+    //     //GetXY(newPosition, out x, out y);
+    //     SetValue(resultPosition.x,resultPosition.y, value);
+    //     return resultPosition;
+    // }
+
+    
 }
