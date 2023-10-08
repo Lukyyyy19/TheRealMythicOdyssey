@@ -1,11 +1,16 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:MythicOdessey2/Assets/Scenes/Gian.unity.meta
+<<<<<<<< HEAD:MythicOdessey2/Assets/Scenes/Gian 1.unity.meta
 guid: bfb7bce2a8386ee4aaadd20658242eaf
-========
-guid: ed930091a070e6340a54f6b1141bd122
-folderAsset: yes
->>>>>>>> itaki:MythicOdessey2/Assets/Scripts/Misc.meta
 DefaultImporter:
+========
+<<<<<<<< HEAD:MythicOdessey2/Assets/Scenes/Lobby.unity.meta
+guid: 3e3ceb486de42874aaa906f13bf7c201
+DefaultImporter:
+========
+guid: d8d588b7f27218f45bea3568e1d4197a
+PrefabImporter:
+>>>>>>>> itaki:MythicOdessey2/Assets/Prefabs/Models/Scenario/Escenario.prefab.meta
+>>>>>>>> main:MythicOdessey2/Assets/Prefabs/Models/Scenario/Escenario.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
