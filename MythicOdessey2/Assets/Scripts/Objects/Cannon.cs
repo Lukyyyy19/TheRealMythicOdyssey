@@ -24,7 +24,7 @@ public class Cannon : MonoBehaviour,IInteracteable
         if (_loaded)
         {
             transform.LookAt(Helper.GetMouseWorldPosition());
-            transform.eulerAngles = new Vector3(0, transform.localEulerAngles.y -75, -65);
+            transform.eulerAngles = new Vector3(0, transform.localEulerAngles.y -75, 0);
         }
 
         if (Input.GetMouseButtonDown(0) && _loaded)
@@ -50,5 +50,6 @@ public class Cannon : MonoBehaviour,IInteracteable
         _loaded = false;
         PlayerManager.Instance.ExitCannon(Helper.GetMouseWorldPosition());
         Debug.Log("Disparando");
+        Destroy(transform.parent.gameObject);
     }
 }
