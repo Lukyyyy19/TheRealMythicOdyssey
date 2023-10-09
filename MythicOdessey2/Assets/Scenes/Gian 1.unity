@@ -2189,11 +2189,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
+  enemiesKilled: 0
   _enemiesPrefab: {fileID: 4270935526609356988, guid: 9375107463b17b24dbe9d610eb7f3ccb,
     type: 3}
   _text: {fileID: 995107958}
   pauseMenu: {fileID: 551968168}
   isPaused: 0
+  _gameTime: 60
 --- !u!1 &525552501
 GameObject:
   m_ObjectHideFlags: 0
@@ -7959,6 +7961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canUpdate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
         type: 3}

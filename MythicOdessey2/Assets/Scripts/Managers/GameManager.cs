@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private float _startTime = 2f;
     private float _currentTime;
-    [SerializeField]private float _gameTime = 1;
+    [SerializeField]private float _gameTime = 60;
     private void Awake()
     {
         if (_instance == null)
