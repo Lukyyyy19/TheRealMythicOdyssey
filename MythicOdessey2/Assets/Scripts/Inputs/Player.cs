@@ -62,6 +62,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""e14c303d-4fcd-4199-89ff-490c1b3ea89c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""action"": ""Open Card Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cffcac32-2059-451d-9344-fad6e39203c7"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_PlayerActions_Attack = m_PlayerActions.FindAction("Attack", throwIfNotFound: true);
         m_PlayerActions_Dash = m_PlayerActions.FindAction("Dash", throwIfNotFound: true);
         m_PlayerActions_OpenCardMenu = m_PlayerActions.FindAction("Open Card Menu", throwIfNotFound: true);
+        m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,6 +248,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Attack;
     private readonly InputAction m_PlayerActions_Dash;
     private readonly InputAction m_PlayerActions_OpenCardMenu;
+    private readonly InputAction m_PlayerActions_Interact;
     public struct PlayerActionsActions
     {
         private @Player m_Wrapper;
@@ -235,6 +257,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_PlayerActions_Attack;
         public InputAction @Dash => m_Wrapper.m_PlayerActions_Dash;
         public InputAction @OpenCardMenu => m_Wrapper.m_PlayerActions_OpenCardMenu;
+        public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -256,6 +279,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @OpenCardMenu.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnOpenCardMenu;
                 @OpenCardMenu.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnOpenCardMenu;
                 @OpenCardMenu.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnOpenCardMenu;
+                @Interact.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -272,6 +298,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @OpenCardMenu.started += instance.OnOpenCardMenu;
                 @OpenCardMenu.performed += instance.OnOpenCardMenu;
                 @OpenCardMenu.canceled += instance.OnOpenCardMenu;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -282,5 +311,6 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnOpenCardMenu(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

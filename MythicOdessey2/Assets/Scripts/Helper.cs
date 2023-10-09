@@ -15,13 +15,6 @@ public static class Helper
         float distance;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 worldPosition = Vector3.zero;
-        // if(Physics.Raycast(ray,out RaycastHit raycastHit,Mathf.Infinity)){
-        //     return raycastHit.point;
-        // }
-        // else
-        // {
-        //     return Vector3.zero;
-        // }
         if (plane.Raycast(ray, out distance))
         {
             worldPosition = ray.GetPoint(distance);

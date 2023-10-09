@@ -7,6 +7,7 @@ public class CardsTypeSO : ScriptableObject
 {
     public string nameString;
     public Transform prefab;
+    public Transform prefabGhost;
     public int width;
     public int height;
     public int manaCost;

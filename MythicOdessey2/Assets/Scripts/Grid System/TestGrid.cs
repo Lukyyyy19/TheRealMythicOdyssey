@@ -129,10 +129,12 @@ public class TestGrid : MonoBehaviour
         bool canBuild = true;
         foreach (var gridPos in gridPositionList)
         {
-            Debug.Log(grid.GetValue(gridPos.x, gridPos.y).Transform);
-            if (!grid.GetValue(gridPos.x, gridPos.y).CanBuild())
+            var value = grid.GetValue(gridPos.x, gridPos.y);
+            Debug.Log(value);
+            if (value == null || !grid.GetValue(gridPos.x, gridPos.y).CanBuild())
             {
                 canBuild = false;
+                //EventManager.instance.TriggerEvent("OnCantBuild");
                 break;
             }
         }
@@ -143,9 +145,9 @@ public class TestGrid : MonoBehaviour
             //+ new Vector3(_cellSize,0,_cellSize)*.5f es porque no tenemos el anchor point una vez que el objeto lo tenga sacamos esa parte del codigo
             built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + new Vector3(_cellSize, 0.01f, _cellSize) * .5f,
                 Quaternion.identity);
-            built.transform.localScale = Vector3.one * (_cellSize / 10f);
-            built.TryGetComponent(out BombTrap bombTrap);
-            bombTrap._gridPosition = gridPositionList[0];
+            //built.transform.localScale = Vector3.one * (_cellSize / 10f);
+            if(built.TryGetComponent(out Trap trap))
+                trap._gridPosition = gridPositionList[0];
             foreach (var gridPos in gridPositionList)
             {
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;

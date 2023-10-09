@@ -15,6 +15,8 @@ public class Card : MonoBehaviour, IInteracteable
     private Color _startColor;
     private Vector3 _startRotation;
     private bool _currentCard;
+   [SerializeField] private Transform _ghostCard;
+   private bool _startDrag;
     private void Awake(){
         _startPos = transform.localPosition;
         _animator = GetComponent<Animator>();
@@ -35,37 +37,82 @@ public class Card : MonoBehaviour, IInteracteable
         _currentCard = true;
     }
 
-    public void FollwoCursor(){
-        transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
-        Vector3 newPos;
-        newPos.x = Helper.GetMouseWorldPosition().x;
-        newPos.y = Helper.GetMouseWorldPosition().y;
-        newPos.z = -150f;
-
+    public void FollwoCursor()
+    {
+        _image.color = Color.clear;
+         transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
+        // Vector3 newPos;
+        // newPos.x = Helper.GetMouseWorldPosition().x;
+        // newPos.y = Helper.GetMouseWorldPosition().y;
+        // newPos.z = -150f;
+        _startDrag = true;
         transform.position = Helper.GetMouseWorldPosition();
     }
 
-    public void OnEndDarag(){
+    private void Update()
+    {
+        Debug.Log(_startDrag);
+        if (_startDrag && _ghostCard)
+            _ghostCard.position = transform.position;
+    }
+
+    public void Down()
+    {
+        _ghostCard = Instantiate(prefab.prefabGhost);
+    }
+
+    public void Up()
+    {
+        if(_ghostCard)
+            Destroy(_ghostCard.gameObject);
+    }
+
+    public void OnEndDarag()
+    {
+        _startDrag = false;
         if (_currentCard)
         {
             EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
         }
         transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+        Up();
+        _image.color = _startColor;
     }
 
     private void OnEnable(){
         EventManager.instance.AddAction("OnCantBuild", (x) => {
-            if(!_currentCard)return;
+            //if(!_currentCard)return;
             _animator.CrossFade("Shake",.1f);
             StartCoroutine(nameof(Shake));
             _currentCard = false;
+            
         });
         EventManager.instance.AddAction("OnOpenMenu", (x) => {
             transform.localEulerAngles = _startRotation;
             DesInteraction();
             transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+            Up();
+            _image.color = _startColor;
         });
     }
+
+    private void OnDisable()
+    {
+        EventManager.instance.RemoveAction("OnCantBuild", (x) => {
+            if(!_currentCard)return;
+            _animator.CrossFade("Shake",.1f);
+            StartCoroutine(nameof(Shake));
+            _currentCard = false;
+        });
+        EventManager.instance.RemoveAction("OnOpenMenu", (x) => {
+            transform.localEulerAngles = _startRotation;
+            DesInteraction();
+            transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+            Up();
+            _image.color = _startColor;
+        });
+    }
+
     IEnumerator Shake(){
         _image.color = Color.red;
         yield return new WaitForSeconds(.1f);

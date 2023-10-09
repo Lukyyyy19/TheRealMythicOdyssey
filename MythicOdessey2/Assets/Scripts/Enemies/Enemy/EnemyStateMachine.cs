@@ -27,6 +27,9 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     private Rigidbody _rb;
     private NavMeshAgent _navMeshAgent;
 
+    private Transform _bait;
+
+    [SerializeField] private LayerMask _baitLayer;
     //private AudioSource _audio;
 
     [SerializeField] private Material _mainMat;
@@ -55,6 +58,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         set => _stopChasing = value;
     }
 
+    public Transform Bait => _bait;
     public bool CanLookAtPlayer => _lookAtPlayer;
     public bool IsPlayerInRange => _isPlayerInRange;
     public bool IsPlayerInAttackRange => _isPlayerInAttackRange;
@@ -107,6 +111,15 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _navMeshAgent.speed = TimeManager.Instance.currentTimeScale == 1 ? 3.5f : 3.5f * TimeManager.Instance.currentTimeScale;
         _currentState.UpdateStates();
         var playerPosition = PlayerManager.Instance.transform.position;
+        var colliders = Physics.OverlapSphere(transform.position, 8,_baitLayer);
+        if (colliders.Length > 0)
+        {
+            _bait = colliders[0].transform;
+        }
+        else
+        {
+            _bait = null;
+        }
         // _isPlayerInRange = Vector3.Distance(transform.position, playerPosition) <= _chaseRange;
         //_isPlayerInAttackRange = Vector3.Distance(transform.position, playerPosition) <= _attackRange;
     }
@@ -172,11 +185,10 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        gameObject.SetActive(false);
         //remove from game amanger list enemis
         GameManager.Instance.enemies.Remove(this);
-        
-         EventManager.instance.TriggerEvent("CheckEnemies");
+        EventManager.instance.TriggerEvent("CheckEnemies");
+        Destroy(gameObject);
         // gameObject.SetActive(false);
     }
     private void OnEnable()
@@ -194,7 +206,8 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         EventManager.instance.RemoveAction("OnPlayerAttackFinished", (object[] args) => { DamageTaken(); });
     }
 
-    IEnumerator DamagedMat(){
+    IEnumerator DamagedMat()
+    {
         _meshRenderer.material = _matArray[0];
         yield return new WaitForSeconds(.075f);
         _meshRenderer.material = _matArray[1];

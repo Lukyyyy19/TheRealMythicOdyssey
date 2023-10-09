@@ -30,6 +30,9 @@ public class PlayerInputs
         
         _playerInput.PlayerActions.OpenCardMenu.started += OnOpenCardMenu;
         _playerInput.PlayerActions.OpenCardMenu.canceled += OnOpenCardMenu;
+
+        _playerInput.PlayerActions.Interact.started += OnInteractionInput;
+        _playerInput.PlayerActions.Interact.canceled += OnInteractionInput;
     }
     private void OnMovementInput(InputAction.CallbackContext ctx)
     {
@@ -51,6 +54,12 @@ public class PlayerInputs
     private void OnOpenCardMenu(InputAction.CallbackContext ctx){
         CardMenuManager.Instance.menuOpen = ctx.ReadValueAsButton();
         CardMenuManager.Instance.OpenMenu(CardMenuManager.Instance.menuOpen);
+    }
+
+    private void OnInteractionInput(InputAction.CallbackContext ctx)
+    {    
+        if(ctx.started)
+            _playerManager.TryInteraction();
     }
 
     public void OnEnable(){

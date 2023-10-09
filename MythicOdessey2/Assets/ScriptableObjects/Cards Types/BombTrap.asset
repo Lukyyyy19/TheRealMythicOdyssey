@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cae9336541bae642a7d1dccc8cdedf6, type: 3}
-  m_Name: ShootingTrap
+  m_Name: BombTrap
   m_EditorClassIdentifier: 
   nameString: Shooting Trap
   prefab: {fileID: 1924167378594671134, guid: 694c4a226ee160f41a3cedfb7f5e7338, type: 3}
+  prefabGhost: {fileID: 7733666928069138731, guid: 003e9bc2e53a97d4a9da0afd889f47aa,
+    type: 3}
   width: 1
   height: 1
   manaCost: 5

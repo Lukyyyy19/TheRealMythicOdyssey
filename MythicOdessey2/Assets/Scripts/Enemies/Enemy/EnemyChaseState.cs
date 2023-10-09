@@ -33,6 +33,11 @@ public class EnemyChaseState : EnemyBaseState {
         //     Ctx.Speed * Time.deltaTime);
         //Ctx.Rb.velocity = (PlayerManager.Instance.transform.position - Ctx.transform.position) * Ctx.Speed * Time.fixedDeltaTime;
         //Ctx.NavMeshAgent.speed *= 1*TimeManager.Instance.currentTimeScale;
-        Ctx.NavMeshAgent.destination = PlayerManager.Instance.transform.position;
+        if(!Ctx.Bait)
+            Ctx.NavMeshAgent.destination = PlayerManager.Instance.transform.position;
+        else
+        {
+            Ctx.NavMeshAgent.destination = Ctx.Bait.position;
+        }
     }
 }
