@@ -37,6 +37,7 @@ public class TestGrid : MonoBehaviour
                 var plane = Instantiate(planePrefab, grid.GetWorldPosition(x, y) + new Vector3(_cellSize, 0, _cellSize) * .5f, Quaternion.identity, planesParent.transform);
                 plane.transform.localScale = Vector3.one*(_cellSize/10f);
                 plane.SetActive(false);
+                plane.GetComponent<GhostPlane>().gridPosition = new Vector2Int(x, y);
                 _ghostPlanes.Add(new Vector2Int(x, y), plane);
             }
         }
@@ -113,10 +114,14 @@ public class TestGrid : MonoBehaviour
         EventManager.instance.AddAction("OnCardTrigger", (objects => { BuildObject((CardsTypeSO)objects[0]); }));
         EventManager.instance.AddAction("OnTrapDestroyed", (objects =>
         {
-            Vector2Int pos = (Vector2Int)objects[0];
-            //grid.GetXY((Vector3)objects[0], out int x, out int z);
-            grid.GetValue(pos.x, pos.y).ResetValue();
-            UpdateGhostPlaneColors(pos);
+            foreach (var pos in (List<Vector2Int>)objects[0])
+            {
+                
+                //pos = (Vector2Int)objects[0];
+                //grid.GetXY((Vector3)objects[0], out int x, out int z);
+                grid.GetValue(pos.x, pos.y).ResetValue();
+                UpdateGhostPlaneColors(pos);
+            }
         }));
     }
 
@@ -125,7 +130,7 @@ public class TestGrid : MonoBehaviour
         grid.GetXY(Helper.GetMouseWorldPosition(), out int x, out int z);
         var gridPositionList = prefab.GetGridPositionList(new Vector2Int(x, z));
         var gridObject = grid.GetValue(x, z);
-
+        Vector2Int _cantBuildPos = Vector2Int.zero;
         bool canBuild = true;
         foreach (var gridPos in gridPositionList)
         {
@@ -134,6 +139,7 @@ public class TestGrid : MonoBehaviour
             if (value == null || !grid.GetValue(gridPos.x, gridPos.y).CanBuild())
             {
                 canBuild = false;
+                _cantBuildPos = gridPos;
                 //EventManager.instance.TriggerEvent("OnCantBuild");
                 break;
             }
@@ -146,8 +152,10 @@ public class TestGrid : MonoBehaviour
             built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + new Vector3(_cellSize, 0.01f, _cellSize) * .5f,
                 Quaternion.identity);
             //built.transform.localScale = Vector3.one * (_cellSize / 10f);
-            if(built.TryGetComponent(out Trap trap))
-                trap._gridPosition = gridPositionList[0];
+            if (built.TryGetComponent(out Trap trap))
+            {
+                trap.gridPosition = gridPositionList;
+            }
             foreach (var gridPos in gridPositionList)
             {
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;
@@ -162,7 +170,7 @@ public class TestGrid : MonoBehaviour
         else
         {
             Debug.Log("No se puede construir");
-            EventManager.instance.TriggerEvent("OnCantBuild");
+            EventManager.instance.TriggerEvent("OnCantBuild",_cantBuildPos);
         }
     }
 

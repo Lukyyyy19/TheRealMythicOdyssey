@@ -7,10 +7,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3889320849126248953, guid: d89225abf4f687147a60eb04fe2ef018,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6482389045316987372, guid: d89225abf4f687147a60eb04fe2ef018,
         type: 3}
       propertyPath: m_Name
-      value: GameObject Variant
+      value: CannonVariant
       objectReference: {fileID: 0}
     - target: {fileID: 7400738070516857132, guid: d89225abf4f687147a60eb04fe2ef018,
         type: 3}
@@ -93,4 +98,8 @@ PrefabInstance:
     - {fileID: 3975345386822610679, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}
     - {fileID: 6459479721926222652, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}
     - {fileID: 8726926965285549418, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}
+    - {fileID: 4155252794636730955, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}
+    - {fileID: 3889320849126248953, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}
+    - {fileID: 840604105514260448, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}
+    - {fileID: 5505843562611081702, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}

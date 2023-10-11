@@ -51,7 +51,6 @@ public class Card : MonoBehaviour, IInteracteable
 
     private void Update()
     {
-        Debug.Log(_startDrag);
         if (_startDrag && _ghostCard)
             _ghostCard.position = transform.position;
     }
@@ -69,6 +68,7 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void OnEndDarag()
     {
+        _image.color = _startColor;
         _startDrag = false;
         if (_currentCard)
         {
@@ -76,42 +76,41 @@ public class Card : MonoBehaviour, IInteracteable
         }
         transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
         Up();
-        _image.color = _startColor;
     }
 
-    private void OnEnable(){
-        EventManager.instance.AddAction("OnCantBuild", (x) => {
-            //if(!_currentCard)return;
-            _animator.CrossFade("Shake",.1f);
-            StartCoroutine(nameof(Shake));
-            _currentCard = false;
-            
-        });
-        EventManager.instance.AddAction("OnOpenMenu", (x) => {
-            transform.localEulerAngles = _startRotation;
-            DesInteraction();
-            transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
-            Up();
-            _image.color = _startColor;
-        });
-    }
-
-    private void OnDisable()
-    {
-        EventManager.instance.RemoveAction("OnCantBuild", (x) => {
-            if(!_currentCard)return;
-            _animator.CrossFade("Shake",.1f);
-            StartCoroutine(nameof(Shake));
-            _currentCard = false;
-        });
-        EventManager.instance.RemoveAction("OnOpenMenu", (x) => {
-            transform.localEulerAngles = _startRotation;
-            DesInteraction();
-            transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
-            Up();
-            _image.color = _startColor;
-        });
-    }
+    // private void OnEnable(){
+    //     EventManager.instance.AddAction("OnCantBuild", (x) =>
+    //     {
+    //         if (!_currentCard) return;
+    //         _animator.CrossFade("Shake",.1f);
+    //         StartCoroutine(nameof(Shake));
+    //         _currentCard = false;
+    //     });
+    //     EventManager.instance.AddAction("OnOpenMenu", (x) => {
+    //         transform.localEulerAngles = _startRotation;
+    //         DesInteraction();
+    //         transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+    //         Up();
+    //         _image.color = _startColor;
+    //     });
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     EventManager.instance.RemoveAction("OnCantBuild", (x) => {
+    //         if(!_currentCard)return;
+    //         _animator.CrossFade("Shake",.1f);
+    //         StartCoroutine(nameof(Shake));
+    //         _currentCard = false;
+    //     });
+    //     EventManager.instance.RemoveAction("OnOpenMenu", (x) => {
+    //         transform.localEulerAngles = _startRotation;
+    //         DesInteraction();
+    //         transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+    //         Up();
+    //         _image.color = _startColor;
+    //     });
+    // }
 
     IEnumerator Shake(){
         _image.color = Color.red;

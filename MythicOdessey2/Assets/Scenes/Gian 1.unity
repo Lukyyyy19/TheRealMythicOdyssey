@@ -311,12 +311,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 41609848}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &89164135 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3055793061412132126, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 5466694684561586628}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &104358092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5549,6 +5543,18 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 366870141}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
         - m_Target: {fileID: 1349101103}
           m_TargetAssemblyTypeName: Card, Assembly-CSharp
           m_MethodName: OnEndDarag
@@ -5565,18 +5571,6 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: Card, Assembly-CSharp
           m_MethodName: DesInteraction
           m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 366870141}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7858,26 +7852,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5466694684289339266, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
-        type: 3}
-      propertyPath: canUpdate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
-        type: 3}
-      propertyPath: _maxHealth
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
-        type: 3}
-      propertyPath: _playerModel
-      value: 
-      objectReference: {fileID: 89164135}
     - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
         type: 3}
       propertyPath: _playerMagicBar
@@ -7888,16 +7862,6 @@ PrefabInstance:
       propertyPath: _playerHealthBar
       value: 
       objectReference: {fileID: 1364826627}
-    - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
-        type: 3}
-      propertyPath: _playerMovement._speed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
-        type: 3}
-      propertyPath: _playerAttack._attackRadius
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5500901372843946441, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
         type: 3}
       propertyPath: m_RootOrder

@@ -60,7 +60,7 @@ public class BombTrap : Trap {
             if(GetComponent<Collider>().TryGetComponent(out IDamageable damageable))
                 damageable.TakeDamage(1,transform);
         }
-        EventManager.instance.TriggerEvent("OnTrapDestroyed",_gridPosition);
+        EventManager.instance.TriggerEvent("OnTrapDestroyed",gridPosition);
         Destroy(gameObject);
         
         //_canAttack = true;

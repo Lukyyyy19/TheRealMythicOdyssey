@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Trap : MonoBehaviour
 {
-    public Vector2Int _gridPosition;
+    public List<Vector2Int> gridPosition;
 }

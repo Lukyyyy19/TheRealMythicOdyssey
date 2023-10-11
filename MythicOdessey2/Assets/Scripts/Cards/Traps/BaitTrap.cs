@@ -12,6 +12,6 @@ public class BaitTrap : Trap
 
     private void OnDestroy()
     {
-        EventManager.instance.TriggerEvent("OnTrapDestroyed",_gridPosition);
+        EventManager.instance.TriggerEvent("OnTrapDestroyed",gridPosition);
     }
 }
