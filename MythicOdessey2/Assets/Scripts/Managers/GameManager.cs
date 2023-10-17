@@ -40,6 +40,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     { 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
         if(isPaused)return;
         _gameTime -= Time.deltaTime*TimeManager.Instance.currentTimeScale;
         if(_text)
@@ -58,17 +69,7 @@ public class GameManager : MonoBehaviour
         
         
         
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
-        }
+        
     }
 
     public void PauseGame()

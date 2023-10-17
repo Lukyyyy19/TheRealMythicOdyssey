@@ -6,7 +6,7 @@ Shader "Unlit/Hidden"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Opaque" "Queue" = "Geometry+1" }
         //ZWrite off
         AlphaToMask [_Transparency]
         LOD 100

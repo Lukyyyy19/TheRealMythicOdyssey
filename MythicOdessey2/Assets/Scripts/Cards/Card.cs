@@ -17,11 +17,12 @@ public class Card : MonoBehaviour, IInteracteable
     private bool _currentCard;
    [SerializeField] private Transform _ghostCard;
    private bool _startDrag;
+  [SerializeField] private GameObject _cardChild;
     private void Awake(){
         _startPos = transform.localPosition;
         _animator = GetComponent<Animator>();
         _image = GetComponent<Image>();
-        _startColor = _image.color;
+        //startColor = _image.color;
         _startRotation = transform.localEulerAngles;
     }
 
@@ -39,7 +40,8 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void FollwoCursor()
     {
-        _image.color = Color.clear;
+        _cardChild.SetActive(false);
+        //_image.color = Color.clear;
          transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
         // Vector3 newPos;
         // newPos.x = Helper.GetMouseWorldPosition().x;
@@ -68,7 +70,8 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void OnEndDarag()
     {
-        _image.color = _startColor;
+        _cardChild.SetActive(true);
+        // _image.color = _startColor;
         _startDrag = false;
         if (_currentCard)
         {

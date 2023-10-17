@@ -55,9 +55,9 @@ public class BombTrap : Trap {
         //transform.Translate(transform.forward*5*Time.deltaTime);
         Debug.Log("Explotando  3");
         var colliders2 = Physics.OverlapSphere(transform.position, _radius);
-        foreach (var collider2 in colliders)
+        foreach (var collider2 in colliders2)
         {
-            if(GetComponent<Collider>().TryGetComponent(out IDamageable damageable))
+            if(collider2.TryGetComponent(out IDamageable damageable))
                 damageable.TakeDamage(1,transform);
         }
         EventManager.instance.TriggerEvent("OnTrapDestroyed",gridPosition);
