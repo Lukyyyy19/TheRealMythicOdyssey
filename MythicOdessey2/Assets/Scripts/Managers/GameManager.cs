@@ -115,8 +115,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        var x = Random.Range(-15, 15);
-        var y = Random.Range(-15, 15);
+        var x = Random.Range(-12, 12);
+        var y = Random.Range(-12, 12);
         Vector3 newPos = new Vector3(x, 0, y);
         while (isPaused)
         {

@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     [SerializeField] private PlayerHealthBar _playerHealthBar;
     [SerializeField] private PlayerMagicBar _playerMagicBar;
-    
+
 
     [SerializeField] private PlayerMovement _playerMovement;
 
@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private Material _mainMat;
     [SerializeField] private GameObject _playerModel;
     private Color _startColor;
-    
+
     private float _interactionRadius = 2f;
     private Collider _collider;
     public Rigidbody Rb => _rb;
@@ -109,9 +109,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
         foreach (var col in collisions)
         {
             col.TryGetComponent(out IInteracteable interacteable);
-            if(interacteable != null)
-                colList.Add(col,interacteable);
+            if (interacteable != null)
+                colList.Add(col, interacteable);
         }
+
         Debug.Log("Colisiones de interaccion son " + colList);
         if (colList.Count > 0)
         {
@@ -139,12 +140,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
         foreach (var collision in collisions)
         {
             if (collision.CompareTag("Player")) continue;
-            collision.GetComponent<IDamageable>()?.TakeDamage(1,transform);
+            collision.GetComponent<IDamageable>()?.TakeDamage(1, transform);
         }
     }
-    
-    
-    public void TakeDamage(int damage, Transform attacker){
+
+
+    public void TakeDamage(int damage, Transform attacker)
+    {
         _health -= damage;
         _playerHealthBar.SetHealth(_health);
         StartCoroutine(nameof(DamagedMat));
@@ -179,13 +181,15 @@ public class PlayerManager : MonoBehaviour, IDamageable
             _isAttacking = false;
             _requireNewAttackPress = true;
         });
-        EventManager.instance.AddAction("OnTimeChanged", (object[] args) => { _anim.speed = (float)args[0];
+        EventManager.instance.AddAction("OnTimeChanged", (object[] args) =>
+        {
+            _anim.speed = (float)args[0];
             _rb.velocity = Vector3.zero;
         });
-        
+
         EventManager.instance.AddAction("OnCardBuilt", (object[] args) =>
         {
-            _magic -= (int) args[0];
+            _magic -= (int)args[0];
             _playerMagicBar.SetMagic(_magic);
         });
     }
@@ -197,13 +201,15 @@ public class PlayerManager : MonoBehaviour, IDamageable
             _isAttacking = false;
             _requireNewAttackPress = true;
         });
-        EventManager.instance.RemoveAction("OnTimeChanged", (object[] args) => { _anim.speed = (float)args[0];
+        EventManager.instance.RemoveAction("OnTimeChanged", (object[] args) =>
+        {
+            _anim.speed = (float)args[0];
             _rb.velocity = Vector3.zero;
         });
-        
+
         EventManager.instance.RemoveAction("OnCardBuilt", (object[] args) =>
         {
-            _magic -= (int) args[0];
+            _magic -= (int)args[0];
             _playerMagicBar.SetMagic(_magic);
         });
         _mainMat.color = _startColor;
@@ -215,6 +221,6 @@ public class PlayerManager : MonoBehaviour, IDamageable
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(_swordTransform.position, _playerAttack.AttackRadius);
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position,_interactionRadius);
+        Gizmos.DrawWireSphere(transform.position, _interactionRadius);
     }
 }
