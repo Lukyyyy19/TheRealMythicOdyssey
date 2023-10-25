@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bait
   m_EditorClassIdentifier: 
   nameString: Bait
-  prefab: {fileID: 1051268340312545050, guid: 58336f7ad0d24e44caf21e2cdb286e2d, type: 3}
-  prefabGhost: {fileID: 8443845071310259446, guid: 32c3b100d2b481f4eb5bcc6699865a0c,
+  prefab: {fileID: 3969567872123197612, guid: 5f9949e3e6abff44084394a2d49514f9, type: 3}
+  prefabGhost: {fileID: 4579633918636367948, guid: 520dfa5317c341c408bff241ef785e9c,
     type: 3}
   width: 1
   height: 1
