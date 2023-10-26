@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cannon
   m_EditorClassIdentifier: 
   nameString: Cannon
-  prefab: {fileID: 7400738070516857132, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}
+  prefab: {fileID: 30812603817546339, guid: 8230130c9d352fa4fbccaaa1e3924a78, type: 3}
   prefabGhost: {fileID: 4328788284746667419, guid: 45047fc828b55514296cc4d8fa4d944b,
     type: 3}
   width: 2

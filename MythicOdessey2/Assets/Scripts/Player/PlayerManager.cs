@@ -121,9 +121,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
     }
 
-    public void EnterCannon()
+    public void EnterCannon(Vector3 pos)
     {
+        transform.position = pos;
         _playerModel.SetActive(false);
+        _rb.velocity = Vector3.zero;
         _collider.enabled = false;
         canUpdate = false;
     }

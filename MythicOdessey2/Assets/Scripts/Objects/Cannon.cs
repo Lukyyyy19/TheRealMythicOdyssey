@@ -46,7 +46,7 @@ public class Cannon : Trap, IInteracteable
     private void Reload()
     {
         _loaded = true;
-        PlayerManager.Instance.EnterCannon();
+        PlayerManager.Instance.EnterCannon(transform.position);
         Debug.Log("Canon recargado");
     }
 
