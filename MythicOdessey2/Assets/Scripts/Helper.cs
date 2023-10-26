@@ -10,18 +10,12 @@ public static class Helper
 
     public static Vector3 GetMouseWorldPosition() => GetMouseWorldPosition3D();
 
-    private static Vector3 GetMouseWorldPosition3D(){
+    private static Vector3 GetMouseWorldPosition3D()
+    {
         Plane plane = new Plane(Vector3.up, 0);
         float distance;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 worldPosition = Vector3.zero;
-        // if(Physics.Raycast(ray,out RaycastHit raycastHit,Mathf.Infinity)){
-        //     return raycastHit.point;
-        // }
-        // else
-        // {
-        //     return Vector3.zero;
-        // }
         if (plane.Raycast(ray, out distance))
         {
             worldPosition = ray.GetPoint(distance);

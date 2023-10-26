@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingTrap : MonoBehaviour
+public class ShootingTrap : Trap
 {
     [SerializeField] Bullet bulletPrefab;
     [SerializeField] float startTimer;

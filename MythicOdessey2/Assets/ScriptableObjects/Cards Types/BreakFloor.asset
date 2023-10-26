@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: BreakFloor
   prefab: {fileID: 8602839332377155362, guid: f6acdbbb1a806b1489f6b9415ceb9d74, type: 3}
+  prefabGhost: {fileID: 2383818016540937666, guid: 1109bd2b684efca46831dfba7f033027,
+    type: 3}
   width: 1
   height: 1
   manaCost: 1

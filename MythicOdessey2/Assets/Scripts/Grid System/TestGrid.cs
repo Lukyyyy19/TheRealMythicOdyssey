@@ -37,11 +37,12 @@ public class TestGrid : MonoBehaviour
                 var plane = Instantiate(planePrefab, grid.GetWorldPosition(x, y) + new Vector3(_cellSize, 0, _cellSize) * .5f, Quaternion.identity, planesParent.transform);
                 plane.transform.localScale = Vector3.one*(_cellSize/10f);
                 plane.SetActive(false);
+                plane.GetComponent<GhostPlane>().gridPosition = new Vector2Int(x, y);
                 _ghostPlanes.Add(new Vector2Int(x, y), plane);
             }
         }
 
-        planesParent.transform.position += Vector3.up * .1f;
+        planesParent.transform.position += Vector3.up * .01f;
         foreach (var startTile in startTiles)
         {
             Debug.Log(startTile.name);
@@ -113,10 +114,14 @@ public class TestGrid : MonoBehaviour
         EventManager.instance.AddAction("OnCardTrigger", (objects => { BuildObject((CardsTypeSO)objects[0]); }));
         EventManager.instance.AddAction("OnTrapDestroyed", (objects =>
         {
-            Vector2Int pos = (Vector2Int)objects[0];
-            //grid.GetXY((Vector3)objects[0], out int x, out int z);
-            grid.GetValue(pos.x, pos.y).ResetValue();
-            UpdateGhostPlaneColors(pos);
+            foreach (var pos in (List<Vector2Int>)objects[0])
+            {
+                
+                //pos = (Vector2Int)objects[0];
+                //grid.GetXY((Vector3)objects[0], out int x, out int z);
+                grid.GetValue(pos.x, pos.y).ResetValue();
+                UpdateGhostPlaneColors(pos);
+            }
         }));
     }
 
@@ -125,14 +130,17 @@ public class TestGrid : MonoBehaviour
         grid.GetXY(Helper.GetMouseWorldPosition(), out int x, out int z);
         var gridPositionList = prefab.GetGridPositionList(new Vector2Int(x, z));
         var gridObject = grid.GetValue(x, z);
-
+        Vector2Int _cantBuildPos = Vector2Int.zero;
         bool canBuild = true;
         foreach (var gridPos in gridPositionList)
         {
-            Debug.Log(grid.GetValue(gridPos.x, gridPos.y).Transform);
-            if (!grid.GetValue(gridPos.x, gridPos.y).CanBuild())
+            var value = grid.GetValue(gridPos.x, gridPos.y);
+            Debug.Log(value);
+            if (value == null || !grid.GetValue(gridPos.x, gridPos.y).CanBuild())
             {
                 canBuild = false;
+                _cantBuildPos = gridPos;
+                //EventManager.instance.TriggerEvent("OnCantBuild");
                 break;
             }
         }
@@ -141,11 +149,15 @@ public class TestGrid : MonoBehaviour
         {
             Transform built;
             //+ new Vector3(_cellSize,0,_cellSize)*.5f es porque no tenemos el anchor point una vez que el objeto lo tenga sacamos esa parte del codigo
-            built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + new Vector3(_cellSize, 0.01f, _cellSize) * .5f,
+            Vector3 offset = new Vector3(_cellSize, 0.01f, _cellSize) * .5f;
+            built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + offset,
                 Quaternion.identity);
-            built.transform.localScale = Vector3.one * (_cellSize / 10f);
-            built.TryGetComponent(out BombTrap bombTrap);
-            bombTrap._gridPosition = gridPositionList[0];
+            //built.transform.localScale = Vector3.one * (_cellSize / 10f);
+            if (built.TryGetComponent(out Trap trap))
+            {
+                trap.worldPosition = grid.GetWorldPosition(x, z) + offset;
+                trap.gridPosition = gridPositionList;
+            }
             foreach (var gridPos in gridPositionList)
             {
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;
@@ -160,7 +172,7 @@ public class TestGrid : MonoBehaviour
         else
         {
             Debug.Log("No se puede construir");
-            EventManager.instance.TriggerEvent("OnCantBuild");
+            EventManager.instance.TriggerEvent("OnCantBuild",_cantBuildPos);
         }
     }
 

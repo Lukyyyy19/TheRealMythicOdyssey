@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombTrap : MonoBehaviour {
+public class BombTrap : Trap {
     private bool _canAttack;
     [SerializeField] float _radius;
     //Crear una clase padre con esto
-    public Vector2Int _gridPosition;
+    
     private void Awake(){
         TestGrid.instance.grid.GetXY(transform.position, out int x, out int y);
         //TestGrid.instance.grid.GetValue(x,y).ResetValue();
@@ -39,7 +39,8 @@ public class BombTrap : MonoBehaviour {
         // transform.position = worldPosition;
         Debug.Log("Explotando  2");
         //transform.Translate(transform.forward*5*Time.deltaTime);
-        foreach (var collider in colliders)
+        var colliders1 = Physics.OverlapSphere(transform.position, _radius);
+        foreach (var collider in colliders1)
         {
             if (collider.TryGetComponent(out IDamageable damageable))
                 damageable.TakeDamage(1, transform);
@@ -53,12 +54,13 @@ public class BombTrap : MonoBehaviour {
         // transform.position = worldPosition2;
         //transform.Translate(transform.forward*5*Time.deltaTime);
         Debug.Log("Explotando  3");
-        foreach (var collider in colliders)
+        var colliders2 = Physics.OverlapSphere(transform.position, _radius);
+        foreach (var collider2 in colliders2)
         {
-            if(collider.TryGetComponent(out IDamageable damageable))
+            if(collider2.TryGetComponent(out IDamageable damageable))
                 damageable.TakeDamage(1,transform);
         }
-        EventManager.instance.TriggerEvent("OnTrapDestroyed",_gridPosition);
+        EventManager.instance.TriggerEvent("OnTrapDestroyed",gridPosition);
         Destroy(gameObject);
         
         //_canAttack = true;
