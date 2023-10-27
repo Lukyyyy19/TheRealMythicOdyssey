@@ -150,11 +150,12 @@ public class TestGrid : MonoBehaviour
             Transform built;
             //+ new Vector3(_cellSize,0,_cellSize)*.5f es porque no tenemos el anchor point una vez que el objeto lo tenga sacamos esa parte del codigo
             Vector3 offset = new Vector3(_cellSize, 0.01f, _cellSize) * .5f;
-            built = Instantiate(prefab.prefab, grid.GetWorldPosition(x, z) + offset,
+            built = Instantiate(prefab.box, grid.GetWorldPosition(x, z) + offset,
                 Quaternion.identity);
             //built.transform.localScale = Vector3.one * (_cellSize / 10f);
             if (built.TryGetComponent(out Trap trap))
             {
+                trap.realTrap = prefab.prefab;
                 trap.worldPosition = grid.GetWorldPosition(x, z) + offset;
                 trap.gridPosition = gridPositionList;
             }

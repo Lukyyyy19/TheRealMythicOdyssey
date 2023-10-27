@@ -6,7 +6,8 @@ using UnityEngine;
 public class CardsTypeSO : ScriptableObject
 {
     public string nameString;
-    public Transform prefab;
+    public Trap prefab;
+    public Transform box;
     public Transform prefabGhost;
     public int width;
     public int height;

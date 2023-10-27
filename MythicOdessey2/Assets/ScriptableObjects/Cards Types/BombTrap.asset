@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BombTrap
   m_EditorClassIdentifier: 
   nameString: Shooting Trap
-  prefab: {fileID: 3276346661076016898, guid: 88ef3c397eab71d4c987b7b181bc2fa9, type: 3}
+  prefab: {fileID: 1562778648818406235, guid: 694c4a226ee160f41a3cedfb7f5e7338, type: 3}
+  box: {fileID: 30812603817546339, guid: 8230130c9d352fa4fbccaaa1e3924a78, type: 3}
   prefabGhost: {fileID: 8540859349969365741, guid: a861187430f722f4abbd2bb974884285,
     type: 3}
   width: 1
