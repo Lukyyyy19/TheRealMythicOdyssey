@@ -7,4 +7,5 @@ public abstract class Trap : MonoBehaviour
 {
     public List<Vector2Int> gridPosition;
     public Vector3 worldPosition;
+    public Trap realTrap;
 }
