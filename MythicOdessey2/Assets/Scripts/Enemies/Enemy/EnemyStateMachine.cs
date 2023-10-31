@@ -38,6 +38,9 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     MeshRenderer _meshRenderer;
     //[SerializeField] private VisualEffect _bloodSplash;
 
+    [SerializeField] private ParticleSystem _confetti;
+    
+
     public Rigidbody Rb => _rb;
 
     public EnemyBaseState CurrentState
@@ -170,6 +173,8 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         // Debug.Log(_health);
         if (_health <= 0)
         {
+            GameObject ps = Instantiate(_confetti.gameObject, transform.position, Quaternion.identity);
+            Destroy(ps, 2f);
             Die();
         }
     }

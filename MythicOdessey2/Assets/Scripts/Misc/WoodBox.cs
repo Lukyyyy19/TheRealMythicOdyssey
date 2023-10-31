@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Unity.Mathematics;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
 public class WoodBox : Trap
 {
-    [SerializeField]private Trap _cannon;
     [SerializeField]private VisualEffect _smoke;
     private MeshRenderer _mesh;
     private void Awake()
@@ -32,9 +32,9 @@ public class WoodBox : Trap
         _smoke.gameObject.SetActive(true);
         _mesh.enabled = false;
         yield return new WaitForSeconds(.5f);
-        var x = Instantiate(_cannon, worldPosition, quaternion.identity);
-        x.gridPosition = gridPosition;
-        x.worldPosition = worldPosition;
+        var x = Instantiate(realTrap, worldPosition, quaternion.identity).gameObject;
+        x.GetComponent<Trap>().gridPosition = gridPosition;
+        x.GetComponent<Trap>().worldPosition = worldPosition;
         Destroy(gameObject,1f);
     }
     // Update is called once per frame
