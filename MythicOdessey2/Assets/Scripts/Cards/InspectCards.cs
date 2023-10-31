@@ -6,22 +6,31 @@ using DG.Tweening;
 using UnityEngine.UI;
 public class InspectCards : MonoBehaviour
 {
-    private Transform _child;
+    [SerializeField]private Transform _child;
+    [SerializeField]private Collider _childCol;
+    [SerializeField]private Collider _thisCol;
     private bool _cardInspected;
     [SerializeField]private GameObject _button;
     private Vector3 _startPos;
+    private Vector3 _midPos;
+    [SerializeField] private GameObject _textChild;
     private void Awake()
     {
-        _child = GetComponentInChildren<Transform>();
         _startPos = transform.position;
+        _thisCol = GetComponent<Collider>();
+        _midPos = new Vector3( 0.01f,0, 0);
     }
 
     private void OnMouseDown()
     {
-        transform.DOMove(Vector3.zero, .75f);
+        _childCol.enabled = true;
+        _thisCol.enabled = false;
+        transform.DOMove(_midPos, .75f);
+        transform.DOScale(2, .75f);
         _cardInspected = true;
         EventManager.instance.TriggerEvent("OnCardInspected");
         _button.SetActive(true);
+        _textChild.SetActive(true);
     }
 
     private void OnEnable()
@@ -34,8 +43,16 @@ public class InspectCards : MonoBehaviour
         
         EventManager.instance.AddAction("OnCardDesinspected",(x)=>
         {
-            if(_cardInspected)
+            _textChild.SetActive(false);
+            _thisCol.enabled = true;
+            _childCol.enabled = false;
+            if (_cardInspected)
+            {
                 transform.DOMove(_startPos, .75f);
+                transform.DOScale(1, .75f);
+                _child.DORotate(new Vector3(0, 180, 0), .5f);
+            }
+
             _cardInspected = false;
             _child.gameObject.SetActive(true);
         });
