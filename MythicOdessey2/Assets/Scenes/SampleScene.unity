@@ -5773,6 +5773,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicBox Card GO
       objectReference: {fileID: 0}
+    - target: {fileID: 6120576085857276570, guid: 18d153d16d3753f45af87ed2d78bf8b3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6120576085857276571, guid: 18d153d16d3753f45af87ed2d78bf8b3,
         type: 3}
       propertyPath: m_RootOrder
@@ -5841,6 +5846,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bomb Card GO
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615303590149870066, guid: af17bdcc9459c3740968706024677206,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3615303590149870067, guid: af17bdcc9459c3740968706024677206,
         type: 3}
@@ -5986,6 +5996,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 1009089987}
     m_Modifications:
     - target: {fileID: 4976865035027758947, guid: c17f74890854c4b4daec47004521aad0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976865035027758956, guid: c17f74890854c4b4daec47004521aad0,
         type: 3}
       propertyPath: m_Enabled
       value: 0

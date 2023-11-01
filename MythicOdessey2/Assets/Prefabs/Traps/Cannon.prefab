@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4228141825549333889
 Transform:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &858483379318801233
 Transform:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2566712576912154430
 Transform:
   m_ObjectHideFlags: 0
@@ -377,7 +377,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: []
+  worldPosition: {x: 0, y: 0, z: 0}
+  realTrap: {fileID: 0}
   _cannonModel: {fileID: 7861973196685727611}
+  _smokeParticles: {fileID: 6532324957692737198, guid: b5a86c172eccf374f81a935069d13a54,
+    type: 3}
 --- !u!65 &5505843562611081702
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -409,7 +413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6931821778174722551
 Transform:
   m_ObjectHideFlags: 0

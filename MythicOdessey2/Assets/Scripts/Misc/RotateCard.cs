@@ -12,7 +12,7 @@ public class RotateCard : MonoBehaviour
         _cam = Camera.main;
     }
 
-    private void OnMouseDrag()
+    private void Update()
     {
         var x = Input.GetAxis("Mouse X");
         var y = Input.GetAxis("Mouse Y");
