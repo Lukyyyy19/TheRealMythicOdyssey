@@ -14,11 +14,13 @@ public class InspectCards : MonoBehaviour
     private Vector3 _startPos;
     private Vector3 _midPos;
     [SerializeField] private GameObject _textChild;
+    RotateCard _rotateCardScript;
     private void Awake()
     {
         _startPos = transform.position;
         _thisCol = GetComponent<Collider>();
         _midPos = new Vector3( 0.01f,0, 0);
+        _rotateCardScript = _child.GetComponent<RotateCard>();
     }
 
     private void OnMouseDown()
@@ -28,6 +30,7 @@ public class InspectCards : MonoBehaviour
         transform.DOMove(_midPos, .75f);
         transform.DOScale(2, .75f);
         _cardInspected = true;
+        _rotateCardScript.enabled = true;
         EventManager.instance.TriggerEvent("OnCardInspected");
         _button.SetActive(true);
         _textChild.SetActive(true);
@@ -37,12 +40,14 @@ public class InspectCards : MonoBehaviour
     {
         EventManager.instance.AddAction("OnCardInspected",(x)=>
         {
+            _thisCol.enabled = false;
             if(!_cardInspected)
             _child.gameObject.SetActive(false);
         });
         
         EventManager.instance.AddAction("OnCardDesinspected",(x)=>
         {
+            _rotateCardScript.enabled = false;
             _textChild.SetActive(false);
             _thisCol.enabled = true;
             _childCol.enabled = false;
