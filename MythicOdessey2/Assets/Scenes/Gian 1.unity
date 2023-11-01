@@ -6846,6 +6846,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4270935526609356984, guid: 9375107463b17b24dbe9d610eb7f3ccb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1722d2e32b080f54abefeb7277eecfbb, type: 2}
     - target: {fileID: 4270935526609356986, guid: 9375107463b17b24dbe9d610eb7f3ccb,
         type: 3}
       propertyPath: m_RootOrder
@@ -7744,6 +7749,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 2131436743298328501, guid: d06161c70e022ce4a99c4e0c09aa76ea,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 22c1d08a4d4155f40a5208914eaf2687, type: 2}
     - target: {fileID: 2270585658847606321, guid: d06161c70e022ce4a99c4e0c09aa76ea,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7869,6 +7879,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 6327108578070702062, guid: d06161c70e022ce4a99c4e0c09aa76ea,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c383766712e638a448a554a15e8e6f0a, type: 2}
+    - target: {fileID: 6581975112949741780, guid: d06161c70e022ce4a99c4e0c09aa76ea,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28641b923acc67041b820f8f328c0691, type: 2}
     - target: {fileID: 6602999570263939150, guid: d06161c70e022ce4a99c4e0c09aa76ea,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7928,11 +7948,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 288719848}
     m_Modifications:
+    - target: {fileID: 59529479065647407, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1534cd653c0b17469e9d9ae569dd979, type: 2}
+    - target: {fileID: 1792093650090477374, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1534cd653c0b17469e9d9ae569dd979, type: 2}
     - target: {fileID: 5124234409471519603, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5466694684289339276, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1534cd653c0b17469e9d9ae569dd979, type: 2}
     - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
         type: 3}
       propertyPath: _playerMagicBar
@@ -7998,6 +8033,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7205492512273385906, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1534cd653c0b17469e9d9ae569dd979, type: 2}
+    - target: {fileID: 7516352600093870976, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1534cd653c0b17469e9d9ae569dd979, type: 2}
+    - target: {fileID: 8528027330517974386, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1534cd653c0b17469e9d9ae569dd979, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3, type: 3}
 --- !u!1001 &5605160791733517755
