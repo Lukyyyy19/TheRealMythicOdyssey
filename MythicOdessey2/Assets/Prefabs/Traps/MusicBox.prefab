@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53bce7f1665d44c40abe4bb3f603936b, type: 2}
+  - {fileID: 2100000, guid: 41591a20a0c93bd4bafd5a3b10974d27, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: []
+  worldPosition: {x: 0, y: 0, z: 0}
+  realTrap: {fileID: 0}
 --- !u!1 &9094689457823419449
 GameObject:
   m_ObjectHideFlags: 0
