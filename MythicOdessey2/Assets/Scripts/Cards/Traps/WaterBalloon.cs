@@ -9,8 +9,6 @@ public class WaterBalloon : Trap
 {
     private void Awake()
     {
-        //var newpos = worldPosition + new Vector3(2,0,2);
-        //transform.position = new Vector3(worldPosition.x,10,worldPosition.z);
         transform.position = new Vector3(transform.position.x, 10, transform.position.z);   
         transform.DOMoveY(0.5f, .35f).SetEase(Ease.InCirc).OnComplete((() =>
         {
