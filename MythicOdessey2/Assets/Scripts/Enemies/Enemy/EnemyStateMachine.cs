@@ -40,7 +40,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     [SerializeField] private ParticleSystem _confetti;
     
-
+    
     public Rigidbody Rb => _rb;
 
     public EnemyBaseState CurrentState

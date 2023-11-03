@@ -191,8 +191,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
         EventManager.instance.AddAction("OnCardBuilt", (object[] args) =>
         {
-            _magic -= (int)args[0];
-            _playerMagicBar.SetMagic(_magic);
+            if (_magic < 0)
+                _magic = 0;
+            else
+            {
+                _magic -= (int)args[0];
+                _playerMagicBar.SetMagic(_magic);
+            }
         });
 
         EventManager.instance.AddAction("OnEnemyKilled", (object[] args) =>
