@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: WaterBalloon
   m_EditorClassIdentifier: 
   nameString: WaterBalloon
-  prefab: {fileID: 2030473556701317339, guid: 72b6d63a1750ba244b679b841574eb11, type: 3}
+  prefab: {fileID: 6800453374092449854, guid: 1883418c4ede85045ba092b5a136ff5d, type: 3}
   box: {fileID: 0}
-  prefabGhost: {fileID: 4848492232946464872, guid: 72b6d63a1750ba244b679b841574eb11,
+  prefabGhost: {fileID: 1664621639440174132, guid: a69cbfb99fe5b424b915e6404dc5a180,
     type: 3}
   width: 1
   height: 1
-  manaCost: 10
+  manaCost: 4

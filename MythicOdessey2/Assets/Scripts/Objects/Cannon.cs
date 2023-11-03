@@ -12,7 +12,7 @@ public class Cannon : Trap, IInteracteable
     [SerializeField] private Transform _cannonModel;
     [SerializeField]private VisualEffect _smokeParticles;
     private float _timer;
-    private float _maxTimer = 3f;
+    private float _maxTimer = 5f;
 
     public void Interaction()
     {

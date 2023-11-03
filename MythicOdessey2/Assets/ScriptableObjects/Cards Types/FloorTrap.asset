@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Floor Trap
   prefab: {fileID: 1076103351797228661, guid: cf3192095ae3dda4f8918741e9da2943, type: 3}
+  box: {fileID: 0}
+  prefabGhost: {fileID: 0}
   width: 1
   height: 1
-  manaCost: 4
+  manaCost: 1

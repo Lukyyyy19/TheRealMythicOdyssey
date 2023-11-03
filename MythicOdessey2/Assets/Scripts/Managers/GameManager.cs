@@ -5,14 +5,15 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using TMPro;
+
 public class GameManager : MonoBehaviour
 {
     public List<EnemyStateMachine> enemies = new List<EnemyStateMachine>();
     public int enemiesKilled;
-    [SerializeField]
-    private EnemyStateMachine _enemiesPrefab;
+    [SerializeField] private EnemyStateMachine _enemiesPrefab;
 
     [SerializeField] private TMP_Text _text;
+
     //create singelton
     static GameManager _instance;
     public static GameManager Instance => _instance;
@@ -22,24 +23,26 @@ public class GameManager : MonoBehaviour
 
     private float _startTime = 2f;
     private float _currentTime;
-    [SerializeField]private float _gameTime = 60;
+    [SerializeField] private float _gameTime = 60;
+
     private void Awake()
     {
         if (_instance == null)
         {
-        _instance = this;
-        DontDestroyOnLoad(this);
+            _instance = this;
+            DontDestroyOnLoad(this);
         }
         else
         {
             Destroy(gameObject);
         }
+
         //pauseMenu.SetActive(false);
         _currentTime = _startTime;
     }
 
     private void Update()
-    { 
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -51,25 +54,22 @@ public class GameManager : MonoBehaviour
                 PauseGame();
             }
         }
-        if(isPaused)return;
-        _gameTime -= Time.deltaTime*TimeManager.Instance.currentTimeScale;
-        if(_text)
+
+        if (isPaused) return;
+        _gameTime -= Time.deltaTime * TimeManager.Instance.currentTimeScale;
+        if (_text)
             _text.text = Mathf.FloorToInt(_gameTime).ToString();
-        if(_gameTime<=0)LevelManager.instance.LoadScene("GameOver");
+        if (_gameTime <= 0) LevelManager.instance.LoadScene("GameOver");
         if (_currentTime > 0)
         {
-            _currentTime -= Time.deltaTime*TimeManager.Instance.currentTimeScale;
+            _currentTime -= Time.deltaTime * TimeManager.Instance.currentTimeScale;
         }
         else
         {
-            if(enemies.Count<3)
+            if (enemies.Count < 3)
                 StartCoroutine(nameof(SpawnEnemy));
             _currentTime = _startTime;
         }
-        
-        
-        
-        
     }
 
     public void PauseGame()
@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+
         yield return new WaitForSeconds(4f);
         var enemy = Instantiate(_enemiesPrefab, newPos, Quaternion.identity);
     }
