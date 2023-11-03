@@ -194,7 +194,19 @@ public class PlayerManager : MonoBehaviour, IDamageable
             _magic -= (int)args[0];
             _playerMagicBar.SetMagic(_magic);
         });
+
+        EventManager.instance.AddAction("OnEnemyKilled", (object[] args) =>
+        {
+            if (_magic > _maxMagic)
+                _magic = _maxMagic;
+            else
+            {
+                _magic += (int)args[0];
+                _playerMagicBar.SetMagic(_magic);
+            }
+        });
     }
+
 
     private void OnDisable()
     {

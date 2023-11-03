@@ -21,5 +21,12 @@ public class WaterBalloon : Trap
                 }
             }
         }));
+        
+        Destroy(gameObject,0.5f);
+    }
+    
+    private void OnDestroy()
+    {
+        EventManager.instance.TriggerEvent("OnTrapDestroyed",gridPosition);
     }
 }

@@ -174,6 +174,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         if (_health <= 0)
         {
             GameObject ps = Instantiate(_confetti.gameObject, transform.position, Quaternion.identity);
+            EventManager.instance.TriggerEvent("OnEnemyKilled", 1);
             Destroy(ps, 2f);
             Die();
         }
@@ -190,7 +191,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        //remove from game amanger list enemis
+        //remove from game manager list enemies
         GameManager.Instance.enemies.Remove(this);
         EventManager.instance.TriggerEvent("CheckEnemies");
         Destroy(gameObject);

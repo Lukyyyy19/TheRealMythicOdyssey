@@ -7,7 +7,7 @@ public class BaitTrap : Trap
 {
     private void Awake()
     {
-        Destroy(gameObject,10f);
+        Destroy(gameObject,5f);
     }
 
     private void OnDestroy()

@@ -13,10 +13,11 @@ public class TestGrid : MonoBehaviour
     private Dictionary<Vector2Int, GameObject> _ghostPlanes = new Dictionary<Vector2Int, GameObject>();
     public List<Transform> startTiles = new List<Transform>();
     public static TestGrid instance;
-    [SerializeField,Range(0,15)]int _cellSize = 4;
-    [SerializeField,Range(0,15)]int _width = 7;
-    [SerializeField,Range(0,15)]int _height = 7;
+    [SerializeField, Range(0, 15)] int _cellSize = 4;
+    [SerializeField, Range(0, 15)] int _width = 7;
+    [SerializeField, Range(0, 15)] int _height = 7;
     [SerializeField] Vector3 _originPosition;
+
     private void Awake()
     {
         instance = this;
@@ -31,11 +32,11 @@ public class TestGrid : MonoBehaviour
             for (int y = 0; y < _height; y++)
             {
                 if ((x == 0 && y == 0)) continue;
-                else if(x==_width-1 && y == 0) continue;
-                else if(x==0 && y == _height-1) continue;
-                else if(x==_width-1 && y == _height-1) continue;
+                else if (x == _width - 1 && y == 0) continue;
+                else if (x == 0 && y == _height - 1) continue;
+                else if (x == _width - 1 && y == _height - 1) continue;
                 var plane = Instantiate(planePrefab, grid.GetWorldPosition(x, y) + new Vector3(_cellSize, 0, _cellSize) * .5f, Quaternion.identity, planesParent.transform);
-                plane.transform.localScale = Vector3.one*(_cellSize/10f);
+                plane.transform.localScale = Vector3.one * (_cellSize / 10f);
                 plane.SetActive(false);
                 plane.GetComponent<GhostPlane>().gridPosition = new Vector2Int(x, y);
                 _ghostPlanes.Add(new Vector2Int(x, y), plane);
@@ -52,7 +53,7 @@ public class TestGrid : MonoBehaviour
         }
     }
 
-   public class GridObject
+    public class GridObject
     {
         private GridSystem<GridObject> grid;
         private int x;
@@ -86,7 +87,8 @@ public class TestGrid : MonoBehaviour
             return transform == null;
         }
 
-        public void ResetValue(){
+        public void ResetValue()
+        {
             transform = null;
         }
     }
@@ -116,7 +118,6 @@ public class TestGrid : MonoBehaviour
         {
             foreach (var pos in (List<Vector2Int>)objects[0])
             {
-                
                 //pos = (Vector2Int)objects[0];
                 //grid.GetXY((Vector3)objects[0], out int x, out int z);
                 grid.GetValue(pos.x, pos.y).ResetValue();
@@ -148,10 +149,18 @@ public class TestGrid : MonoBehaviour
         if (canBuild)
         {
             Transform built;
-            //+ new Vector3(_cellSize,0,_cellSize)*.5f es porque no tenemos el anchor point una vez que el objeto lo tenga sacamos esa parte del codigo
+            //+ new Vector3(_cellSize,0,_cellSize).5f es porque no tenemos el anchor point una vez que el objeto lo tenga sacamos esa parte del codigo
             Vector3 offset = new Vector3(_cellSize, 0.01f, _cellSize) * .5f;
-            built = Instantiate(prefab.box, grid.GetWorldPosition(x, z) + offset,
-                Quaternion.identity);
+
+            if (prefab.box != null)
+            {
+                built = Instantiate(prefab.box, grid.GetWorldPosition(x, z) + offset, Quaternion.identity);
+            }
+            else
+            {
+                built = Instantiate(prefab.prefab.transform, grid.GetWorldPosition(x, z) + offset, Quaternion.identity);
+            }
+
             //built.transform.localScale = Vector3.one * (_cellSize / 10f);
             if (built.TryGetComponent(out Trap trap))
             {
@@ -159,12 +168,14 @@ public class TestGrid : MonoBehaviour
                 trap.worldPosition = grid.GetWorldPosition(x, z) + offset;
                 trap.gridPosition = gridPositionList;
             }
+
             foreach (var gridPos in gridPositionList)
             {
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;
                 Debug.Log(grid.GetValue(gridPos.x, gridPos.y).Transform.name);
                 _ghostPlanes[gridPos].GetComponent<GhostPlane>().SetColor(true);
             }
+
             EventManager.instance.TriggerEvent("OnCardBuilt", prefab.manaCost);
             // var builtNavMeshSurface = built.GetComponent<NavMeshSurface>();
             // EventManager.instance.TriggerEvent("OnUpdateNavMesh", builtNavMeshSurface);
@@ -173,11 +184,12 @@ public class TestGrid : MonoBehaviour
         else
         {
             Debug.Log("No se puede construir");
-            EventManager.instance.TriggerEvent("OnCantBuild",_cantBuildPos);
+            EventManager.instance.TriggerEvent("OnCantBuild", _cantBuildPos);
         }
     }
 
-   public void UpdateGhostPlaneColors(Vector2Int pos){
-        _ghostPlanes[pos].GetComponent<GhostPlane>().SetColor(!grid.GetValue(pos.x,pos.y).CanBuild());
+    public void UpdateGhostPlaneColors(Vector2Int pos)
+    {
+        _ghostPlanes[pos].GetComponent<GhostPlane>().SetColor(!grid.GetValue(pos.x, pos.y).CanBuild());
     }
 }
