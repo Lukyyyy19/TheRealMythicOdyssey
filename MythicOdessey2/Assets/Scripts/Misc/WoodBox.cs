@@ -32,14 +32,26 @@ public class WoodBox : Trap
         _smoke.gameObject.SetActive(true);
         _mesh.enabled = false;
         yield return new WaitForSeconds(.5f);
-        var x = Instantiate(realTrap, worldPosition, quaternion.identity).gameObject;
-        x.GetComponent<Trap>().gridPosition = gridPosition;
-        x.GetComponent<Trap>().worldPosition = worldPosition;
-        Destroy(gameObject,1f);
+        var x = Instantiate(realTrap, worldPosition, quaternion.identity);
+        x.woodBox = transform;
+        x.gridPosition = gridPosition;
+        x.worldPosition = worldPosition;
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    // private void OnEnable()
+    // {
+    //     EventManager.instance.AddAction("OnTrapDestroyed", (x) =>
+    //     {
+    //             Destroy(gameObject);
+    //     });
+    // }
+    // private void OnDestroy()
+    // {
+    //     EventManager.instance.RemoveAction("OnTrapDestroyed", (x) =>
+    //     {
+    //         Destroy(gameObject);
+    //     });
+    // }
 }
