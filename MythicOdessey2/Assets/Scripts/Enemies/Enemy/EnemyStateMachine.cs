@@ -222,6 +222,17 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _rb.velocity = Vector3.zero;
     }
 
+    // IEnumerator DamagedMat()
+    // {
+    //     _mainMat.SetFloat("Smoothness", 0f);
+    //     _mainMat.color = Color.black;
+    //     yield return new WaitForSeconds(.075f);
+    //     _mainMat.color = Color.white;
+    //     yield return new WaitForSeconds(.1f);
+    //     _mainMat.SetFloat("Smoothness", 0.5f);
+    //     _mainMat.color = _startColor;
+    // }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
