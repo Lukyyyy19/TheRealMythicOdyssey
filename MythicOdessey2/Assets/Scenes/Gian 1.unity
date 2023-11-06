@@ -10143,7 +10143,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card1 (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7651487009793253950, guid: 682d9b8b5d15f254cb9684a3af67613b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 682d9b8b5d15f254cb9684a3af67613b, type: 3}
 --- !u!224 &5390684096955749508 stripped
 RectTransform:
@@ -10437,7 +10438,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card1 (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1165863296367765727, guid: 099b80c51fb540c4fa4a5b50cb0e207e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 099b80c51fb540c4fa4a5b50cb0e207e, type: 3}
 --- !u!1001 &6751790848378235274
 PrefabInstance:
@@ -10616,7 +10618,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7305518130871442720, guid: 86794c1aed93f8544aced0991d0875e9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 86794c1aed93f8544aced0991d0875e9, type: 3}
 --- !u!4 &7121270136505367347 stripped
 Transform:
@@ -10801,5 +10804,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 366870141}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2996451935185305200, guid: d90f14f00354b38429a5f59d93762282, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d90f14f00354b38429a5f59d93762282, type: 3}
