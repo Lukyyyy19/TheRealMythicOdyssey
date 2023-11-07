@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Cannon
   prefab: {fileID: 840604105514260448, guid: d89225abf4f687147a60eb04fe2ef018, type: 3}
-  box: {fileID: 30812603817546339, guid: 8230130c9d352fa4fbccaaa1e3924a78, type: 3}
+  box: {fileID: 2094815497841173079, guid: a88032c123ae07d418e08150656825f9, type: 3}
   prefabGhost: {fileID: 4328788284746667419, guid: 45047fc828b55514296cc4d8fa4d944b,
     type: 3}
   width: 2

@@ -10,16 +10,33 @@ public class GhostPlane : MonoBehaviour {
     private Material _material;
     private Color _startColor;
     private Color _redColor;
+    private Color _blueColor;
     [SerializeField] private TextMeshPro _xText;
     public Vector2Int gridPosition;
+   [SerializeField] private bool changeColor;
     private void Awake(){
         _meshRenderer = GetComponent<MeshRenderer>();
         _material = _meshRenderer.material;
         _startColor = _material.color;
         _redColor = new Color32(255, 0, 0, 43);
+        _blueColor = new Color32(0, 0, 255, 43);
+        if (changeColor)
+            _startColor = _blueColor;
     }
-     public void SetColor(bool red){
-         _material.color = red ? _redColor : _startColor;
+     public void SetColor(int color){
+         //_material.color = red ? _redColor : _startColor;
+         switch (color)
+         {
+             case 0:
+                 _material.color = _startColor;
+                 return;
+             case 1:
+                 _material.color = _redColor;
+                 return;
+             case 2:
+                 _material.color = _blueColor;
+                 return;
+         }
      }
 
      private void OnEnable()

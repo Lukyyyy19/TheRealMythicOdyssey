@@ -75,7 +75,7 @@ public class Cannon : Trap, IInteracteable
     {
         EventManager.instance.TriggerEvent("OnTrapDestroyed", gridPosition);
         //Destroy(Instantiate(_smokeParticles, transform.position + new Vector3(2, 0, 2), quaternion.identity), 2f);
-        Destroy(gameObject, 2f);
+        Destroy(gameObject);
         if (_loaded)
         {
             PlayerManager.Instance.ExitCannon(transform.position);

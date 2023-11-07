@@ -18,6 +18,7 @@ public class Card : MonoBehaviour, IInteracteable
    [SerializeField] private Transform _ghostCard;
    private bool _startDrag;
   [SerializeField] private GameObject _cardChild;
+  private Vector2Int _mousepos;
     private void Awake(){
         _startPos = transform.localPosition;
         _animator = GetComponent<Animator>();
@@ -38,6 +39,7 @@ public class Card : MonoBehaviour, IInteracteable
         _currentCard = true;
     }
 
+    private Vector2Int _lastMousePos;
     public void FollwoCursor()
     {
         _cardChild.SetActive(false);
@@ -47,8 +49,25 @@ public class Card : MonoBehaviour, IInteracteable
         // newPos.x = Helper.GetMouseWorldPosition().x;
         // newPos.y = Helper.GetMouseWorldPosition().y;
         // newPos.z = -150f;
+        // TestGrid.instance.grid.GetXY(Helper.GetMouseWorldPosition(), out int x, out int z);
+        // _mousepos.x = x;
+        // _mousepos.y = z;
+        // TestGrid.instance.UpdateGhostPlaneColors(new Vector2Int(x,z),2);
+        // if (_lastMousePos != _mousepos)
+        // {
+        //     if (TestGrid.instance.grid.GetValue(_lastMousePos.x, _lastMousePos.y)!= null)
+        //     {
+        //         TestGrid.instance.UpdateGhostPlaneColors(_lastMousePos, 1);
+        //     }
+        //     else
+        //     {
+        //         TestGrid.instance.UpdateGhostPlaneColors(_lastMousePos, 0);
+        //         
+        //     }
+        // }
         _startDrag = true;
         transform.position = Helper.GetMouseWorldPosition();
+        //_lastMousePos = _mousepos;
     }
 
     private void Update()

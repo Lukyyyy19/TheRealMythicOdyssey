@@ -121,7 +121,7 @@ public class TestGrid : MonoBehaviour
                 //pos = (Vector2Int)objects[0];
                 //grid.GetXY((Vector3)objects[0], out int x, out int z);
                 grid.GetValue(pos.x, pos.y).ResetValue();
-                UpdateGhostPlaneColors(pos);
+                UpdateGhostPlaneColors(pos,0);
             }
         }));
     }
@@ -174,7 +174,7 @@ public class TestGrid : MonoBehaviour
             {
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;
                 Debug.Log(grid.GetValue(gridPos.x, gridPos.y).Transform.name);
-                _ghostPlanes[gridPos].GetComponent<GhostPlane>().SetColor(true);
+                UpdateGhostPlaneColors(gridPos,1);
             }
 
             EventManager.instance.TriggerEvent("OnCardBuilt", prefab.manaCost);
@@ -189,8 +189,9 @@ public class TestGrid : MonoBehaviour
         }
     }
 
-    public void UpdateGhostPlaneColors(Vector2Int pos)
+    public void UpdateGhostPlaneColors(Vector2Int pos, int color)
     {
-        _ghostPlanes[pos].GetComponent<GhostPlane>().SetColor(!grid.GetValue(pos.x, pos.y).CanBuild());
+        if(_ghostPlanes.ContainsKey(pos))
+            _ghostPlanes[pos].GetComponent<GhostPlane>().SetColor(color/*!grid.GetValue(pos.x, pos.y).CanBuild()*/);
     }
 }
