@@ -15,6 +15,8 @@ public class PlayerMovement
     private Transform _transform;
     private Collider _colider;
     private float _timer;
+
+    private bool _rotationMode;
     //crear constructor
     public PlayerMovement(PlayerManager playerManager, Transform transform, Rigidbody rb, Collider collider)
     {
@@ -29,9 +31,31 @@ public class PlayerMovement
     }
     private void PlayerLookOnMovement()
     {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            switch (_rotationMode)
+            {
+                case true:
+                    _rotationMode = false;
+                    break;
+                case false:
+                    _rotationMode = true;
+                    break;
+            }
+        }
         if (_playerManager.dir == Vector3.zero || _playerManager.IsAttacking) return;
-        var rotation = Quaternion.LookRotation(_playerManager.dir.ToIso(), Vector3.up);
+        if (_rotationMode)
+        {
+            _transform.transform.LookAt(Helper.GetMouseWorldPosition(),Vector3.up);
+        }
+        else
+        {
+            
+        var rotation = Quaternion.LookRotation(_playerManager.dir, Vector3.up);
         _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rotation, _turnSpeed * Time.deltaTime);
+        Debug.Log(_transform.rotation);
+        Debug.Log("Rotando");
+        }
     }
 
     public void Dash()
@@ -56,9 +80,9 @@ public class PlayerMovement
 
     public void Update()
     {
-        PlayerLookOnMovement();
-        if (_playerManager.IsDahing)
-            _timer += Time.deltaTime;
+       PlayerLookOnMovement();
+        // if (_playerManager.IsDahing)
+        //     _timer += Time.deltaTime;
     }
 
     public void FixedUpdate()

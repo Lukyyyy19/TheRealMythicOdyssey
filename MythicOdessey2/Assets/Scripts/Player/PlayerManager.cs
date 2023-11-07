@@ -112,8 +112,6 @@ public class PlayerManager : MonoBehaviour, IDamageable
             if (interacteable != null)
                 colList.Add(col, interacteable);
         }
-
-        Debug.Log("Colisiones de interaccion son " + colList);
         if (colList.Count > 0)
         {
             var first = colList.OrderBy(x => Vector3.Distance(x.Key.transform.position, transform.position)).First();
