@@ -93,7 +93,7 @@ MonoBehaviour:
   _baitLayer:
     serializedVersion: 2
     m_Bits: 512
-  _mainMat: {fileID: 2100000, guid: 66129a5b525138746b0dd0f2aa1639cd, type: 2}
+  _mainMat: {fileID: 2100000, guid: 1722d2e32b080f54abefeb7277eecfbb, type: 2}
   _matArray:
   - {fileID: 2100000, guid: ec6aa765e3f9dfb45b53d9bb9b21fd73, type: 2}
   - {fileID: 2100000, guid: 3376a9fb9d6695546a9e2fddf8c4513c, type: 2}
@@ -289,7 +289,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66129a5b525138746b0dd0f2aa1639cd, type: 2}
+      objectReference: {fileID: 2100000, guid: 1722d2e32b080f54abefeb7277eecfbb, type: 2}
     - target: {fileID: 919132149155446097, guid: b096b67094e4fcb439086f86ce87cf80,
         type: 3}
       propertyPath: m_Name
@@ -334,12 +334,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66129a5b525138746b0dd0f2aa1639cd, type: 2}
+      objectReference: {fileID: 2100000, guid: 1722d2e32b080f54abefeb7277eecfbb, type: 2}
     - target: {fileID: 8100320773420232829, guid: b096b67094e4fcb439086f86ce87cf80,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 66129a5b525138746b0dd0f2aa1639cd, type: 2}
+      objectReference: {fileID: 2100000, guid: 1722d2e32b080f54abefeb7277eecfbb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b096b67094e4fcb439086f86ce87cf80, type: 3}
 --- !u!4 &8876651530099344889 stripped
