@@ -114,6 +114,7 @@ MonoBehaviour:
   gridPosition: []
   worldPosition: {x: 0, y: 0, z: 0}
   realTrap: {fileID: 0}
+  woodBox: {fileID: 0}
   _smoke: {fileID: 2053514831249788879}
 --- !u!1001 &5105100844803717473
 PrefabInstance:
