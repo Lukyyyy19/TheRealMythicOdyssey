@@ -23,20 +23,28 @@ public class PlayerAttack {
 
     public void Update(){
         _anim.speed *= TimeManager.Instance.currentTimeScale;
-    }
-    
-    public IEnumerator SpinAttack(){
-        debugAttack = true;
-        _playerManager.IsAttacking = true;
-        _anim.CrossFade("Pepe_Attack", 0.1f);
         var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);
         foreach (var collision in collisions)
         {
             if (collision.CompareTag("Player")) continue;
             collision.GetComponent<IDamageable>()?.TakeDamage(0,_playerManager.transform);
         }
+
+    }
     
-        yield return new WaitForSeconds(.3f);
-        EventManager.instance.TriggerEvent("OnPlayerAttackFinished");
+    public IEnumerator SpinAttack(){
+        // debugAttack = true;
+        // _playerManager.IsAttacking = true;
+        // _anim.CrossFade("Pepe_Attack", 0.1f);
+        // var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);
+        // foreach (var collision in collisions)
+        // {
+        //     if (collision.CompareTag("Player")) continue;
+        //     collision.GetComponent<IDamageable>()?.TakeDamage(0,_playerManager.transform);
+        // }
+        //
+        // yield return new WaitForSeconds(.3f);
+        // EventManager.instance.TriggerEvent("OnPlayerAttackFinished");
+        yield return true;
     }
 }

@@ -59,7 +59,12 @@ public class GameManager : MonoBehaviour
         _gameTime -= Time.deltaTime * TimeManager.Instance.currentTimeScale;
         if (_text)
             _text.text = Mathf.FloorToInt(_gameTime).ToString();
-        if (_gameTime <= 0) LevelManager.instance.LoadScene("GameOver");
+        if (_gameTime <= 0)
+        {
+            LevelManager.instance.LoadScene("GameOver");
+            isPaused = true;
+            return;
+        }
         if (_currentTime > 0)
         {
             _currentTime -= Time.deltaTime * TimeManager.Instance.currentTimeScale;

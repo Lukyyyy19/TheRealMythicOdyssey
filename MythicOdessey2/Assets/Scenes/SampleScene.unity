@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1690,6 +1690,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1951925954}
     m_Modifications:
+    - target: {fileID: 2613427118976682839, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6120576085857276565, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
         type: 3}
       propertyPath: m_Enabled
@@ -6098,6 +6103,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2613427118976682839, guid: 18d153d16d3753f45af87ed2d78bf8b3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6120576085857276565, guid: 18d153d16d3753f45af87ed2d78bf8b3,
         type: 3}
       propertyPath: m_Enabled
@@ -6177,6 +6187,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 173026574}
     m_Modifications:
+    - target: {fileID: 746309815, guid: af17bdcc9459c3740968706024677206, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 746309815, guid: af17bdcc9459c3740968706024677206, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 3615303590149870065, guid: af17bdcc9459c3740968706024677206,
         type: 3}
       propertyPath: m_Name
@@ -6399,6 +6417,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CannonCard GO
+      objectReference: {fileID: 0}
+    - target: {fileID: 6236487289589818801, guid: c17f74890854c4b4daec47004521aad0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c17f74890854c4b4daec47004521aad0, type: 3}

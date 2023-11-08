@@ -44,17 +44,17 @@ public class PlayerMovement
             }
         }
         if (_playerManager.dir == Vector3.zero || _playerManager.IsAttacking) return;
-        if (_rotationMode)
+        if (!_rotationMode)
         {
-            _transform.transform.LookAt(Helper.GetMouseWorldPosition(),Vector3.up);
+            // _transform.transform.LookAt(Helper.GetMouseWorldPosition(),Vector3.up);
+            var rotation = Quaternion.LookRotation(Helper.GetMouseWorldPosition(), Vector3.up);
+            _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rotation, _turnSpeed * Time.deltaTime);
         }
         else
         {
             
         var rotation = Quaternion.LookRotation(_playerManager.dir, Vector3.up);
         _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rotation, _turnSpeed * Time.deltaTime);
-        Debug.Log(_transform.rotation);
-        Debug.Log("Rotando");
         }
     }
 
@@ -80,7 +80,7 @@ public class PlayerMovement
 
     public void Update()
     {
-       PlayerLookOnMovement();
+       //PlayerLookOnMovement();
         // if (_playerManager.IsDahing)
         //     _timer += Time.deltaTime;
     }

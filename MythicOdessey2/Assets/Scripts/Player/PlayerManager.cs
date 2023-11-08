@@ -80,6 +80,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private void Update()
     {
         if (CardMenuManager.Instance.menuOpen || !canUpdate) return;
+        var rotation = Quaternion.LookRotation(Helper.GetMouseWorldPosition(), Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 960f * Time.deltaTime);
         _playerMovement.Update();
         _playerAttack.Update();
         if (_isAttackPressed && !_requireNewAttackPress)
