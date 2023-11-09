@@ -23,12 +23,12 @@ public class PlayerAttack {
 
     public void Update(){
         _anim.speed *= TimeManager.Instance.currentTimeScale;
-        var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);
-        foreach (var collision in collisions)
-        {
-            if (collision.CompareTag("Player")) continue;
-            collision.GetComponent<IDamageable>()?.TakeDamage(0,_playerManager.transform);
-        }
+        // var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);
+        // foreach (var collision in collisions)
+        // {
+        //     if (collision.CompareTag("Player")) continue;
+        //     collision.GetComponent<IDamageable>()?.TakeDamage(0,_playerManager.transform);
+        // }
 
     }
     
