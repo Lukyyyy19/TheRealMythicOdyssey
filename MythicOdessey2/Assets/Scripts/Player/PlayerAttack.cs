@@ -14,11 +14,13 @@ public class PlayerAttack {
 
     public bool debugAttack;
 
+    private GameObject _hitVfx;
     //constructor
-    public PlayerAttack(PlayerManager playerManager, Animator animator, Transform transform){
+    public PlayerAttack(PlayerManager playerManager, Animator animator, Transform transform,GameObject hitVfx){
         _playerManager = playerManager;
         _anim = animator;
         _transform = transform;
+        _hitVfx = hitVfx;
     }
 
     public void Update(){
@@ -37,10 +39,21 @@ public class PlayerAttack {
         _playerManager.IsAttacking = true;
         _anim.CrossFade("Pepe_Attack", 0.1f);
         var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);
+        Debug.Log(collisions.Length);
+        Collider _exCol = null;
         foreach (var collision in collisions)
         {
+            if(_exCol == collision)continue;
             if (collision.CompareTag("Player")) continue;
-            collision.GetComponent<IDamageable>()?.TakeDamage(0,_playerManager.transform);
+            if(!collision.TryGetComponent(out IDamageable damageable))continue;
+            GameObject spawn = null;
+            if (spawn == null)
+            {
+                spawn = MonoBehaviour.Instantiate(_hitVfx, collision.transform.position, Quaternion.identity);
+                MonoBehaviour.Destroy(spawn,.5f);
+            }
+            damageable.TakeDamage(0,_playerManager.transform);
+            _exCol = collision;
         }
         
         yield return new WaitForSeconds(.3f);

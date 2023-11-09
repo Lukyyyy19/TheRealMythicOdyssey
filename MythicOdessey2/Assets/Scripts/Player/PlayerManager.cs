@@ -35,6 +35,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private int _magic;
     [SerializeField] private Material _mainMat;
     [SerializeField] private GameObject _playerModel;
+    [SerializeField] public GameObject hitVfx;
     private Color _startColor;
 
     private float _interactionRadius = 2f;
@@ -66,7 +67,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _anim = GetComponent<Animator>();
         _playerMovement = new PlayerMovement(this, transform, _rb, GetComponent<Collider>());
         _playerInputs = new PlayerInputs(this);
-        _playerAttack = new PlayerAttack(this, _anim, _swordTransform);
+        _playerAttack = new PlayerAttack(this, _anim, _swordTransform,hitVfx);
         _playerInputs.ArtificialAwake();
         _health = _maxHealth;
         _magic = _maxMagic;
