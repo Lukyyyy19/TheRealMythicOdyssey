@@ -10677,6 +10677,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5429f0bf5abb11f4d9e9ff589d8ac767, type: 2}
     - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
         type: 3}
+      propertyPath: hitVfx
+      value: 
+      objectReference: {fileID: 8780017129088333957, guid: 63f2cb8b56bcc654d8131f9557ef330b,
+        type: 3}
+    - target: {fileID: 5466694685328634000, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
+        type: 3}
       propertyPath: _health
       value: 0
       objectReference: {fileID: 0}
