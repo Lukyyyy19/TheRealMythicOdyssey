@@ -381,7 +381,7 @@ MonoBehaviour:
   realTrap: {fileID: 0}
   woodBox: {fileID: 0}
   _cannonModel: {fileID: 7861973196685727611}
-  _smokeParticles: {fileID: 6532324957692737198, guid: b5a86c172eccf374f81a935069d13a54,
+  _smokeParticles: {fileID: 6941644939821626867, guid: a75da708d9d200948b6f2515b8593c45,
     type: 3}
   _explosionParticles: {fileID: 1582376724969912231}
   _explosionParticles1: {fileID: 6474401893640510629}

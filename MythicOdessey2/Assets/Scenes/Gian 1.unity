@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuOpen: 0
   cardMenu: {fileID: 366870141}
+  menuClose: 0
 --- !u!4 &16672743
 Transform:
   m_ObjectHideFlags: 0
