@@ -15,11 +15,13 @@ public class Card : MonoBehaviour, IInteracteable
     private Color _startColor;
     private Vector3 _startRotation;
     private bool _currentCard;
-   [SerializeField] private Transform _ghostCard;
-   private bool _startDrag;
-  [SerializeField] private GameObject _cardChild;
-  private Vector2Int _mousepos;
-    private void Awake(){
+    [SerializeField] private Transform _ghostCard;
+    private bool _startDrag;
+    [SerializeField] private GameObject _cardChild;
+    private Vector2Int _mousepos;
+
+    private void Awake()
+    {
         _startPos = transform.localPosition;
         _animator = GetComponent<Animator>();
         _image = GetComponent<Image>();
@@ -27,24 +29,25 @@ public class Card : MonoBehaviour, IInteracteable
         _startRotation = transform.localEulerAngles;
     }
 
-    public void DesInteraction(){
-        transform.localPosition =
-            _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
+    public void DesInteraction()
+    {
+        transform.localPosition = _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
         _currentCard = false;
     }
 
-    public void Interaction(){
-        
+    public void Interaction()
+    {
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
         _currentCard = true;
     }
 
     private Vector2Int _lastMousePos;
+
     public void FollwoCursor()
     {
         _cardChild.SetActive(false);
         //_image.color = Color.clear;
-         transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
+        transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
         // Vector3 newPos;
         // newPos.x = Helper.GetMouseWorldPosition().x;
         // newPos.y = Helper.GetMouseWorldPosition().y;
@@ -70,10 +73,26 @@ public class Card : MonoBehaviour, IInteracteable
         //_lastMousePos = _mousepos;
     }
 
+
     private void Update()
     {
-        if (_startDrag && _ghostCard)
-            _ghostCard.position = transform.position;
+        if (CardMenuManager.Instance.menuOpen)
+        {
+            if (_startDrag && _ghostCard)
+                _ghostCard.position = transform.position;
+        }
+        
+        else
+        {
+            _cardChild.SetActive(true);
+
+            _startDrag = false;
+
+            transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+            Up();
+            
+            DesInteraction();
+        }
     }
 
     public void Down()
@@ -83,7 +102,7 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void Up()
     {
-        if(_ghostCard)
+        if (_ghostCard)
             Destroy(_ghostCard.gameObject);
     }
 
@@ -94,11 +113,13 @@ public class Card : MonoBehaviour, IInteracteable
         _startDrag = false;
         if (_currentCard)
         {
-            EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
+            EventManager.instance.TriggerEvent("OnCardTrigger", prefab);
         }
+
         transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
         Up();
     }
+
 
     // private void OnEnable(){
     //     EventManager.instance.AddAction("OnCantBuild", (x) =>
@@ -134,14 +155,15 @@ public class Card : MonoBehaviour, IInteracteable
     //     });
     // }
 
-    IEnumerator Shake(){
+    IEnumerator Shake()
+    {
         _image.color = Color.red;
         yield return new WaitForSeconds(.1f);
         _image.color = Color.white;
         yield return new WaitForSeconds(.1f);
         _image.color = _startColor;
     }
-    
+
     // private void Start()
     // {
     //     text.text = value.ToString();

@@ -10,7 +10,7 @@ public class Cannon : Trap, IInteracteable
     private bool _loaded;
     private Transform _charge;
     [SerializeField] private Transform _cannonModel;
-    [SerializeField] private VisualEffect _smokeParticles;
+    [SerializeField] private GameObject _smokeParticles;
     [SerializeField] private ParticleSystem _explosionParticles;
     [SerializeField] private ParticleSystem _explosionParticles1;
     [SerializeField] private ParticleSystem _explosionParticles2;

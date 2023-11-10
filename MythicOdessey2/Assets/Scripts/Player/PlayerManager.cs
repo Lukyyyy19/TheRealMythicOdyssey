@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _health;
     [SerializeField] private int _maxMagic;
-    [SerializeField] private int _magic;
+    public int _magic;
     [SerializeField] private Material _mainMat;
     [SerializeField] private GameObject _playerModel;
     [SerializeField] public GameObject hitVfx;

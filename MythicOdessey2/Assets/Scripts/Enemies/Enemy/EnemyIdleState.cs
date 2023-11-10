@@ -19,6 +19,7 @@ public class EnemyIdleState : EnemyBaseState
     public override void UpdateState(){
         base.UpdateState();
         Ctx.LookAtPlayer();
+        
     }
 
     public override void FixedUpdateState() {

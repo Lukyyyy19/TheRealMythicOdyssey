@@ -13,7 +13,9 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     protected float _attackDamage;
     private float _maxChaseRange;
     [SerializeField] protected float _health;
+
     [SerializeField] protected float _maxHealth;
+
     //[SerializeField] floatingHealthBar _healtBar;
     protected Animator _anim;
     [SerializeField] protected bool _isPlayerInRange, _isPlayerInAttackRange, _stopChasing, _lookAtPlayer;
@@ -34,32 +36,20 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     [SerializeField] private Material _mainMat;
     private Color _startColor;
-   [SerializeField] private Material[] _matArray;
+    [SerializeField] private Material[] _matArray;
     MeshRenderer _meshRenderer;
     //[SerializeField] private VisualEffect _bloodSplash;
 
     [SerializeField] private ParticleSystem _confetti;
-    
-    
+
+
     public Rigidbody Rb => _rb;
 
-    public EnemyBaseState CurrentState
-    {
-        get => _currentState;
-        set => _currentState = value;
-    }
+    public EnemyBaseState CurrentState { get => _currentState; set => _currentState = value; }
 
-    public EnemyBaseState CurrentSubState
-    {
-        get => _currentSubState;
-        set => _currentSubState = value;
-    }
+    public EnemyBaseState CurrentSubState { get => _currentSubState; set => _currentSubState = value; }
 
-    public bool StopChasing
-    {
-        get => _stopChasing;
-        set => _stopChasing = value;
-    }
+    public bool StopChasing { get => _stopChasing; set => _stopChasing = value; }
 
     public Transform Bait => _bait;
     public bool CanLookAtPlayer => _lookAtPlayer;
@@ -82,7 +72,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _maxAttackRange = _attackRange;
         _maxChaseRange = _chaseRange;
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _startColor = _mainMat.color;
+        //_startColor = _mainMat.color;
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
         //_audio = GetComponent<AudioSource>();
         //_healtBar = GetComponentInChildren<floatingHealthBar>();
@@ -95,7 +85,6 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         //     _currentMat = GetComponentInChildren<SkinnedMeshRenderer>().material;
         // }
         // _initalColor = _currentMat.GetColor("_TexColor");
-
     }
 
     private void Start()
@@ -114,7 +103,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _navMeshAgent.speed = TimeManager.Instance.currentTimeScale == 1 ? 3.5f : 3.5f * TimeManager.Instance.currentTimeScale;
         _currentState.UpdateStates();
         var playerPosition = PlayerManager.Instance.transform.position;
-        var colliders = Physics.OverlapSphere(transform.position, 8,_baitLayer);
+        var colliders = Physics.OverlapSphere(transform.position, 8, _baitLayer);
         if (colliders.Length > 0)
         {
             _bait = colliders[0].transform;
@@ -134,10 +123,6 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     public void LookAtPlayer()
     {
-        // Vector3 targetPostition = new Vector3(PlayerManager.instance.transform.position.x,
-        //     this.transform.position.y,
-        //     PlayerManager.instance.transform.position.z);
-        // this.transform.LookAt(targetPostition);
         transform.LookAt(PlayerManager.Instance.gameObject.transform);
     }
 
@@ -168,7 +153,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         //if(_damageTaken)return;
         Debug.Log("Enemy took damage");
         _health -= damage;
-        _rb.AddForce((transform.position-attacker.position) * 5, ForceMode.Impulse);
+        _rb.AddForce((transform.position - attacker.position) * 5, ForceMode.Impulse);
         StartCoroutine(nameof(DamagedMat));
         // Debug.Log(_health);
         if (_health <= 0)
@@ -188,7 +173,6 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     // }
 
 
-
     public void Die()
     {
         //remove from game manager list enemies
@@ -197,18 +181,21 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         Destroy(gameObject);
         // gameObject.SetActive(false);
     }
+
     private void OnEnable()
     {
         EventManager.instance.AddAction("OnPlayerAttackFinished", (object[] args) => { DamageTaken(); });
     }
 
-    private void DamageTaken(){
+    private void DamageTaken()
+    {
         _damageTaken = false;
         if (_rb != null)
             _rb.velocity = Vector3.zero;
     }
 
-    private void OnDisable(){
+    private void OnDisable()
+    {
         EventManager.instance.RemoveAction("OnPlayerAttackFinished", (object[] args) => { DamageTaken(); });
     }
 
@@ -232,7 +219,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     //     _mainMat.SetFloat("Smoothness", 0.5f);
     //     _mainMat.color = _startColor;
     // }
-    
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
