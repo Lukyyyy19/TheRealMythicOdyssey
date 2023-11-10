@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class WaterBalloon : Trap
 {
+    private GameObject _splashVFX;
     private void Awake()
     {
         transform.position = new Vector3(transform.position.x, 10, transform.position.z);   
