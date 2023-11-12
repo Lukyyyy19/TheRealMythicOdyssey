@@ -15,11 +15,23 @@ public class Card : MonoBehaviour, IInteracteable
     private Color _startColor;
     private Vector3 _startRotation;
     private bool _currentCard;
+<<<<<<< Updated upstream
    [SerializeField] private Transform _ghostCard;
    private bool _startDrag;
   [SerializeField] private GameObject _cardChild;
   private Vector2Int _mousepos;
     private void Awake(){
+=======
+    [SerializeField] private Transform _ghostCard;
+    private bool _startDrag;
+    [SerializeField] private GameObject _cardChild;
+    private Vector2Int _mousepos;
+    [SerializeField]private int _id;
+
+    public int Id => _id;
+    private void Awake()
+    {
+>>>>>>> Stashed changes
         _startPos = transform.localPosition;
         _animator = GetComponent<Animator>();
         _image = GetComponent<Image>();
@@ -27,9 +39,20 @@ public class Card : MonoBehaviour, IInteracteable
         _startRotation = transform.localEulerAngles;
     }
 
+<<<<<<< Updated upstream
     public void DesInteraction(){
         transform.localPosition =
             _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
+=======
+    private void Start()
+    {
+        CardMenuManager.Instance.AddCard(this);
+    }
+
+    public void DesInteraction()
+    {
+        transform.localPosition = _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
+>>>>>>> Stashed changes
         _currentCard = false;
     }
 
@@ -92,12 +115,23 @@ public class Card : MonoBehaviour, IInteracteable
         _cardChild.SetActive(true);
         // _image.color = _startColor;
         _startDrag = false;
+        TriggerInstantiateEvent();
+
+        transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+        Up();
+    }
+
+    public void TriggerInstantiateEvent()
+    {
         if (_currentCard)
         {
             EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
         }
+<<<<<<< Updated upstream
         transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
         Up();
+=======
+>>>>>>> Stashed changes
     }
 
     // private void OnEnable(){

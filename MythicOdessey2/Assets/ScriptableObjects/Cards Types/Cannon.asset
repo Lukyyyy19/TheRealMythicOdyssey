@@ -20,3 +20,5 @@ MonoBehaviour:
   width: 2
   height: 2
   manaCost: 5
+  miniObject: {fileID: 8898108090673059500, guid: 5a7a17c9dc77cfd4b98710f0312df813,
+    type: 3}

@@ -40,24 +40,49 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private float _interactionRadius = 2f;
     private Collider _collider;
+
+    [SerializeField] private Transform _spawnOnHandPoint;
+    [SerializeField] private bool _hasHandsOccupied;
+    private CardsTypeSO _lastCard;
     public Rigidbody Rb => _rb;
 
     //setter for isattack
-    public bool IsAttackPressed { set => _isAttackPressed = value; }
+    public bool IsAttackPressed
+    {
+        set => _isAttackPressed = value;
+    }
 
     //setter for isattacking
-    public bool IsAttacking { set => _isAttacking = value; get => _isAttacking; }
+    public bool IsAttacking
+    {
+        set => _isAttacking = value;
+        get => _isAttacking;
+    }
 
     //setter for isdashpressed
-    public bool IsDashPressed { set => _isDashPressed = value; }
+    public bool IsDashPressed
+    {
+        set => _isDashPressed = value;
+    }
 
     //setter for requirenewattackpress
-    public bool RequireNewAttackPress { set => _requireNewAttackPress = value; }
+    public bool RequireNewAttackPress
+    {
+        set => _requireNewAttackPress = value;
+    }
 
-    public bool RequireNewDashPress { set => _requireNewDashPress = value; }
+    public bool RequireNewDashPress
+    {
+        set => _requireNewDashPress = value;
+    }
 
     //setter and getter for isdashing
-    public bool IsDahing { set => _isDashing = value; get => _isDashing; }
+    public bool IsDahing
+    {
+        set => _isDashing = value;
+        get => _isDashing;
+    }
+
     public static PlayerManager Instance => _instance;
 
     private void Awake()
@@ -67,7 +92,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _anim = GetComponent<Animator>();
         _playerMovement = new PlayerMovement(this, transform, _rb, GetComponent<Collider>());
         _playerInputs = new PlayerInputs(this);
-        _playerAttack = new PlayerAttack(this, _anim, _swordTransform,hitVfx);
+        _playerAttack = new PlayerAttack(this, _anim, _swordTransform, hitVfx);
         _playerInputs.ArtificialAwake();
         _health = _maxHealth;
         _magic = _maxMagic;
@@ -80,18 +105,41 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (CardMenuManager.Instance.menuOpen || !canUpdate) return;
-        var rotation = Quaternion.LookRotation(Helper.GetMouseWorldPosition(), Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 960f * Time.deltaTime);
-        _playerMovement.Update();
-        _playerAttack.Update();
-        if (_isAttackPressed && !_requireNewAttackPress)
+        if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
+        if (!CardMenuManager.Instance.menuOpen && !_hasHandsOccupied)
         {
-            if (!_isAttacking)
+            _playerAttack.Update();
+            if (!_swordTransform.gameObject.activeSelf)
+                _swordTransform.gameObject.SetActive(true);
+            if (_isAttackPressed && !_requireNewAttackPress)
             {
-                StartCoroutine(_playerAttack.SpinAttack());
+                if (!_isAttacking)
+                {
+                    StartCoroutine(_playerAttack.SpinAttack());
+                }
             }
         }
+        else
+        {
+            _swordTransform.gameObject.SetActive(false);
+            if (!CardMenuManager.Instance.menuOpen)
+            {
+                if (_isAttackPressed && !_requireNewAttackPress)
+                {
+                    if (!_isAttacking)
+                    {
+                        EventManager.instance.TriggerEvent("OnObjectTrigger", _lastCard);
+                        _hasHandsOccupied = false;
+                        Destroy(built);
+                    }
+                }
+            }
+        }
+
+        //  var rotation = Quaternion.LookRotation(Helper.GetMouseWorldPosition(), Vector3.up);
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 960f * Time.deltaTime);
+        _playerMovement.Update();
+
 
         if (_isDashPressed && !_requireNewDashPress)
         {
@@ -101,7 +149,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
-        if (CardMenuManager.Instance.menuOpen || !canUpdate) return;
+        if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
         _playerMovement.FixedUpdate();
     }
 
@@ -115,6 +163,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
             if (interacteable != null)
                 colList.Add(col, interacteable);
         }
+
         if (colList.Count > 0)
         {
             var first = colList.OrderBy(x => Vector3.Distance(x.Key.transform.position, transform.position)).First();
@@ -211,6 +260,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
                 _playerMagicBar.SetMagic(_magic);
             }
         });
+
+        EventManager.instance.AddAction("OnCardTrigger", (x) => { CreateObjOnHand((CardsTypeSO)x[0]); });
     }
 
 
@@ -235,6 +286,14 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _mainMat.color = _startColor;
     }
 
+    private GameObject built;
+    private void CreateObjOnHand(CardsTypeSO prefab)
+    {
+        built = Instantiate(prefab.miniObject, _spawnOnHandPoint.position, Quaternion.identity);
+        built.transform.parent = transform;
+        _hasHandsOccupied = true;
+        _lastCard = prefab;
+    }
 
     private void OnDrawGizmos()
     {
