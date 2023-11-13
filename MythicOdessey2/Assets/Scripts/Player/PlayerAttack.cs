@@ -34,7 +34,9 @@ public class PlayerAttack {
 
     }
     
-    public IEnumerator SpinAttack(){
+    public IEnumerator SpinAttack()
+    {
+        if (CardMenuManager.Instance.menuOpen) yield return null;
         debugAttack = true;
         _playerManager.IsAttacking = true;
         _anim.CrossFade("Pepe_Attack", 0.1f);

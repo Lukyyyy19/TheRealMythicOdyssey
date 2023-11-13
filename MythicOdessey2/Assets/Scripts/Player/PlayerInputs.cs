@@ -33,6 +33,9 @@ public class PlayerInputs
 
         _playerInput.PlayerActions.Interact.started += OnInteractionInput;
         _playerInput.PlayerActions.Interact.canceled += OnInteractionInput;
+
+        _playerInput.PlayerActions.ChangeSelected.started += ChangeSelectedCard;
+        _playerInput.PlayerActions.ChangeSelected.canceled += ChangeSelectedCard;
     }
     private void OnMovementInput(InputAction.CallbackContext ctx)
     {
@@ -44,6 +47,10 @@ public class PlayerInputs
     {
         _playerManager.IsAttackPressed = ctx.ReadValueAsButton();
         _playerManager.RequireNewAttackPress = false;
+        if (ctx.started && CardMenuManager.Instance.menuOpen)
+        {
+            CardMenuManager.Instance.GetCurrentCardSelected().TriggerInstantiateEvent();
+        }
     }
 
     private void OnDashInput(InputAction.CallbackContext ctx){
@@ -56,6 +63,12 @@ public class PlayerInputs
         CardMenuManager.Instance.OpenMenu(CardMenuManager.Instance.menuOpen);
     }
 
+    private void ChangeSelectedCard(InputAction.CallbackContext ctx)
+    {
+        if(ctx.started)
+            CardMenuManager.Instance.ChangeSelected();
+    }
+    
     private void OnInteractionInput(InputAction.CallbackContext ctx)
     {    
         if(ctx.started)

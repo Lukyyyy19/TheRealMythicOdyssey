@@ -71,6 +71,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeSelected"",
+                    ""type"": ""Button"",
+                    ""id"": ""6eddfe3b-1041-4ab2-b276-c74bf81f1583"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1ce7656-c1e1-4629-ac5a-73483e515068"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeSelected"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_PlayerActions_Dash = m_PlayerActions.FindAction("Dash", throwIfNotFound: true);
         m_PlayerActions_OpenCardMenu = m_PlayerActions.FindAction("Open Card Menu", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerActions_ChangeSelected = m_PlayerActions.FindAction("ChangeSelected", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,6 +270,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Dash;
     private readonly InputAction m_PlayerActions_OpenCardMenu;
     private readonly InputAction m_PlayerActions_Interact;
+    private readonly InputAction m_PlayerActions_ChangeSelected;
     public struct PlayerActionsActions
     {
         private @Player m_Wrapper;
@@ -258,6 +280,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_PlayerActions_Dash;
         public InputAction @OpenCardMenu => m_Wrapper.m_PlayerActions_OpenCardMenu;
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
+        public InputAction @ChangeSelected => m_Wrapper.m_PlayerActions_ChangeSelected;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -282,6 +305,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
+                @ChangeSelected.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnChangeSelected;
+                @ChangeSelected.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnChangeSelected;
+                @ChangeSelected.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnChangeSelected;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -301,6 +327,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @ChangeSelected.started += instance.OnChangeSelected;
+                @ChangeSelected.performed += instance.OnChangeSelected;
+                @ChangeSelected.canceled += instance.OnChangeSelected;
             }
         }
     }
@@ -312,5 +341,6 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnOpenCardMenu(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnChangeSelected(InputAction.CallbackContext context);
     }
 }

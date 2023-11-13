@@ -12,7 +12,7 @@ public class CardsTypeSO : ScriptableObject
     public int width;
     public int height;
     public int manaCost;
-
+    public GameObject miniObject;
     public List<Vector2Int> GetGridPositionList(Vector2Int offset)
     {
         List<Vector2Int> gridPositionList = new List<Vector2Int>();
