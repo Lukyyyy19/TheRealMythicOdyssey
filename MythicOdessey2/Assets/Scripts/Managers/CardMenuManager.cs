@@ -10,11 +10,8 @@ public class CardMenuManager : MonoBehaviour
     static CardMenuManager _instance;
     public bool menuOpen;
     public GameObject cardMenu;
-<<<<<<< Updated upstream
-=======
     public bool menuClose;
     [SerializeField] private List<Card> _cardList;
->>>>>>> Stashed changes
     public static CardMenuManager Instance => _instance;
     [SerializeField]private int _currentCardSelected;
     private bool _isOrdered;
@@ -31,12 +28,11 @@ public class CardMenuManager : MonoBehaviour
 
     public void OpenMenu(bool open)
     {
-<<<<<<< Updated upstream
         TimeManager.Instance.currentTimeScale = open ? 0.25f : 1;
         EventManager.instance.TriggerEvent("OnTimeChanged",TimeManager.Instance.currentTimeScale);
         EventManager.instance.TriggerEvent("OnOpenMenu",open);
         cardMenu.SetActive(open);
-=======
+
         if (!_isOrdered)
         {
             _cardList = _cardList.OrderBy(x => x.Id).ToList();
@@ -73,7 +69,6 @@ public class CardMenuManager : MonoBehaviour
     public void CloseMenu(bool close)
     {
         cardMenu.SetActive(close);
->>>>>>> Stashed changes
     }
 
     public void ChangeSelected()

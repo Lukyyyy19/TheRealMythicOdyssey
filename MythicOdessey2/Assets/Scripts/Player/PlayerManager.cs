@@ -129,8 +129,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
                     if (!_isAttacking)
                     {
                         EventManager.instance.TriggerEvent("OnObjectTrigger", _lastCard);
-                        _hasHandsOccupied = false;
                         Destroy(built);
+                        _hasHandsOccupied = false;
                     }
                 }
             }
