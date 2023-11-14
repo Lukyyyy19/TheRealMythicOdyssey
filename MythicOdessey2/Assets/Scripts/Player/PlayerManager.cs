@@ -44,6 +44,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private Transform _spawnOnHandPoint;
     [SerializeField] private bool _hasHandsOccupied;
     private CardsTypeSO _lastCard;
+
+    [SerializeField]private bool _isInsideCannon;
     public Rigidbody Rb => _rb;
 
     //setter for isattack
@@ -105,6 +107,17 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if(_isInsideCannon)
+        {
+            if (_isAttackPressed && !_requireNewAttackPress)
+            {
+                if (!_isAttacking)
+                {
+                    _currentCannon.Shoot();
+                    _isInsideCannon = false;
+                }
+            }
+        }
         if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
         if (!CardMenuManager.Instance.menuOpen && !_hasHandsOccupied)
         {
@@ -119,6 +132,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
                 }
             }
         }
+        
         else
         {
             _swordTransform.gameObject.SetActive(false);
@@ -171,13 +185,16 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
     }
 
-    public void EnterCannon(Vector3 pos)
+    private Cannon _currentCannon;
+    public void EnterCannon(Vector3 pos,Cannon cannon)
     {
         transform.position = pos;
         _playerModel.SetActive(false);
         _rb.velocity = Vector3.zero;
         _collider.enabled = false;
         canUpdate = false;
+        _isInsideCannon = true;
+        _currentCannon = cannon;
     }
 
     public void ExitCannon(Vector3 destination)

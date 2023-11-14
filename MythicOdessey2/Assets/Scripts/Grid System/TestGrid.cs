@@ -135,9 +135,7 @@ public class TestGrid : MonoBehaviour
         bool canBuild = true;
         foreach (var gridPos in gridPositionList)
         {
-            Debug.Log(gridPos);
             var value = grid.GetValue(gridPos.x, gridPos.y);
-            Debug.Log(grid.GetValue(gridPos.x, gridPos.y).CanBuild());
             if (value == null || !grid.GetValue(gridPos.x, gridPos.y).CanBuild())
             {
                 canBuild = false;
