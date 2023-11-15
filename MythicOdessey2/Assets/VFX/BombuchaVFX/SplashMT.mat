@@ -57,10 +57,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _Aplha: 0.5
-    - _Power: 15
+    - _Power: 3.9
     - _QueueControl: 0
     - _QueueOffset: 0
     - _normalStrength: 1
     m_Colors:
-    - _Color: {r: 1.4136126, g: 1.4136126, b: 1.4136126, a: 1}
+    - _Color: {r: 0.651298, g: 6.0393085, b: 15.098271, a: 1}
   m_BuildTextureStacks: []
