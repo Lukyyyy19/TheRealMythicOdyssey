@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text _text;
 
+    private bool _warningTriggered;
     //create singelton
     static GameManager _instance;
     public static GameManager Instance => _instance;
@@ -57,6 +58,11 @@ public class GameManager : MonoBehaviour
 
         if (isPaused) return;
         _gameTime -= Time.deltaTime * TimeManager.Instance.currentTimeScale;
+        if (_gameTime <= 10 && !_warningTriggered)
+        {
+            EventManager.instance.TriggerEvent("TenSecondsLeft");
+            _warningTriggered = true;
+        }
         if (_text)
             _text.text = Mathf.FloorToInt(_gameTime).ToString();
         if (_gameTime <= 0)

@@ -30,12 +30,12 @@ public class Card : MonoBehaviour, IInteracteable
         _image = GetComponent<Image>();
         //startColor = _image.color;
         _startRotation = transform.localEulerAngles;
+        CardMenuManager.Instance.AddCard(this);
     }
 
 
     private void Start()
     {
-        CardMenuManager.Instance.AddCard(this);
     }
 
     public void DesInteraction()

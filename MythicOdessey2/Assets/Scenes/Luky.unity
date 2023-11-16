@@ -199,7 +199,7 @@ MonoBehaviour:
   cardMenu: {fileID: 366870141}
   menuClose: 0
   _cardList: []
-  _currentCardSelected: 0
+  _currentCardSelected: 5
 --- !u!4 &16672743
 Transform:
   m_ObjectHideFlags: 0
@@ -1032,7 +1032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 129387157}
   m_Layer: 5
-  m_Name: GameObject (3)
+  m_Name: BalloonParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,7 +1070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130457102}
   m_Layer: 5
-  m_Name: GameObject (2)
+  m_Name: MusicBoxParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1475,6 +1475,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 8.2
       objectReference: {fileID: 0}
+    - target: {fileID: 8639056503954536530, guid: 560dede0f782acd459d390dbf2e3f2b8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.92
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 560dede0f782acd459d390dbf2e3f2b8, type: 3}
 --- !u!4 &187972328 stripped
@@ -1828,6 +1833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934845356e89b3d48bc9c47c0feda8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
 --- !u!1001 &210959506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3412,7 +3418,7 @@ MonoBehaviour:
   _text: {fileID: 995107958}
   pauseMenu: {fileID: 551968168}
   isPaused: 0
-  _gameTime: 60
+  _gameTime: 15
 --- !u!224 &525552502 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5605160791854184141, guid: 099b80c51fb540c4fa4a5b50cb0e207e,
@@ -4862,7 +4868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 729036306}
   m_Layer: 5
-  m_Name: GameObject (4)
+  m_Name: FlotaFlotaParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5131,6 +5137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934845356e89b3d48bc9c47c0feda8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
 --- !u!1001 &753951150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6439,6 +6446,7 @@ GameObject:
   - component: {fileID: 995107960}
   - component: {fileID: 995107959}
   - component: {fileID: 995107958}
+  - component: {fileID: 995107961}
   m_Layer: 0
   m_Name: Time Text
   m_TagString: Untagged
@@ -6468,8 +6476,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 738a419ff2e2b0e4fb41c28e317694e7, type: 2}
+  m_sharedMaterial: {fileID: -5375065254133037841, guid: 738a419ff2e2b0e4fb41c28e317694e7,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6558,7 +6567,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -5375065254133037841, guid: 738a419ff2e2b0e4fb41c28e317694e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6587,19 +6596,31 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995107957}
-  m_LocalRotation: {x: 0.58268017, y: 0.40060452, z: -0.4006044, w: 0.5826801}
-  m_LocalPosition: {x: 0, y: 0, z: 21.10868}
+  m_LocalRotation: {x: -0, y: 0.6932616, z: -0, w: 0.7206861}
+  m_LocalPosition: {x: 0, y: 0, z: 23.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 915936868}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -69.019}
+  m_LocalEulerAnglesHint: {x: 0, y: 87.778, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -44.724724, y: -55.363304}
+  m_AnchoredPosition: {x: -23.02, y: -49.05}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &995107961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995107957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948763c8afdb016408c1e6551084cecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1015568752
 GameObject:
   m_ObjectHideFlags: 0
@@ -6871,6 +6892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934845356e89b3d48bc9c47c0feda8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
 --- !u!1 &1041553173
 GameObject:
   m_ObjectHideFlags: 0
@@ -7111,6 +7133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934845356e89b3d48bc9c47c0feda8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
 --- !u!1 &1077474260
 GameObject:
   m_ObjectHideFlags: 0
@@ -8054,7 +8077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1360255893}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: DogParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9544,6 +9567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934845356e89b3d48bc9c47c0feda8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
 --- !u!1001 &1541865137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9697,7 +9721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1622918905}
   m_Layer: 5
-  m_Name: GameObject (1)
+  m_Name: CannonParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9876,7 +9900,7 @@ PrefabInstance:
     - target: {fileID: 8934522027586546411, guid: 682d9b8b5d15f254cb9684a3af67613b,
         type: 3}
       propertyPath: m_Name
-      value: Card1 (5)
+      value: FeromonasCard
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7651487009793253950, guid: 682d9b8b5d15f254cb9684a3af67613b, type: 3}
@@ -10278,6 +10302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934845356e89b3d48bc9c47c0feda8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
 --- !u!1001 &1727871425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11417,6 +11442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934845356e89b3d48bc9c47c0feda8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
 --- !u!1001 &1991162406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12030,7 +12056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2111801520}
   m_Layer: 5
-  m_Name: GameObject (5)
+  m_Name: FeromonasParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12298,6 +12324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934845356e89b3d48bc9c47c0feda8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _light: {fileID: 0}
 --- !u!4 &543450652649277453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5500901372843946441, guid: 2d324f2eb1d91cb4e9dfff2ce54e52a3,
@@ -13981,7 +14008,7 @@ GameObject:
   - component: {fileID: 9127615624674469585}
   - component: {fileID: 6183859446354044784}
   m_Layer: 6
-  m_Name: Card1 (5)
+  m_Name: FlotaFlotaCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

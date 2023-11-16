@@ -2,24 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using VLB;
-using Random = UnityEngine.Random;
-
-public class LightRandomMovement : MonoBehaviour
+using TMPro;
+public class TimerScene : MonoBehaviour
 {
-    private float _currentTime;
-    private float _startTime;
+    private TextMeshPro _time;
+    private float _startTime = .2f;
     private float _timer;
-    private float _startTimeLight = .2f;
-    private int _currColor;
-    [SerializeField]private VolumetricLightBeam _light;
+    private int _currColor = 0;
     private bool _10Sec;
-    void Start()
+    private void Awake()
     {
-        _light = GetComponent<VolumetricLightBeam>();
-        _timer = _startTimeLight;
-        dadad();
+        _timer = _startTime;
+        _time = GetComponent<TextMeshPro>();
     }
 
     private void Update()
@@ -32,28 +26,20 @@ public class LightRandomMovement : MonoBehaviour
                 switch (_currColor)
                 {
                     case 0:
-                        _light.color = Color.red;
+                        _time.color = Color.red;
                         _currColor = 1;
                         break;
                     case 1:
-                        _light.color = Color.white;
+                        _time.color = Color.white;
                         _currColor = 0;
                         break;
                 }
-                _light.UpdateAfterManualPropertyChange();
-                _timer = _startTimeLight;
+
+                _timer = _startTime;
             }
         }
     }
 
-    private void dadad()
-    {
-        var x = Random.Range(0, 90);
-        var y = Random.Range(100, 360);
-        var z = 40;
-        transform.DORotate(new Vector3(x, y, z), 1.5f).OnComplete(dadad);
-    }
-    
     private void OnEnable()
     {
         EventManager.instance.AddAction("TenSecondsLeft",(x)=> _10Sec = true);

@@ -13,7 +13,7 @@ public class CardMenuManager : MonoBehaviour
     public bool menuClose;
     [SerializeField] private List<Card> _cardList;
     public static CardMenuManager Instance => _instance;
-    [SerializeField]private int _currentCardSelected;
+    [SerializeField]private int _currentCardSelected = 5;
     private bool _isOrdered;
     private void Awake()
     {
@@ -23,7 +23,6 @@ public class CardMenuManager : MonoBehaviour
     private void Start()
     {
        OpenMenu(true);
-        
     }
 
     private void Update()
@@ -48,9 +47,10 @@ public class CardMenuManager : MonoBehaviour
         // EventManager.instance.TriggerEvent("OnOpenMenu", open);
         //cardMenu.SetActive(open);
         menuOpen = open;
-        if (menuOpen && _currentCardSelected == 0)
+        if (menuOpen)
         {
-            _currentCardSelected = 5;
+                // if(_currentCardSelected!=5)
+                //     _currentCardSelected = 5;
             InteractCard();
         }
         /*
