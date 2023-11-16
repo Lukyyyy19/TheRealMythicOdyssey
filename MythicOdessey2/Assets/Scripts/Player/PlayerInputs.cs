@@ -59,7 +59,7 @@ public class PlayerInputs
     }
     
     private void OnOpenCardMenu(InputAction.CallbackContext ctx){
-        CardMenuManager.Instance.menuOpen = ctx.ReadValueAsButton();
+        //CardMenuManager.Instance.menuOpen = ctx.ReadValueAsButton();
        // CardMenuManager.Instance.OpenMenu(CardMenuManager.Instance.menuOpen);
     }
 
