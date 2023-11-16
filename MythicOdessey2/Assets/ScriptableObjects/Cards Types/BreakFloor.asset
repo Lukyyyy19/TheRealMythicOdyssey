@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cae9336541bae642a7d1dccc8cdedf6, type: 3}
   m_Name: BreakFloor
   m_EditorClassIdentifier: 
-  nameString: BreakFloor
-  prefab: {fileID: 8602839332377155362, guid: f6acdbbb1a806b1489f6b9415ceb9d74, type: 3}
-  prefabGhost: {fileID: 2383818016540937666, guid: 1109bd2b684efca46831dfba7f033027,
-    type: 3}
+  nameString: Enchanted
+  prefab: {fileID: 7294165201589069881, guid: 72b6d63a1750ba244b679b841574eb11, type: 3}
+  box: {fileID: 0}
+  prefabGhost: {fileID: 0}
   width: 1
   height: 1
   manaCost: 1
+  miniObject: {fileID: 0}

@@ -21,7 +21,7 @@ public class Card : MonoBehaviour, IInteracteable
     [SerializeField] private GameObject _cardChild;
     private Vector2Int _mousepos;
     [SerializeField]private int _id;
-
+    [SerializeField] private bool _isSword;
     public int Id => _id;
     private void Awake()
     {
@@ -89,6 +89,7 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void Down()
     {
+        if(_isSword)return;
         _ghostCard = Instantiate(prefab.prefabGhost);
     }
 
@@ -111,12 +112,13 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void TriggerInstantiateEvent()
     {
+        if(_isSword)return;
         if (_currentCard)
         {
             EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
         }
-        transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
-        Up();
+        //transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+        //Up();
     }
 
     // private void OnEnable(){

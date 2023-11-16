@@ -22,15 +22,20 @@ public class CardMenuManager : MonoBehaviour
 
     private void Start()
     {
-        cardMenu.SetActive(false);
+       OpenMenu(true);
         
+    }
+
+    private void Update()
+    {
+        ChangeSelected();
     }
 
     public void OpenMenu(bool open)
     {
-        TimeManager.Instance.currentTimeScale = open ? 0.25f : 1;
-        EventManager.instance.TriggerEvent("OnTimeChanged",TimeManager.Instance.currentTimeScale);
-        EventManager.instance.TriggerEvent("OnOpenMenu",open);
+        // TimeManager.Instance.currentTimeScale = open ? 0.25f : 1;
+        // EventManager.instance.TriggerEvent("OnTimeChanged",TimeManager.Instance.currentTimeScale);
+        // EventManager.instance.TriggerEvent("OnOpenMenu",open);
         cardMenu.SetActive(open);
 
         if (!_isOrdered)
@@ -39,12 +44,13 @@ public class CardMenuManager : MonoBehaviour
             _isOrdered = true;
         }
         //TimeManager.Instance.currentTimeScale = open ? 0.25f : 1;
-        EventManager.instance.TriggerEvent("OnTimeChanged", TimeManager.Instance.currentTimeScale);
-        EventManager.instance.TriggerEvent("OnOpenMenu", open);
-        cardMenu.SetActive(open);
+        // EventManager.instance.TriggerEvent("OnTimeChanged", TimeManager.Instance.currentTimeScale);
+        // EventManager.instance.TriggerEvent("OnOpenMenu", open);
+        //cardMenu.SetActive(open);
         menuOpen = open;
         if (menuOpen && _currentCardSelected == 0)
         {
+            _currentCardSelected = 5;
             InteractCard();
         }
         /*
@@ -73,26 +79,55 @@ public class CardMenuManager : MonoBehaviour
 
     public void ChangeSelected()
     {
-        if(!menuOpen)return;
-        if (_currentCardSelected>=0&&_currentCardSelected<_cardList.Count)
+        //if(!menuOpen)return;
+        // if (_currentCardSelected>=0&&_currentCardSelected<_cardList.Count)
+        // {
+        //     if (_currentCardSelected == _cardList.Count - 1)
+        //     {
+        //         _currentCardSelected = 0;
+        //     }
+        //     else
+        //     {
+        //     _currentCardSelected++;
+        //     }
+        // }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (_currentCardSelected == _cardList.Count - 1)
-            {
-                _currentCardSelected = 0;
-            }
-            else
-            {
-            _currentCardSelected++;
-            }
+            CurrentCardSelectedInteraction(0,true);
+        }else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            CurrentCardSelectedInteraction(1,true);
+        }else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            CurrentCardSelectedInteraction(2,true);
+        }else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            CurrentCardSelectedInteraction(3,true);
+        }else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            CurrentCardSelectedInteraction(4,true);
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+           CurrentCardSelectedInteraction(5,false);
+        }
+    }
 
+    private void CurrentCardSelectedInteraction(int position,bool hands)
+    {
+        if (_currentCardSelected == position) return;
+        PlayerManager.Instance.HasHandsOccupied = hands;
+        _currentCardSelected = position;
         InteractCard();
     }
 
     private void InteractCard()
     {
+        
         var cardTemp = _cardList[_currentCardSelected];
         cardTemp.Interaction();
+        //     CardMenuManager.Instance.GetCurrentCardSelected().TriggerInstantiateEvent();
+        cardTemp.TriggerInstantiateEvent();
         foreach (var card in _cardList)
         {
             if (card != cardTemp)
@@ -105,5 +140,10 @@ public class CardMenuManager : MonoBehaviour
     public Card GetCurrentCardSelected()
     {
         return _cardList[_currentCardSelected];
+    }
+
+    private void OnEnable()
+    {
+        EventManager.instance.AddAction("OnCardBuilt",(x)=>CurrentCardSelectedInteraction(5,false));
     }
 }

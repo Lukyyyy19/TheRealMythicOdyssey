@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5148152577026047488}
   - component: {fileID: 3029138241271731455}
   - component: {fileID: 2774140721211066040}
-  - component: {fileID: 2030473556701317339}
+  - component: {fileID: 7294165201589069881}
   m_Layer: 0
   m_Name: Water Balloon
   m_TagString: Untagged
@@ -98,7 +98,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2030473556701317339
+--- !u!114 &7294165201589069881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,9 +107,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9213298315151543420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc69cffbeac598e498e1a784e7dd6195, type: 3}
+  m_Script: {fileID: 11500000, guid: 88e1babd8eebf9d42aa6535a6f3bf649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridPosition: []
-  worldPosition: {x: 0, y: 0, z: 0}
-  realTrap: {fileID: 0}

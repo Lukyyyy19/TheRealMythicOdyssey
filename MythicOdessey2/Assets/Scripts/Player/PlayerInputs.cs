@@ -47,10 +47,10 @@ public class PlayerInputs
     {
         _playerManager.IsAttackPressed = ctx.ReadValueAsButton();
         _playerManager.RequireNewAttackPress = false;
-        if (ctx.started && CardMenuManager.Instance.menuOpen)
-        {
-            CardMenuManager.Instance.GetCurrentCardSelected().TriggerInstantiateEvent();
-        }
+        // if (ctx.started && CardMenuManager.Instance.menuOpen)
+        // {
+        //     CardMenuManager.Instance.GetCurrentCardSelected().TriggerInstantiateEvent();
+        // }
     }
 
     private void OnDashInput(InputAction.CallbackContext ctx){
@@ -60,7 +60,7 @@ public class PlayerInputs
     
     private void OnOpenCardMenu(InputAction.CallbackContext ctx){
         CardMenuManager.Instance.menuOpen = ctx.ReadValueAsButton();
-        CardMenuManager.Instance.OpenMenu(CardMenuManager.Instance.menuOpen);
+       // CardMenuManager.Instance.OpenMenu(CardMenuManager.Instance.menuOpen);
     }
 
     private void ChangeSelectedCard(InputAction.CallbackContext ctx)

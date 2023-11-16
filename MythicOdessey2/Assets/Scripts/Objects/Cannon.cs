@@ -15,9 +15,16 @@ public class Cannon : Trap, IInteracteable
     [SerializeField] private ParticleSystem _explosionParticles1;
     [SerializeField] private ParticleSystem _explosionParticles2;
     [SerializeField] private ParticleSystem _explosionParticles3;
-    
+    [SerializeField]private MeshRenderer _meshRenderer;
+    [SerializeField]private Material[] _matArray;
+    private Material _mainMat;
     private float _timer;
     private float _maxTimer = 5f;
+
+    private void Awake()
+    {
+        _mainMat = _meshRenderer.material;
+    }
 
     public void Interaction()
     {
@@ -60,6 +67,7 @@ public class Cannon : Trap, IInteracteable
         _loaded = true;
         PlayerManager.Instance.EnterCannon(transform.position,this);
         Debug.Log("Canon recargado");
+        StartCoroutine(nameof(DamagedMat));
     }
 
     public void Shoot()
@@ -81,11 +89,25 @@ public class Cannon : Trap, IInteracteable
         if (_loaded)
         {
             PlayerManager.Instance.ExitCannon(transform.position);
+            _loaded = false;
         }
     }
 
     private void OnEnable()
     {
        // EventManager.instance.AddAction("ShootCannon",(x)=>Shoot());
+    }
+    IEnumerator DamagedMat()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            
+        _meshRenderer.material = _matArray[0];
+        yield return new WaitForSeconds(.075f);
+        _meshRenderer.material = _matArray[1];
+        yield return new WaitForSeconds(.1f);
+        _meshRenderer.material = _mainMat;
+        yield return new WaitForSeconds(1f);
+        }
     }
 }

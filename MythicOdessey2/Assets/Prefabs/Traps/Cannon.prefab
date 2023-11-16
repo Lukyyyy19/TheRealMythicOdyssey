@@ -387,6 +387,10 @@ MonoBehaviour:
   _explosionParticles1: {fileID: 6474401893640510629}
   _explosionParticles2: {fileID: 1776877907693200859}
   _explosionParticles3: {fileID: 5797349686065148348}
+  _meshRenderer: {fileID: 796872991084564774}
+  _matArray:
+  - {fileID: 2100000, guid: ec6aa765e3f9dfb45b53d9bb9b21fd73, type: 2}
+  - {fileID: 2100000, guid: 3376a9fb9d6695546a9e2fddf8c4513c, type: 2}
 --- !u!65 &5505843562611081702
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -750,6 +754,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 46837c6d76a772a4dbaa503ad5095f4e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85eb4fdc05cfa8a43a413def262f6c37, type: 3}
+--- !u!23 &796872991084564774 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1439730007547781893, guid: 85eb4fdc05cfa8a43a413def262f6c37,
+    type: 3}
+  m_PrefabInstance: {fileID: 7424750151716441565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5260857283170425457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3316992658331686828, guid: 85eb4fdc05cfa8a43a413def262f6c37,

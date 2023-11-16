@@ -41,8 +41,8 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     //[SerializeField] private VisualEffect _bloodSplash;
 
     [SerializeField] private ParticleSystem _confetti;
-
-
+    public Transform objective;
+    public bool isEnchanted;
     public Rigidbody Rb => _rb;
 
     public EnemyBaseState CurrentState { get => _currentState; set => _currentState = value; }
@@ -96,6 +96,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         _currentState = _factory.Root();
         _currentState.EnterState();
         GameManager.Instance.enemies.Add(this);
+        objective = PlayerManager.Instance.transform;
     }
 
     private void Update()
@@ -123,7 +124,8 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     public void LookAtPlayer()
     {
-        transform.LookAt(PlayerManager.Instance.gameObject.transform);
+        if(!isEnchanted)
+            transform.LookAt(PlayerManager.Instance.gameObject.transform);
     }
 
     //

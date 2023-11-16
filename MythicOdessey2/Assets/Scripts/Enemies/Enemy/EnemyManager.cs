@@ -33,11 +33,19 @@ public class EnemyManager : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out IDamageable damageable) && damageable is PlayerManager)
+        if (collision.gameObject.TryGetComponent(out IDamageable damageable))
             if (!_isTakingDamage)
             {
-                damageable.TakeDamage(1, transform);
-                _isTakingDamage = true;
+                if (_enemyStateMachine.isEnchanted && damageable is EnemyStateMachine)
+                {
+                    damageable.TakeDamage(1, transform);
+                    _isTakingDamage = true;
+                }
+                else if(!_enemyStateMachine.isEnchanted && damageable is PlayerManager)
+                {
+                    damageable.TakeDamage(1, transform);
+                    _isTakingDamage = true;
+                }
             }
     }
 }

@@ -85,6 +85,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
         get => _isDashing;
     }
 
+    public bool HasHandsOccupied
+    {
+        set => _hasHandsOccupied = value;
+        get => _hasHandsOccupied;
+    }
     public static PlayerManager Instance => _instance;
 
     private void Awake()
@@ -119,7 +124,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
             }
         }
         if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
-        if (!CardMenuManager.Instance.menuOpen && !_hasHandsOccupied)
+        if (!_hasHandsOccupied)
         {
             _playerAttack.Update();
             if (!_swordTransform.gameObject.activeSelf)
@@ -136,7 +141,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         else
         {
             _swordTransform.gameObject.SetActive(false);
-            if (!CardMenuManager.Instance.menuOpen)
+            if (CardMenuManager.Instance.menuOpen)
             {
                 if (_isAttackPressed && !_requireNewAttackPress)
                 {
@@ -199,6 +204,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void ExitCannon(Vector3 destination)
     {
+        _isInsideCannon = false;
         _collider.enabled = true;
         Vector3 maxRange = new Vector3(17, 0, 17);
         destination = Vector3.ClampMagnitude(destination, 17);
@@ -306,8 +312,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private GameObject built;
     private void CreateObjOnHand(CardsTypeSO prefab)
     {
-        built = Instantiate(prefab.miniObject, _spawnOnHandPoint.position, Quaternion.identity);
-        built.transform.parent = transform;
+        // built = Instantiate(prefab.miniObject, _spawnOnHandPoint.position, Quaternion.identity);
+        // built.transform.parent = transform;
         _hasHandsOccupied = true;
         _lastCard = prefab;
     }
