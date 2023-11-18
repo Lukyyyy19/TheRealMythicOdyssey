@@ -4,22 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+
 public class InspectCards : MonoBehaviour
 {
-    [SerializeField]private Transform _child;
-    [SerializeField]private Collider _childCol;
-    [SerializeField]private Collider _thisCol;
+    [SerializeField] private Transform _child;
+    [SerializeField] private Collider _childCol;
+    [SerializeField] private Collider _thisCol;
     private bool _cardInspected;
-    [SerializeField]private GameObject _button;
+    [SerializeField] private GameObject _button;
     private Vector3 _startPos;
     private Vector3 _midPos;
     [SerializeField] private GameObject _textChild;
+    [SerializeField] private GameObject _textBackground;
+    [SerializeField] private GameObject _imageBackground;
+    [SerializeField] private GameObject _inspectImageBackground;
+    
     RotateCard _rotateCardScript;
+
     private void Awake()
     {
         _startPos = transform.position;
         _thisCol = GetComponent<Collider>();
-        _midPos = new Vector3( 0.01f,0, 0);
+        _midPos = new Vector3(0.01f, 0, 0);
         _rotateCardScript = _child.GetComponent<RotateCard>();
     }
 
@@ -34,27 +40,33 @@ public class InspectCards : MonoBehaviour
         EventManager.instance.TriggerEvent("OnCardInspected");
         _button.SetActive(true);
         _textChild.SetActive(true);
+        _textBackground.SetActive(true);
+        _imageBackground.SetActive(false);
+        _inspectImageBackground.SetActive(true);
     }
 
     private void OnEnable()
     {
-        EventManager.instance.AddAction("OnCardInspected",(x)=>
+        EventManager.instance.AddAction("OnCardInspected", (x) =>
         {
             _thisCol.enabled = false;
-            if(!_cardInspected)
-            _child.gameObject.SetActive(false);
+            if (!_cardInspected)
+                _child.gameObject.SetActive(false);
         });
-        
-        EventManager.instance.AddAction("OnCardDesinspected",(x)=>
+
+        EventManager.instance.AddAction("OnCardDesinspected", (x) =>
         {
             _rotateCardScript.enabled = false;
             _textChild.SetActive(false);
+            _textBackground.SetActive(false);
+            _inspectImageBackground.SetActive(false);
+            _imageBackground.SetActive(true);
             _thisCol.enabled = true;
             _childCol.enabled = false;
             if (_cardInspected)
             {
                 transform.DOMove(_startPos, .75f);
-                transform.DOScale(1, .75f);
+                transform.DOScale(.85f, .75f);
                 _child.DORotate(new Vector3(0, 180, 0), .5f);
             }
 
@@ -65,11 +77,11 @@ public class InspectCards : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.instance.RemoveAction("OnCardInspected",(x)=>
+        EventManager.instance.RemoveAction("OnCardInspected", (x) =>
         {
-            if(!_cardInspected)
+            if (!_cardInspected)
                 _child.gameObject.SetActive(false);
         });
-        EventManager.instance.RemoveAction("OnCardDesinspected",(x)=> _child.gameObject.SetActive(true));
+        EventManager.instance.RemoveAction("OnCardDesinspected", (x) => _child.gameObject.SetActive(true));
     }
 }

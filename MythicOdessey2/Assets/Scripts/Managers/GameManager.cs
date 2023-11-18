@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemyStateMachine _enemiesPrefab;
 
     [SerializeField] private TMP_Text _text;
+    [SerializeField] private TMP_Text _text1;
+    [SerializeField] private TMP_Text _text2;
+    [SerializeField] private TMP_Text _text3;
 
     private bool _warningTriggered;
     //create singelton
@@ -65,6 +68,12 @@ public class GameManager : MonoBehaviour
         }
         if (_text)
             _text.text = Mathf.FloorToInt(_gameTime).ToString();
+        if (_text1)
+            _text1.text = Mathf.FloorToInt(_gameTime).ToString();
+        if (_text2)
+            _text2.text = Mathf.FloorToInt(_gameTime).ToString();
+        if (_text3)
+            _text3.text = Mathf.FloorToInt(_gameTime).ToString();
         if (_gameTime <= 0)
         {
             LevelManager.instance.LoadScene("GameOver");
