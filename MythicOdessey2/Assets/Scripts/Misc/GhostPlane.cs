@@ -45,7 +45,7 @@ public class GhostPlane : MonoBehaviour {
          {
              if ((Vector2Int)x[0] == gridPosition)
              {
-                 //StartCoroutine(nameof(ColorChangeX));
+                 StartCoroutine(nameof(ColorChangeX));
              }
          });
      }

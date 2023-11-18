@@ -47,14 +47,14 @@ public class Cannon : Trap, IInteracteable
         }
 
         if (!_loaded) return;
-        var rotation = Quaternion.LookRotation(PlayerManager.Instance.dir, Vector3.up);
-        _cannonModel.rotation = Quaternion.RotateTowards(_cannonModel.rotation, rotation, 960 * Time.deltaTime);
-        //_cannonModel.LookAt(Helper.GetMouseWorldPosition());
-        //_cannonModel.eulerAngles = new Vector3(0, _cannonModel.localEulerAngles.y - 75, 0);
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     Shoot();
-        // }
+        // var rotation = Quaternion.LookRotation(PlayerManager.Instance.dir, Vector3.up);
+        // _cannonModel.rotation = Quaternion.RotateTowards(_cannonModel.rotation, rotation, 960 * Time.deltaTime);
+        _cannonModel.LookAt(Helper.GetMouseWorldPosition());
+        _cannonModel.eulerAngles = new Vector3(0, _cannonModel.localEulerAngles.y - 75, 0);
+         if (Input.GetMouseButtonDown(0))
+         {
+             Shoot();
+         }
     }
 
     public void DesInteraction()
@@ -73,7 +73,7 @@ public class Cannon : Trap, IInteracteable
     public void Shoot()
     {
         _loaded = false;
-        PlayerManager.Instance.ExitCannon(_cannonModel.forward*3f);
+        PlayerManager.Instance.ExitCannon(Helper.GetMouseWorldPosition());
         _explosionParticles.Play();
         _explosionParticles1.Play();
         _explosionParticles2.Play();

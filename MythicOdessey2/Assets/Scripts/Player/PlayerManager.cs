@@ -112,16 +112,20 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if(_isInsideCannon)
+        // if(_isInsideCannon)
+        // {
+        //     if (_isAttackPressed && !_requireNewAttackPress)
+        //     {
+        //         if (!_isAttacking)
+        //         {
+        //             _currentCannon.Shoot();
+        //             _isInsideCannon = false;
+        //         }
+        //     }
+        // }
+        if (Input.GetButtonDown("Fire1"))
         {
-            if (_isAttackPressed && !_requireNewAttackPress)
-            {
-                if (!_isAttacking)
-                {
-                    _currentCannon.Shoot();
-                    _isInsideCannon = false;
-                }
-            }
+            CardMenuManager.Instance.cardTemp.TriggerInstantiateEvent();
         }
         if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
         if (!_hasHandsOccupied)
@@ -137,23 +141,23 @@ public class PlayerManager : MonoBehaviour, IDamageable
                 }
             }
         }
-        
-        else
-        {
-            _swordTransform.gameObject.SetActive(false);
-            if (CardMenuManager.Instance.menuOpen)
-            {
-                if (_isAttackPressed && !_requireNewAttackPress)
-                {
-                    if (!_isAttacking)
-                    {
-                        EventManager.instance.TriggerEvent("OnObjectTrigger", _lastCard);
-                        Destroy(built);
-                        _hasHandsOccupied = false;
-                    }
-                }
-            }
-        }
+        //
+        // else
+        // {
+        //     _swordTransform.gameObject.SetActive(false);
+        //     if (CardMenuManager.Instance.menuOpen)
+        //     {
+        //         if (_isAttackPressed && !_requireNewAttackPress)
+        //         {
+        //             if (!_isAttacking)
+        //             {
+        //                 EventManager.instance.TriggerEvent("OnObjectTrigger", _lastCard);
+        //                 Destroy(built);
+        //                 _hasHandsOccupied = false;
+        //             }
+        //         }
+        //     }
+        // }
 
         //  var rotation = Quaternion.LookRotation(Helper.GetMouseWorldPosition(), Vector3.up);
         //transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 960f * Time.deltaTime);

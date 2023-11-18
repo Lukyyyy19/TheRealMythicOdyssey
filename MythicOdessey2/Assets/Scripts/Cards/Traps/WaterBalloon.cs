@@ -7,12 +7,14 @@ using UnityEngine;
 
 public class WaterBalloon : Trap
 {
-    private GameObject _splashVFX;
+    [SerializeField]private GameObject _splashVFX;
     private void Awake()
     {
-        transform.position = new Vector3(transform.position.x, 10, transform.position.z);   
+        transform.position = new Vector3(transform.position.x, 10, transform.position.z);
+
         transform.DOMoveY(0.5f, .35f).SetEase(Ease.InCirc).OnComplete((() =>
         {
+            Instantiate(_splashVFX, transform.position, Quaternion.identity);
             var cols = Physics.OverlapSphere(transform.position, 3f);
             foreach (var col in cols)
             {
@@ -23,7 +25,7 @@ public class WaterBalloon : Trap
             }
         }));
         
-        Destroy(gameObject,0.5f);
+        Destroy(gameObject,3f);
     }
     
     private void OnDestroy()

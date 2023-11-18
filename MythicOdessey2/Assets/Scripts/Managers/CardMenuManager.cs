@@ -44,7 +44,7 @@ public class CardMenuManager : MonoBehaviour
         }
         //TimeManager.Instance.currentTimeScale = open ? 0.25f : 1;
         // EventManager.instance.TriggerEvent("OnTimeChanged", TimeManager.Instance.currentTimeScale);
-        // EventManager.instance.TriggerEvent("OnOpenMenu", open);
+        
         //cardMenu.SetActive(open);
         menuOpen = open;
         if (menuOpen)
@@ -117,17 +117,23 @@ public class CardMenuManager : MonoBehaviour
     {
         if (_currentCardSelected == position) return;
         PlayerManager.Instance.HasHandsOccupied = hands;
+        if(hands)EventManager.instance.TriggerEvent("OnOpenMenu", true);
+        else
+        {
+            EventManager.instance.TriggerEvent("OnOpenMenu", false);
+        }
         _currentCardSelected = position;
         InteractCard();
     }
 
+    public Card cardTemp;
     private void InteractCard()
     {
         
-        var cardTemp = _cardList[_currentCardSelected];
+        cardTemp = _cardList[_currentCardSelected];
         cardTemp.Interaction();
         //     CardMenuManager.Instance.GetCurrentCardSelected().TriggerInstantiateEvent();
-        cardTemp.TriggerInstantiateEvent();
+        //cardTemp.TriggerInstantiateEvent();
         foreach (var card in _cardList)
         {
             if (card != cardTemp)

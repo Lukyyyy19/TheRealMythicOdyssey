@@ -113,7 +113,7 @@ public class TestGrid : MonoBehaviour
                 }
             }
         }));
-        EventManager.instance.AddAction("OnObjectTrigger", (objects => { BuildObject((CardsTypeSO)objects[0]); }));
+        EventManager.instance.AddAction("OnCardTrigger", (objects => { BuildObject((CardsTypeSO)objects[0]); }));
         EventManager.instance.AddAction("OnTrapDestroyed", (objects =>
         {
             foreach (var pos in (List<Vector2Int>)objects[0])
@@ -128,7 +128,7 @@ public class TestGrid : MonoBehaviour
 
     private void BuildObject(CardsTypeSO prefab)
     {
-        grid.GetXY(PlayerManager.Instance.transform.position/*Helper.GetMouseWorldPosition()*/, out int x, out int z);
+        grid.GetXY(Helper.GetMouseWorldPosition(), out int x, out int z);
         var gridPositionList = prefab.GetGridPositionList(new Vector2Int(x, z));
         var gridObject = grid.GetValue(x, z);
         Vector2Int _cantBuildPos = Vector2Int.zero;
