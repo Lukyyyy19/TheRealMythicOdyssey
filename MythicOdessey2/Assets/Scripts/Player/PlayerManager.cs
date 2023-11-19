@@ -128,9 +128,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
             CardMenuManager.Instance.cardTemp.TriggerInstantiateEvent();
         }
         if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
-        if (!_hasHandsOccupied)
-        {
-            _playerAttack.Update();
+        _playerAttack.Update();
             if (!_swordTransform.gameObject.activeSelf)
                 _swordTransform.gameObject.SetActive(true);
             if (_isAttackPressed && !_requireNewAttackPress)
@@ -140,7 +138,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
                     StartCoroutine(_playerAttack.SpinAttack());
                 }
             }
-        }
+        
         //
         // else
         // {

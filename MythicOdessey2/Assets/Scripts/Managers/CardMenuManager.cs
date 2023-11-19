@@ -116,7 +116,7 @@ public class CardMenuManager : MonoBehaviour
     private void CurrentCardSelectedInteraction(int position,bool hands)
     {
         if (_currentCardSelected == position) return;
-        PlayerManager.Instance.HasHandsOccupied = hands;
+        //PlayerManager.Instance.HasHandsOccupied = hands;
         if(hands)EventManager.instance.TriggerEvent("OnOpenMenu", true);
         else
         {

@@ -17,7 +17,7 @@ public class LightRandomMovement : MonoBehaviour
     private bool _10Sec;
     void Start()
     {
-        _light = GetComponent<VolumetricLightBeam>();
+        _light = GetComponentInChildren<VolumetricLightBeam>();
         _timer = _startTimeLight;
         dadad();
     }
@@ -48,9 +48,9 @@ public class LightRandomMovement : MonoBehaviour
 
     private void dadad()
     {
-        var x = Random.Range(0, 90);
-        var y = Random.Range(100, 360);
-        var z = 40;
+        var x = 0;
+        var y = Random.Range(0, 180);
+        var z = Random.Range(0, 180);
         transform.DORotate(new Vector3(x, y, z), 1.5f).OnComplete(dadad);
     }
     
