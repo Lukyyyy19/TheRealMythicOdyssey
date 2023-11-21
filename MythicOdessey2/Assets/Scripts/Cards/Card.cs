@@ -22,6 +22,7 @@ public class Card : MonoBehaviour, IInteracteable
     private Vector2Int _mousepos;
     [SerializeField]private int _id;
     [SerializeField] private bool _isSword;
+    public bool canInteract = true;
     public int Id => _id;
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class Card : MonoBehaviour, IInteracteable
         //startColor = _image.color;
         _startRotation = transform.localEulerAngles;
         CardMenuManager.Instance.AddCard(this);
+        canInteract = true;
     }
 
 
@@ -45,7 +47,7 @@ public class Card : MonoBehaviour, IInteracteable
     }
 
     public void Interaction(){
-        
+        if(!canInteract)return;
         transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
         _currentCard = true;
     }

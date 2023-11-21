@@ -9,7 +9,7 @@ public class PlayerAttack {
     PlayerManager _playerManager;
     private Animator _anim;
     Transform _transform;
-    [SerializeField] private float _attackRadius = 3;
+    [SerializeField] private float _attackRadius = 6;
     public float AttackRadius => _attackRadius;
 
     public bool debugAttack;
@@ -37,9 +37,11 @@ public class PlayerAttack {
     public IEnumerator SpinAttack()
     {
         if (CardMenuManager.Instance.menuOpen) yield return null;
+        _playerManager.RootMotion = false;
         debugAttack = true;
         _playerManager.IsAttacking = true;
         _anim.CrossFade("Pepe_Attack", 0.1f);
+        //_transform.DORotate(Vector3.up * 359, .3f).OnComplete(()=>_transform.rotation = Quaternion.identity);
         var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);
         Debug.Log(collisions.Length);
         Collider _exCol = null;
@@ -59,6 +61,8 @@ public class PlayerAttack {
         }
         
         yield return new WaitForSeconds(.3f);
+        _playerManager.IsAttacking = false;
+        _playerManager.RootMotion = true;
         EventManager.instance.TriggerEvent("OnPlayerAttackFinished");
        
     }

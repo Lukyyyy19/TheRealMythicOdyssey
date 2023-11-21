@@ -11,7 +11,6 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private Rigidbody _rb;
     private Animator _anim;
-    [SerializeField] private Transform _swordTransform;
 
     [SerializeField] private PlayerHealthBar _playerHealthBar;
     [SerializeField] private PlayerMagicBar _playerMagicBar;
@@ -46,8 +45,16 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private CardsTypeSO _lastCard;
 
     [SerializeField]private bool _isInsideCannon;
+    private bool _hasMana;
+
+    public bool HasMana => _hasMana;
     public Rigidbody Rb => _rb;
 
+    public bool RootMotion
+    {
+        set => _anim.applyRootMotion = value;
+    }
+    
     //setter for isattack
     public bool IsAttackPressed
     {
@@ -99,7 +106,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _anim = GetComponent<Animator>();
         _playerMovement = new PlayerMovement(this, transform, _rb, GetComponent<Collider>());
         _playerInputs = new PlayerInputs(this);
-        _playerAttack = new PlayerAttack(this, _anim, _swordTransform, hitVfx);
+        _playerAttack = new PlayerAttack(this, _anim, transform, hitVfx);
         _playerInputs.ArtificialAwake();
         _health = _maxHealth;
         _magic = _maxMagic;
@@ -108,6 +115,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _playerHealthBar.SetMaxHealth(_maxHealth);
         _playerMagicBar.SetMaxMagic(_maxMagic);
         _collider = GetComponent<Collider>();
+        _hasMana = true;
     }
 
     private void Update()
@@ -129,9 +137,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
         if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
         _playerAttack.Update();
-            if (!_swordTransform.gameObject.activeSelf)
-                _swordTransform.gameObject.SetActive(true);
-            if (_isAttackPressed && !_requireNewAttackPress)
+        if (_isAttackPressed && !_requireNewAttackPress)
             {
                 if (!_isAttacking)
                 {
@@ -266,24 +272,30 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
         EventManager.instance.AddAction("OnCardBuilt", (object[] args) =>
         {
-            if (_magic < 0)
+            if (_magic <= 0)
+            {
                 _magic = 0;
+                _hasMana = false;
+            }
             else
             {
                 _magic -= (int)args[0];
                 _playerMagicBar.SetMagic(_magic);
             }
+            CardMenuManager.Instance.CheckManaCost(_magic);
         });
 
         EventManager.instance.AddAction("OnEnemyKilled", (object[] args) =>
         {
-            if (_magic > _maxMagic)
+            _hasMana = true;
+            if (_magic >= _maxMagic)
                 _magic = _maxMagic;
             else
             {
                 _magic += (int)args[0];
                 _playerMagicBar.SetMagic(_magic);
             }
+            CardMenuManager.Instance.CheckManaCost(_magic);
         });
 
         EventManager.instance.AddAction("OnCardTrigger", (x) => { CreateObjOnHand((CardsTypeSO)x[0]); });
@@ -320,10 +332,16 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _lastCard = prefab;
     }
 
+
+    public bool CheckMana(int manaCost)
+    {
+        return manaCost <= _magic;
+    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(_swordTransform.position, _playerAttack.AttackRadius);
+        Gizmos.DrawWireSphere(transform.position, _playerAttack.AttackRadius);
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, _interactionRadius);
     }

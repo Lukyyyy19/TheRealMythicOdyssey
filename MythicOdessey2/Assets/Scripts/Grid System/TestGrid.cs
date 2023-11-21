@@ -145,6 +145,7 @@ public class TestGrid : MonoBehaviour
             }
         }
 
+        canBuild = PlayerManager.Instance.CheckMana(prefab.manaCost);
         if (canBuild)
         {
             Transform built;

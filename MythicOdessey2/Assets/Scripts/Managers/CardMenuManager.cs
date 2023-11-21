@@ -91,6 +91,7 @@ public class CardMenuManager : MonoBehaviour
         //     _currentCardSelected++;
         //     }
         // }
+        if(!PlayerManager.Instance.HasMana)return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             CurrentCardSelectedInteraction(0,true);
@@ -143,6 +144,24 @@ public class CardMenuManager : MonoBehaviour
         }
     }
 
+    public void CheckManaCost(int mana)
+    {
+        foreach (var card in _cardList)
+        {
+            var sr = card.GetComponentInChildren<SpriteRenderer>();
+            if (card.prefab.manaCost > mana)
+            {
+                sr.color = Color.gray;
+                card.canInteract = false;
+            }
+            else
+            {
+                card.canInteract = true;
+                sr.color = Color.white;
+            }
+        }
+    }
+    
     public Card GetCurrentCardSelected()
     {
         return _cardList[_currentCardSelected];

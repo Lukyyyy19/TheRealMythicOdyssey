@@ -31,18 +31,6 @@ public class PlayerMovement
     }
     private void PlayerLookOnMovement()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            switch (_rotationMode)
-            {
-                case true:
-                    _rotationMode = false;
-                    break;
-                case false:
-                    _rotationMode = true;
-                    break;
-            }
-        }
         if (_playerManager.dir == Vector3.zero || _playerManager.IsAttacking) return;
         // if (!_rotationMode)
         // {
@@ -80,13 +68,15 @@ public class PlayerMovement
 
     public void Update()
     {
-       //PlayerLookOnMovement();
+        if(_playerManager.IsAttacking)return;
+       PlayerLookOnMovement();
         // if (_playerManager.IsDahing)
         //     _timer += Time.deltaTime;
     }
 
     public void FixedUpdate()
     {
+        if(_playerManager.IsAttacking)return;
         Move();
     }
 }
