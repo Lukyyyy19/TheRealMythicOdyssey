@@ -14,6 +14,11 @@ public class LightRandomMovement : MonoBehaviour
     private float _startTimeLight = .2f;
     private int _currColor;
     [SerializeField]private VolumetricLightBeam _light;
+    [SerializeField] private int _minY;
+    [SerializeField] private int _minZ;
+    [SerializeField] private int _maxY;
+    [SerializeField] private int _maxZ;
+    [SerializeField] private int _x;
     private bool _10Sec;
     void Start()
     {
@@ -48,10 +53,10 @@ public class LightRandomMovement : MonoBehaviour
 
     private void dadad()
     {
-        var x = 0;
-        var y = Random.Range(0, 180);
-        var z = Random.Range(0, 180);
-        transform.DORotate(new Vector3(x, y, z), 1.5f).OnComplete(dadad);
+        
+        var y = Random.Range(_minY, _maxY);
+        var z = Random.Range(_minZ, _maxZ);
+        transform.DORotate(new Vector3(_x, y, z), 1.5f).OnComplete(dadad);
     }
     
     private void OnEnable()
