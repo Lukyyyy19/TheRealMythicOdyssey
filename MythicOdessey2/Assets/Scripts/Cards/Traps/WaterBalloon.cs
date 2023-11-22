@@ -23,9 +23,9 @@ public class WaterBalloon : Trap
                     _damageable.TakeDamage(1,transform);
                 }
             }
+        Destroy(gameObject);
         }));
         
-        Destroy(gameObject,3f);
     }
     
     private void OnDestroy()

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6236265143340597356}
-  - component: {fileID: 1949181927843069845}
-  - component: {fileID: -8204851023291935548}
   - component: {fileID: 6800453374092449854}
+  - component: {fileID: 3976201365977566633}
+  - component: {fileID: 4275802974841059698}
   m_Layer: 0
   m_Name: Water Balloon 1
   m_TagString: Untagged
@@ -34,8 +34,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &1949181927843069845
-SkinnedMeshRenderer:
+--- !u!114 &6800453374092449854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755534370863831766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc69cffbeac598e498e1a784e7dd6195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPosition: []
+  worldPosition: {x: 0, y: 0, z: 0}
+  realTrap: {fileID: 0}
+  woodBox: {fileID: 0}
+  _splashVFX: {fileID: 5230138614502602589, guid: 94cdc4fd09373ae44821fd7f3dea3ae2,
+    type: 3}
+--- !u!33 &3976201365977566633
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755534370863831766}
+  m_Mesh: {fileID: 3583434595591177450, guid: ce61bb4e988b2644f9767d45204eeaa7, type: 3}
+--- !u!23 &4275802974841059698
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -49,12 +75,12 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: ce61bb4e988b2644f9767d45204eeaa7, type: 3}
+  - {fileID: 2100000, guid: a135d605946ccab4a9d8a5d326f3d507, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,46 +101,4 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 1
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 3583434595591177450, guid: ce61bb4e988b2644f9767d45204eeaa7, type: 3}
-  m_Bones: []
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 0}
-  m_AABB:
-    m_Center: {x: -0.0000001215376, y: 0.000002478715, z: 0.0013685804}
-    m_Extent: {x: 0.009876078, y: 0.009876078, z: 0.011662126}
-  m_DirtyAABB: 0
---- !u!135 &-8204851023291935548
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6755534370863831766}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.011662124
-  m_Center: {x: -0.0000001215376, y: 0.0000024787146, z: 0.0013685802}
---- !u!114 &6800453374092449854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6755534370863831766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc69cffbeac598e498e1a784e7dd6195, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridPosition: []
-  worldPosition: {x: 0, y: 0, z: 0}
-  realTrap: {fileID: 0}
-  woodBox: {fileID: 0}
-  _splashVFX: {fileID: 5230138614502602589, guid: 94cdc4fd09373ae44821fd7f3dea3ae2,
-    type: 3}
+  m_AdditionalVertexStreams: {fileID: 0}

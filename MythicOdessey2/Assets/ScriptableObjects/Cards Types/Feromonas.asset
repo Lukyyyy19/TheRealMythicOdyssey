@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cae9336541bae642a7d1dccc8cdedf6, type: 3}
-  m_Name: BreakFloor
+  m_Name: Feromonas
   m_EditorClassIdentifier: 
   nameString: Enchanted
   prefab: {fileID: 7294165201589069881, guid: 72b6d63a1750ba244b679b841574eb11, type: 3}

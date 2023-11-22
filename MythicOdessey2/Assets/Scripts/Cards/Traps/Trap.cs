@@ -11,9 +11,9 @@ public abstract class Trap : MonoBehaviour
     public Trap realTrap;
     public Transform woodBox;
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        if(woodBox != null)
-            Destroy(woodBox.gameObject);
+        if(woodBox!=null)
+        Destroy(woodBox.gameObject);
     }
 }

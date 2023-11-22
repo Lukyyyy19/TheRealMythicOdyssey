@@ -24,6 +24,8 @@ public class Card : MonoBehaviour, IInteracteable
     [SerializeField] private bool _isSword;
     public bool canInteract = true;
     public int Id => _id;
+
+    public bool IsSword => _isSword;
     private void Awake()
     {
         _startPos = transform.localPosition;

@@ -156,7 +156,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
         Debug.Log("Enemy took damage");
         _health -= damage;
         _rb.AddForce((transform.position - attacker.position) * 5, ForceMode.Impulse);
-        StartCoroutine(nameof(DamagedMat));
+        //StartCoroutine(nameof(DamagedMat));
         // Debug.Log(_health);
         if (_health <= 0)
         {

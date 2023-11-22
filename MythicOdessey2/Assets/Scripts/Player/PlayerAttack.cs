@@ -15,12 +15,15 @@ public class PlayerAttack {
     public bool debugAttack;
 
     private GameObject _hitVfx;
+
+    private ParticleSystem _slashGo;
     //constructor
-    public PlayerAttack(PlayerManager playerManager, Animator animator, Transform transform,GameObject hitVfx){
+    public PlayerAttack(PlayerManager playerManager, Animator animator, Transform transform,GameObject hitVfx,ParticleSystem slashGo){
         _playerManager = playerManager;
         _anim = animator;
         _transform = transform;
         _hitVfx = hitVfx;
+        _slashGo = slashGo;
     }
 
     public void Update(){
@@ -40,6 +43,7 @@ public class PlayerAttack {
         _playerManager.RootMotion = false;
         debugAttack = true;
         _playerManager.IsAttacking = true;
+        _slashGo.Play();
         _anim.CrossFade("Pepe_Attack", 0.1f);
         //_transform.DORotate(Vector3.up * 359, .3f).OnComplete(()=>_transform.rotation = Quaternion.identity);
         var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);

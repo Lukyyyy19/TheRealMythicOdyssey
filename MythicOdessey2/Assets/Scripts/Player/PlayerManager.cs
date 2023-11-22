@@ -44,8 +44,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private bool _hasHandsOccupied;
     private CardsTypeSO _lastCard;
 
-    [SerializeField]private bool _isInsideCannon;
+    [SerializeField] private bool _isInsideCannon;
     private bool _hasMana;
+
+    [SerializeField] private ParticleSystem _slashGO;
 
     public bool HasMana => _hasMana;
     public Rigidbody Rb => _rb;
@@ -54,7 +56,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         set => _anim.applyRootMotion = value;
     }
-    
+
     //setter for isattack
     public bool IsAttackPressed
     {
@@ -97,6 +99,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         set => _hasHandsOccupied = value;
         get => _hasHandsOccupied;
     }
+
     public static PlayerManager Instance => _instance;
 
     private void Awake()
@@ -106,7 +109,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _anim = GetComponent<Animator>();
         _playerMovement = new PlayerMovement(this, transform, _rb, GetComponent<Collider>());
         _playerInputs = new PlayerInputs(this);
-        _playerAttack = new PlayerAttack(this, _anim, transform, hitVfx);
+        _playerAttack = new PlayerAttack(this, _anim, transform, hitVfx, _slashGO);
         _playerInputs.ArtificialAwake();
         _health = _maxHealth;
         _magic = _maxMagic;
@@ -135,16 +138,17 @@ public class PlayerManager : MonoBehaviour, IDamageable
         {
             CardMenuManager.Instance.cardTemp.TriggerInstantiateEvent();
         }
+
         if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
         _playerAttack.Update();
         if (_isAttackPressed && !_requireNewAttackPress)
+        {
+            if (!_isAttacking)
             {
-                if (!_isAttacking)
-                {
-                    StartCoroutine(_playerAttack.SpinAttack());
-                }
+                StartCoroutine(_playerAttack.SpinAttack());
             }
-        
+        }
+
         //
         // else
         // {
@@ -199,7 +203,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
     }
 
     private Cannon _currentCannon;
-    public void EnterCannon(Vector3 pos,Cannon cannon)
+
+    public void EnterCannon(Vector3 pos, Cannon cannon)
     {
         transform.position = pos;
         _playerModel.SetActive(false);
@@ -282,19 +287,18 @@ public class PlayerManager : MonoBehaviour, IDamageable
                 _magic -= (int)args[0];
                 _playerMagicBar.SetMagic(_magic);
             }
+
             CardMenuManager.Instance.CheckManaCost(_magic);
         });
 
         EventManager.instance.AddAction("OnEnemyKilled", (object[] args) =>
         {
             _hasMana = true;
+            _magic += (int)args[0];
             if (_magic >= _maxMagic)
                 _magic = _maxMagic;
-            else
-            {
-                _magic += (int)args[0];
-                _playerMagicBar.SetMagic(_magic);
-            }
+            _playerMagicBar.SetMagic(_magic);
+
             CardMenuManager.Instance.CheckManaCost(_magic);
         });
 
@@ -317,13 +321,31 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
         EventManager.instance.RemoveAction("OnCardBuilt", (object[] args) =>
         {
+            
             _magic -= (int)args[0];
+            if (_magic <= 0)
+            {
+                _magic = 0;
+                _hasMana = false;
+            }
             _playerMagicBar.SetMagic(_magic);
+            CardMenuManager.Instance.CheckManaCost(_magic);
+        });
+        EventManager.instance.RemoveAction("OnEnemyKilled", (object[] args) =>
+        {
+            _hasMana = true;
+            _magic += (int)args[0];
+            if (_magic >= _maxMagic)
+                _magic = _maxMagic;
+            _playerMagicBar.SetMagic(_magic);
+
+            CardMenuManager.Instance.CheckManaCost(_magic);
         });
         _mainMat.color = _startColor;
     }
 
     private GameObject built;
+
     private void CreateObjOnHand(CardsTypeSO prefab)
     {
         // built = Instantiate(prefab.miniObject, _spawnOnHandPoint.position, Quaternion.identity);
@@ -337,7 +359,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         return manaCost <= _magic;
     }
-    
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

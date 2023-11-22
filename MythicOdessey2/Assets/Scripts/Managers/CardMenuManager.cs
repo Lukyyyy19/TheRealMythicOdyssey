@@ -148,7 +148,9 @@ public class CardMenuManager : MonoBehaviour
     {
         foreach (var card in _cardList)
         {
+            if(card.IsSword)continue;
             var sr = card.GetComponentInChildren<SpriteRenderer>();
+            Debug.Log(card.prefab.nameString);
             if (card.prefab.manaCost > mana)
             {
                 sr.color = Color.gray;
