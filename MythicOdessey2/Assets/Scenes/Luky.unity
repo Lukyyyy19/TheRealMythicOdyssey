@@ -5065,7 +5065,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.69712263, g: 0.85882354, b: 0, a: 1}
+  m_Color: {r: 0.745283, g: 0.73662525, b: 0.19335175, a: 1}
   m_Intensity: 79.8
   m_Range: 45.1
   m_SpotAngle: 30
@@ -8507,7 +8507,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041553173}
-  m_LocalRotation: {x: 0.63154244, y: 0.37891373, z: 0.18450382, w: -0.6507972}
+  m_LocalRotation: {x: 0.62713116, y: 0.42642796, z: 0.37317267, w: -0.53442293}
   m_LocalPosition: {x: 0.124664225, y: 0.27536172, z: 0.015865987}
   m_LocalScale: {x: 0.3151277, y: 0.31512767, z: 0.3151277}
   m_ConstrainProportionsScale: 0
@@ -8515,7 +8515,7 @@ Transform:
   - {fileID: 609407396}
   m_Father: {fileID: 1093959377}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 44.928, y: 326.289, z: 38.336}
+  m_LocalEulerAnglesHint: {x: -81.329, y: 175.332, z: 115.582}
 --- !u!114 &1041553175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8576,7 +8576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorFromLight: 0
   colorMode: 0
-  color: {r: 0.5578931, g: 0.8018868, b: 0.011347434, a: 1}
+  color: {r: 0.8301887, g: 0.7496111, b: 0.07440368, a: 1}
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -11066,7 +11066,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536373193}
-  m_LocalRotation: {x: 0.5814494, y: 0.41108745, z: 0.22054303, w: -0.66654676}
+  m_LocalRotation: {x: 0.57504505, y: 0.46677095, z: 0.4000375, w: -0.5398316}
   m_LocalPosition: {x: 0.0055310526, y: -0.17111075, z: 0.017183088}
   m_LocalScale: {x: 0.3151277, y: 0.31512773, z: 0.31512767}
   m_ConstrainProportionsScale: 0
@@ -11074,7 +11074,7 @@ Transform:
   - {fileID: 1265500307}
   m_Father: {fileID: 575416351}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 46.946, y: 287.229, z: 35.563}
+  m_LocalEulerAnglesHint: {x: -83.883, y: 204.316, z: 79.955}
 --- !u!114 &1536373195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11135,7 +11135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorFromLight: 0
   colorMode: 0
-  color: {r: 0.5578931, g: 0.8018868, b: 0.011347434, a: 1}
+  color: {r: 0.8301887, g: 0.7496111, b: 0.07440368, a: 1}
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -16181,7 +16181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorFromLight: 0
   colorMode: 0
-  color: {r: 1, g: 0.9570755, b: 0.8160377, a: 1}
+  color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -17469,9 +17469,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134117351625143586}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0.00000011920926, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1693638669779306960}
