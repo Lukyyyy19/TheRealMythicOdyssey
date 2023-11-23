@@ -14,6 +14,8 @@ public class LightCube : MonoBehaviour
 
     private float _timer;
     private bool _startMove;
+
+    [SerializeField] private GameObject _manaEffect;
     private void Awake()
     {
         _timer = _startTime;
@@ -43,7 +45,16 @@ public class LightCube : MonoBehaviour
     {
         if (other.TryGetComponent(out PlayerManager player))
         {
+            _manaEffect.SetActive(true);
             player.ChargeMana(.3f*Time.deltaTime*TimeManager.Instance.currentTimeScale);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out PlayerManager player))
+        {
+            _manaEffect.SetActive(false);
         }
     }
 }

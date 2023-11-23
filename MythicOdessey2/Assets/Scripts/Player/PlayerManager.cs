@@ -49,6 +49,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     [SerializeField] private ParticleSystem _slashGO;
 
+    private bool _isChargingMana;
+
+    private bool _canAttack = true;
+
+
     public bool HasMana => _hasMana;
     public Rigidbody Rb => _rb;
 
@@ -143,9 +148,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _playerAttack.Update();
         if (_isAttackPressed && !_requireNewAttackPress)
         {
-            if (!_isAttacking)
+            if (!_isAttacking && _canAttack)
             {
                 StartCoroutine(_playerAttack.SpinAttack());
+                _canAttack = false;
+                Invoke(nameof(CanAttackAgain),.66f);
             }
         }
 
@@ -178,6 +185,11 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
     }
 
+    void CanAttackAgain()
+    {
+        _canAttack = true;
+    }
+    
     private void FixedUpdate()
     {
         if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
@@ -369,6 +381,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
             _magic = _maxMagic;
         _playerMagicBar.SetMagic(_magic);
         CardMenuManager.Instance.CheckManaCost(_magic);
+        _isChargingMana = true;
     }
 
     public bool CheckMana(int manaCost)
