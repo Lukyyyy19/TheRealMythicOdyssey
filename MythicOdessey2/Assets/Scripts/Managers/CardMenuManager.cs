@@ -144,7 +144,7 @@ public class CardMenuManager : MonoBehaviour
         }
     }
 
-    public void CheckManaCost(int mana)
+    public void CheckManaCost(float mana)
     {
         foreach (var card in _cardList)
         {
@@ -172,5 +172,7 @@ public class CardMenuManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.instance.AddAction("OnCardBuilt",(x)=>CurrentCardSelectedInteraction(5,false));
+        EventManager.instance.AddAction("HideCardPanel",(x)=>cardMenu.SetActive(false));
+        EventManager.instance.AddAction("ShowCardPanel",(x)=>cardMenu.SetActive(true));
     }
 }

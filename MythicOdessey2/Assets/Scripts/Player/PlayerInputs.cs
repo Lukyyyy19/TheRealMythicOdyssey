@@ -78,4 +78,12 @@ public class PlayerInputs
     public void OnEnable(){
         _playerInput.Enable();
     }
+
+    public void DisablePI()
+    {
+        _playerInput.Disable();
+    }public void EnablePI()
+    {
+        _playerInput.Enable();
+    }
 }

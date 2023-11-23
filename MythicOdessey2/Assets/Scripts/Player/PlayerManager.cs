@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _health;
     [SerializeField] private int _maxMagic;
-    public int _magic;
+    public float _magic;
     [SerializeField] private Material _mainMat;
     [SerializeField] private GameObject _playerModel;
     [SerializeField] public GameObject hitVfx;
@@ -206,6 +206,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void EnterCannon(Vector3 pos, Cannon cannon)
     {
+        EventManager.instance.TriggerEvent("HideCardPanel");
         transform.position = pos;
         _playerModel.SetActive(false);
         _rb.velocity = Vector3.zero;
@@ -230,6 +231,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
             if (collision.CompareTag("Player")) continue;
             collision.GetComponent<IDamageable>()?.TakeDamage(1, transform);
         }
+        EventManager.instance.TriggerEvent("ShowCardPanel");
     }
 
 
@@ -301,7 +303,13 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
             CardMenuManager.Instance.CheckManaCost(_magic);
         });
-
+        EventManager.instance.AddAction("GamePaused", (x) =>
+        {
+            _playerInputs.DisablePI();
+        });EventManager.instance.AddAction("GameResumed", (x) =>
+        {
+            _playerInputs.EnablePI();
+        });
         EventManager.instance.AddAction("OnCardTrigger", (x) => { CreateObjOnHand((CardsTypeSO)x[0]); });
     }
 
@@ -354,6 +362,14 @@ public class PlayerManager : MonoBehaviour, IDamageable
         _lastCard = prefab;
     }
 
+    public void ChargeMana(float mana)
+    {
+        _magic += mana;
+        if (_magic >= _maxMagic)
+            _magic = _maxMagic;
+        _playerMagicBar.SetMagic(_magic);
+        CardMenuManager.Instance.CheckManaCost(_magic);
+    }
 
     public bool CheckMana(int manaCost)
     {

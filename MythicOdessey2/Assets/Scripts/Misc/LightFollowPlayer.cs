@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class LightFollowPlayer : MonoBehaviour
 {
+    [SerializeField] private Transform _lightCube;
     void Update()
     {
-        transform.LookAt(PlayerManager.Instance.transform);
+        transform.LookAt(_lightCube);
     }
 }

@@ -17,7 +17,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     [SerializeField] protected float _maxHealth;
 
     //[SerializeField] floatingHealthBar _healtBar;
-    protected Animator _anim;
+    [SerializeField]protected Animator _anim;
     [SerializeField] protected bool _isPlayerInRange, _isPlayerInAttackRange, _stopChasing, _lookAtPlayer;
     [SerializeField] protected bool _isEnemyWithSword;
     private bool _damageTaken;
@@ -41,6 +41,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     //[SerializeField] private VisualEffect _bloodSplash;
 
     [SerializeField] private ParticleSystem _confetti;
+    [SerializeField] private ParticleSystem _hearts;
     public Transform objective;
     public bool isEnchanted;
     public Rigidbody Rb => _rb;
@@ -101,6 +102,7 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        _anim.speed *= TimeManager.Instance.currentTimeScale;
         _navMeshAgent.speed = TimeManager.Instance.currentTimeScale == 1 ? 3.5f : 3.5f * TimeManager.Instance.currentTimeScale;
         _currentState.UpdateStates();
         var playerPosition = PlayerManager.Instance.transform.position;
@@ -173,7 +175,17 @@ public class EnemyStateMachine : MonoBehaviour, IDamageable
     //     _chaseRange = _maxChaseRange;
     //     _currentMat.SetFloat("_Smoothness", 0.5f);
     // }
-
+    public void EnchantEnemy(Transform objective)
+    {
+        this.objective = objective;
+        isEnchanted = true;
+        _hearts.Play();
+    }public void DEnchantEnemy()
+    {
+        objective = PlayerManager.Instance.transform;
+        isEnchanted = false;
+        _hearts.Stop();
+    }
 
     public void Die()
     {

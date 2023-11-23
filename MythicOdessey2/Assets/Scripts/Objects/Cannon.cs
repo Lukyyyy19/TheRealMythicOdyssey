@@ -12,11 +12,11 @@ public class Cannon : Trap, IInteracteable
     [SerializeField] private Transform _cannonModel;
     [SerializeField] private GameObject _smokeParticles;
     [SerializeField] private ParticleSystem _explosionParticles;
-    [SerializeField] private ParticleSystem _explosionParticles1;
-    [SerializeField] private ParticleSystem _explosionParticles2;
-    [SerializeField] private ParticleSystem _explosionParticles3;
+    [SerializeField] private Transform nozzlePos;
     [SerializeField]private MeshRenderer _meshRenderer;
     [SerializeField]private Material[] _matArray;
+
+    private ParticleSystem _instantiated;
     private Material _mainMat;
     private float _timer;
     private float _maxTimer = 5f;
@@ -24,6 +24,11 @@ public class Cannon : Trap, IInteracteable
     private void Awake()
     {
         _mainMat = _meshRenderer.material;
+    }
+
+    private void Start()
+    {
+       _instantiated = Instantiate(_explosionParticles, nozzlePos.position,Quaternion.identity);
     }
 
     public void Interaction()
@@ -74,10 +79,8 @@ public class Cannon : Trap, IInteracteable
     {
         _loaded = false;
         PlayerManager.Instance.ExitCannon(Helper.GetMouseWorldPosition());
-        _explosionParticles.Play();
-        _explosionParticles1.Play();
-        _explosionParticles2.Play();
-        _explosionParticles3.Play();
+        _instantiated.Play();
+        Destroy(_instantiated.gameObject,1f);
         DestroyCannon();
     }
 

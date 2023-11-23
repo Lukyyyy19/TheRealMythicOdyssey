@@ -17,12 +17,13 @@ public class Enchanted : Trap
    void EnchantEnemy()
    {
      enemy = GameManager.Instance.enemies.OrderBy(x =>
-         Vector3.Distance(x.transform.position, PlayerManager.Instance.transform.position)).First();
+         Vector3.Distance(x.transform.position, worldPosition)).First();
      var obj =  GameManager.Instance.enemies.FirstOrDefault(x => x != enemy)?.transform;
      if (obj != null)
      {
-        enemy.objective = obj;
-        enemy.isEnchanted = true;
+        // enemy.objective = obj;
+        // enemy.isEnchanted = true;
+        enemy.EnchantEnemy(obj);
         Invoke(nameof(ChangeObjectivoToPlayer),3f);
         
      }
@@ -31,7 +32,6 @@ public class Enchanted : Trap
 
    void ChangeObjectivoToPlayer()
    {
-      enemy.objective = PlayerManager.Instance.transform;
-      enemy.isEnchanted = false;
+      enemy.DEnchantEnemy();
    }
 }

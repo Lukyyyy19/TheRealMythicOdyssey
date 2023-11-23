@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 0f;
         TimeManager.Instance.currentTimeScale = 0f;
         isPaused = true;
+        EventManager.instance.TriggerEvent("GamePaused");
         //StopCoroutine(nameof(SpawnEnemy));
     }
 
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         //Time.timeScale = 1f;
         TimeManager.Instance.currentTimeScale = 1f;
+        EventManager.instance.TriggerEvent("GameResumed");
         isPaused = false;
     }
 

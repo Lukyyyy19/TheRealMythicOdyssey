@@ -53,7 +53,7 @@ public class LightRandomMovement : MonoBehaviour
 
     private void dadad()
     {
-        
+        if(GameManager.Instance.isPaused)return;
         var y = Random.Range(_minY, _maxY);
         var z = Random.Range(_minZ, _maxZ);
         transform.DORotate(new Vector3(_x, y, z), 1.5f).OnComplete(dadad);
@@ -62,10 +62,13 @@ public class LightRandomMovement : MonoBehaviour
     private void OnEnable()
     {
         EventManager.instance.AddAction("TenSecondsLeft",(x)=> _10Sec = true);
+        EventManager.instance.AddAction("GameResumed",(x)=>dadad());
     }
 
     private void OnDisable()
     {
         EventManager.instance.RemoveAction("TenSecondsLeft",(x)=> _10Sec = true);
+        EventManager.instance.RemoveAction("GameResumed",(x)=>dadad());
+
     }
 }
