@@ -140,12 +140,12 @@ public class TestGrid : MonoBehaviour
             {
                 canBuild = false;
                 _cantBuildPos = gridPos;
-                //EventManager.instance.TriggerEvent("OnCantBuild");
+                EventManager.instance.TriggerEvent("OnCantBuild",_cantBuildPos);
                 break;
             }
         }
-
-        canBuild = PlayerManager.Instance.CheckMana(prefab.manaCost);
+        if(canBuild)
+            canBuild = PlayerManager.Instance.CheckMana(prefab.manaCost);
         if (canBuild)
         {
             Transform built;
@@ -172,7 +172,6 @@ public class TestGrid : MonoBehaviour
             foreach (var gridPos in gridPositionList)
             {
                 grid.GetValue(gridPos.x, gridPos.y).Transform = built;
-                Debug.Log(grid.GetValue(gridPos.x, gridPos.y).Transform.name);
                 UpdateGhostPlaneColors(gridPos,1);
             }
 
