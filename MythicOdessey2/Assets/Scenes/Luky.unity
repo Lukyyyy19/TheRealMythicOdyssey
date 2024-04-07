@@ -4339,6 +4339,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2820288301341378414, guid: dc5da9935acd20d4d87016efe1b90bfc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc5da9935acd20d4d87016efe1b90bfc, type: 3}
 --- !u!1 &551968168 stripped
@@ -7906,7 +7911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorFromLight: 0
   colorMode: 0
-  color: {r: 0.9245283, g: 0.18012375, b: 0.047970813, a: 1}
+  color: {r: 0.7075472, g: 0.13287368, b: 0.030037368, a: 1}
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -8133,7 +8138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorFromLight: 0
   colorMode: 0
-  color: {r: 0.8301887, g: 0.7496111, b: 0.07440368, a: 1}
+  color: {r: 0.735849, g: 0.67921096, b: 0.07289071, a: 1}
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10862,7 +10867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorFromLight: 0
   colorMode: 0
-  color: {r: 0.8301887, g: 0.7496111, b: 0.07440368, a: 1}
+  color: {r: 0.735849, g: 0.67921096, b: 0.07289071, a: 1}
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -13443,7 +13448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorFromLight: 0
   colorMode: 0
-  color: {r: 0.9245283, g: 0.18012375, b: 0.047970813, a: 1}
+  color: {r: 0.7075472, g: 0.13287368, b: 0.030037368, a: 1}
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
