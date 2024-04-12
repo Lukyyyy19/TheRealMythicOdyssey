@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class WaterBalloon : Trap
+public class WaterBalloon : ObjectiveTrap
 {
     [SerializeField]private GameObject _splashVFX;
-    private void Awake()
+    private void Start()
     {
-        transform.position = new Vector3(transform.position.x, 10, transform.position.z);
+        transform.position = new Vector3(objective.position.x, 10, objective.position.z);
 
         transform.DOMoveY(0.5f, .35f).SetEase(Ease.InCirc).OnComplete((() =>
         {

@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4116499016833605143}
   - component: {fileID: 4116499016833605140}
   - component: {fileID: 4116499016833605145}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: feromonas Card GO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4116499016833605141}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5.680001, y: 10.19, z: 0.20000052}

@@ -50,7 +50,11 @@ MonoBehaviour:
   worldPosition: {x: 0, y: 0, z: 0}
   realTrap: {fileID: 0}
   woodBox: {fileID: 0}
+  objective: {fileID: 0}
   _radius: 3
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1001 &4617439696357483116
 PrefabInstance:
   m_ObjectHideFlags: 0

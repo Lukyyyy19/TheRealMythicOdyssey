@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text _text3;
 
     private bool _warningTriggered;
+
     //create singelton
     static GameManager _instance;
     public static GameManager Instance => _instance;
@@ -28,6 +29,11 @@ public class GameManager : MonoBehaviour
     private float _startTime = 2f;
     private float _currentTime;
     [SerializeField] private float _gameTime = 60;
+
+#if UNITY_EDITOR
+    public bool spawnEnemies = true;
+#endif
+
 
     private void Awake()
     {
@@ -57,6 +63,7 @@ public class GameManager : MonoBehaviour
             EventManager.instance.TriggerEvent("TenSecondsLeft");
             _warningTriggered = true;
         }
+
         if (_text)
             _text.text = Mathf.FloorToInt(_gameTime).ToString();
         if (_text1)
@@ -71,12 +78,16 @@ public class GameManager : MonoBehaviour
             isPaused = true;
             return;
         }
+
         if (_currentTime > 0)
         {
             _currentTime -= Time.deltaTime * TimeManager.Instance.currentTimeScale;
         }
         else
         {
+#if UNITY_EDITOR
+            if (!spawnEnemies) return;
+#endif
             if (enemies.Count < 3)
                 StartCoroutine(nameof(SpawnEnemy));
             _currentTime = _startTime;

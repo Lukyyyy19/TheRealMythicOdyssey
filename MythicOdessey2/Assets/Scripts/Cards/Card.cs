@@ -15,17 +15,18 @@ public class Card : MonoBehaviour, IInteracteable
     private Color _startColor;
     private Vector3 _startRotation;
     private bool _currentCard;
-    
-  [SerializeField] private Transform _ghostCard;
+
+    [SerializeField] private Transform _ghostCard;
     private bool _startDrag;
     [SerializeField] private GameObject _cardChild;
     private Vector2Int _mousepos;
-    [SerializeField]private int _id;
+    [SerializeField] private int _id;
     [SerializeField] private bool _isSword;
     public bool canInteract = true;
     public int Id => _id;
 
     public bool IsSword => _isSword;
+
     private void Awake()
     {
         _startPos = transform.localPosition;
@@ -44,22 +45,26 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void DesInteraction()
     {
-        transform.localPosition = _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
+        transform.localPosition =
+            _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
         _currentCard = false;
     }
 
-    public void Interaction(){
-        if(!canInteract)return;
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
+    public void Interaction()
+    {
+        if (!canInteract) return;
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1,
+            transform.localPosition.z);
         _currentCard = true;
     }
 
     private Vector2Int _lastMousePos;
+
     public void FollwoCursor()
     {
         _cardChild.SetActive(false);
         //_image.color = Color.clear;
-         transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
+        transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
         // Vector3 newPos;
         // newPos.x = Helper.GetMouseWorldPosition().x;
         // newPos.y = Helper.GetMouseWorldPosition().y;
@@ -93,13 +98,13 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void Down()
     {
-        if(_isSword)return;
+        if (_isSword) return;
         _ghostCard = Instantiate(prefab.prefabGhost);
     }
 
     public void Up()
     {
-        if(_ghostCard)
+        if (_ghostCard)
             Destroy(_ghostCard.gameObject);
     }
 
@@ -116,10 +121,11 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void TriggerInstantiateEvent()
     {
-        if(_isSword)return;
+        if (_isSword) return;
         if (_currentCard)
         {
-            EventManager.instance.TriggerEvent("OnCardTrigger",prefab);
+            Debug.Log('b');
+            EventManager.instance.TriggerEvent("OnCardTrigger", prefab);
         }
         //transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
         //Up();
@@ -159,14 +165,15 @@ public class Card : MonoBehaviour, IInteracteable
     //     });
     // }
 
-    IEnumerator Shake(){
+    IEnumerator Shake()
+    {
         _image.color = Color.red;
         yield return new WaitForSeconds(.1f);
         _image.color = Color.white;
         yield return new WaitForSeconds(.1f);
         _image.color = _startColor;
     }
-    
+
     // private void Start()
     // {
     //     text.text = value.ToString();

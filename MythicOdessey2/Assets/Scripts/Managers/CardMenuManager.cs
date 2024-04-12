@@ -15,6 +15,8 @@ public class CardMenuManager : MonoBehaviour
     public static CardMenuManager Instance => _instance;
     [SerializeField]private int _currentCardSelected = 5;
     private bool _isOrdered;
+    private bool _isDragging;
+    
     private void Awake()
     {
         _instance = this;
@@ -28,6 +30,29 @@ public class CardMenuManager : MonoBehaviour
     private void Update()
     {
         ChangeSelected();
+        CardInteractionOnClick();
+    }
+
+    private void CardInteractionOnClick()
+    {
+        if(cardTemp.IsSword)return;
+        if (Input.GetButton("Fire1"))
+        {
+            _isDragging = true;
+            if (cardTemp) cardTemp.transform.position = Helper.GetMouseWorldPosition();
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            _isDragging = false;
+            if (cardTemp)
+            {
+                Debug.Log('a');
+                cardTemp.TriggerInstantiateEvent();
+                cardTemp.DesInteraction();
+                CurrentCardSelectedInteraction(5,false);
+                return;
+            }
+        }
     }
 
     public void OpenMenu(bool open)
@@ -76,7 +101,6 @@ public class CardMenuManager : MonoBehaviour
     {
         cardMenu.SetActive(close);
     }
-
     public void ChangeSelected()
     {
         //if(!menuOpen)return;
@@ -92,37 +116,55 @@ public class CardMenuManager : MonoBehaviour
         //     }
         // }
         if(!PlayerManager.Instance.HasMana)return;
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 100f;
+        var pos = uiCam.ScreenToWorldPoint(mousePos);
+        Debug.DrawRay(uiCam.transform.position,pos-uiCam.transform.position,Color.green);
+        var ray = uiCam.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray,out RaycastHit hit, float.MaxValue, cad))
         {
-            CurrentCardSelectedInteraction(0,true);
-        }else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            CurrentCardSelectedInteraction(1,true);
-        }else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            CurrentCardSelectedInteraction(2,true);
-        }else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            CurrentCardSelectedInteraction(3,true);
-        }else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            CurrentCardSelectedInteraction(4,true);
+            var card = hit.transform.GetComponentInParent<Card>();
+            if(card)
+                CurrentCardSelectedInteraction(card.Id,true);
         }
-        else if (Input.GetKeyDown(KeyCode.Q))
+        else if(_isDragging == false)
+        {
+                CurrentCardSelectedInteraction(5,false);
+        }
+        //
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        // {
+        //     CurrentCardSelectedInteraction(0,true);
+        // }else if (Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     CurrentCardSelectedInteraction(1,true);
+        // }else if (Input.GetKeyDown(KeyCode.Alpha3))
+        // {
+        //     CurrentCardSelectedInteraction(2,true);
+        // }else if (Input.GetKeyDown(KeyCode.Alpha4))
+        // {
+        //     CurrentCardSelectedInteraction(3,true);
+        // }else if (Input.GetKeyDown(KeyCode.Alpha5))
+        // {
+        //     CurrentCardSelectedInteraction(4,true);
+        // }
+        if (Input.GetKeyDown(KeyCode.Q))
         {
            CurrentCardSelectedInteraction(5,false);
         }
     }
 
+    public LayerMask cad;
+    public Camera uiCam; 
     private void CurrentCardSelectedInteraction(int position,bool hands)
     {
         if (_currentCardSelected == position) return;
         //PlayerManager.Instance.HasHandsOccupied = hands;
-        if(hands)EventManager.instance.TriggerEvent("OnOpenMenu", true);
-        else
-        {
-            EventManager.instance.TriggerEvent("OnOpenMenu", false);
-        }
+        // if(hands)EventManager.instance.TriggerEvent("OnOpenMenu", true);
+        // else
+        // {
+        //     EventManager.instance.TriggerEvent("OnOpenMenu", false);
+        // }
         _currentCardSelected = position;
         InteractCard();
     }
@@ -150,7 +192,6 @@ public class CardMenuManager : MonoBehaviour
         {
             if(card.IsSword)continue;
             var sr = card.GetComponentInChildren<SpriteRenderer>();
-            Debug.Log(card.prefab.nameString);
             if (card.prefab.manaCost > mana)
             {
                 sr.color = Color.gray;

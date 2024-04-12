@@ -16,7 +16,7 @@ public class Enchanted : Trap
 
    void EnchantEnemy()
    {
-     enemy = GameManager.Instance.enemies.OrderBy(x =>
+     enemy = GameManager.Instance.enemies?.OrderBy(x =>
          Vector3.Distance(x.transform.position, worldPosition)).First();
      var obj =  GameManager.Instance.enemies.FirstOrDefault(x => x != enemy)?.transform;
      if (obj != null)

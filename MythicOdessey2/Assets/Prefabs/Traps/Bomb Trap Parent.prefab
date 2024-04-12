@@ -46,7 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: []
+  worldPosition: {x: 0, y: 0, z: 0}
+  realTrap: {fileID: 0}
+  woodBox: {fileID: 0}
+  objective: {fileID: 0}
   _radius: 3
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &6244488776796820447
 GameObject:
   m_ObjectHideFlags: 0

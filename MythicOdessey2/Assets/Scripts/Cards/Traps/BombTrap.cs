@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombTrap : Trap {
+public class BombTrap : ObjectiveTrap {
     private bool _canAttack;
     [SerializeField] float _radius;
+
+    [SerializeField] private LayerMask _enemyLayer;
     //Crear una clase padre con esto
     
     private void Awake(){
-        TestGrid.instance.grid.GetXY(transform.position, out int x, out int y);
+        // TestGrid.instance.grid.GetXY(transform.position, out int x, out int y);
         //TestGrid.instance.grid.GetValue(x,y).ResetValue();
     }
 
@@ -18,14 +20,15 @@ public class BombTrap : Trap {
     }
 
     private void Update(){
-        transform.Translate(transform.forward*5*Time.deltaTime);
+        if(objective != null)
+            transform.Translate((objective.position - transform.position)*5*Time.deltaTime);
     }
 
     IEnumerator ExplodeBomb(){
         yield return new WaitForSeconds(.5f);
         // _canAttack = true;
-        Debug.Log("Explotando  1");
-        var colliders = Physics.OverlapSphere(transform.position, _radius);
+        
+        var colliders = Physics.OverlapSphere(transform.position, _radius,_enemyLayer);
         foreach (var collider in colliders)
         {
             if (collider.TryGetComponent(out IDamageable damageable))
@@ -37,9 +40,9 @@ public class BombTrap : Trap {
         // var ssss = TestGrid.instance.grid.MoveObject(Vector2Int.up,new Vector2Int(x1,y1));
         // var worldPosition = TestGrid.instance.grid.GetWorldPosition(ssss.x,ssss.y);
         // transform.position = worldPosition;
-        Debug.Log("Explotando  2");
+       
         //transform.Translate(transform.forward*5*Time.deltaTime);
-        var colliders1 = Physics.OverlapSphere(transform.position, _radius);
+        var colliders1 = Physics.OverlapSphere(transform.position, _radius,_enemyLayer);
         foreach (var collider in colliders1)
         {
             if (collider.TryGetComponent(out IDamageable damageable))
@@ -53,8 +56,8 @@ public class BombTrap : Trap {
         // var worldPosition2 = TestGrid.instance.grid.GetWorldPosition(sssss.x,sssss.y);
         // transform.position = worldPosition2;
         //transform.Translate(transform.forward*5*Time.deltaTime);
-        Debug.Log("Explotando  3");
-        var colliders2 = Physics.OverlapSphere(transform.position, _radius);
+     
+        var colliders2 = Physics.OverlapSphere(transform.position, _radius,_enemyLayer);
         foreach (var collider2 in colliders2)
         {
             if(collider2.TryGetComponent(out IDamageable damageable))

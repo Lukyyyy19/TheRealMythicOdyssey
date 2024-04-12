@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private Rigidbody _rb;
     private Animator _anim;
 
+    [SerializeField] private EnemyChecker _enemyChecker;
+
     [SerializeField] private PlayerHealthBar _playerHealthBar;
     [SerializeField] private PlayerMagicBar _playerMagicBar;
 
@@ -53,7 +55,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private bool _canAttack = true;
 
-
+   [SerializeField] private EnemyStateMachine _nearEnemy;
+    public EnemyStateMachine NearEnemy => _nearEnemy;
     public bool HasMana => _hasMana;
     public Rigidbody Rb => _rb;
 
@@ -139,10 +142,10 @@ public class PlayerManager : MonoBehaviour, IDamageable
         //         }
         //     }
         // }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            CardMenuManager.Instance.cardTemp.TriggerInstantiateEvent();
-        }
+        // if (Input.GetButtonDown("Fire1"))
+        // {
+        //     CardMenuManager.Instance.cardTemp.TriggerInstantiateEvent();
+        // }
 
         if ( /*CardMenuManager.Instance.menuOpen ||*/ !canUpdate) return;
         _playerAttack.Update();
@@ -178,7 +181,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         //transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 960f * Time.deltaTime);
         _playerMovement.Update();
 
-
+        _nearEnemy = _enemyChecker.CheckForEnemies(10f);
         if (_isDashPressed && !_requireNewDashPress)
         {
             _playerMovement.Dash();
