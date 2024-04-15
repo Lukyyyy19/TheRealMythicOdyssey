@@ -153,8 +153,17 @@ public class PlayerManager : MonoBehaviour, IDamageable
         {
             if (!_isAttacking && _canAttack)
             {
+                bool isCardTriggered = false;
+                if (CardMenuManager.Instance.cardTemp.IsSword)
+                {
                 StartCoroutine(_playerAttack.SpinAttack());
                 _canAttack = false;
+                }
+                else
+                {
+                    CardMenuManager.Instance.TriggerCard();
+                    isCardTriggered = true;
+                }
                 Invoke(nameof(CanAttackAgain),.66f);
             }
         }

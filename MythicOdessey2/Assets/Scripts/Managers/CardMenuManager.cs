@@ -30,7 +30,7 @@ public class CardMenuManager : MonoBehaviour
     private void Update()
     {
         ChangeSelected();
-        CardInteractionOnClick();
+       // CardInteractionOnClick();
     }
 
     private void CardInteractionOnClick()
@@ -47,12 +47,17 @@ public class CardMenuManager : MonoBehaviour
             if (cardTemp)
             {
                 Debug.Log('a');
-                cardTemp.TriggerInstantiateEvent();
-                cardTemp.DesInteraction();
-                CurrentCardSelectedInteraction(5,false);
+                TriggerCard();
                 return;
             }
         }
+    }
+
+    public void TriggerCard()
+    {
+        cardTemp.TriggerInstantiateEvent();
+        cardTemp.DesInteraction();
+        CurrentCardSelectedInteraction(5,false);
     }
 
     public void OpenMenu(bool open)
@@ -116,38 +121,38 @@ public class CardMenuManager : MonoBehaviour
         //     }
         // }
         if(!PlayerManager.Instance.HasMana)return;
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 100f;
-        var pos = uiCam.ScreenToWorldPoint(mousePos);
-        Debug.DrawRay(uiCam.transform.position,pos-uiCam.transform.position,Color.green);
-        var ray = uiCam.ScreenPointToRay(mousePos);
-        if (Physics.Raycast(ray,out RaycastHit hit, float.MaxValue, cad))
-        {
-            var card = hit.transform.GetComponentInParent<Card>();
-            if(card)
-                CurrentCardSelectedInteraction(card.Id,true);
-        }
-        else if(_isDragging == false)
-        {
-                CurrentCardSelectedInteraction(5,false);
-        }
-        //
-        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        // Vector3 mousePos = Input.mousePosition;
+        // mousePos.z = 100f;
+        // var pos = uiCam.ScreenToWorldPoint(mousePos);
+        // Debug.DrawRay(uiCam.transform.position,pos-uiCam.transform.position,Color.green);
+        // var ray = uiCam.ScreenPointToRay(mousePos);
+        // if (Physics.Raycast(ray,out RaycastHit hit, float.MaxValue, cad))
         // {
-        //     CurrentCardSelectedInteraction(0,true);
-        // }else if (Input.GetKeyDown(KeyCode.Alpha2))
-        // {
-        //     CurrentCardSelectedInteraction(1,true);
-        // }else if (Input.GetKeyDown(KeyCode.Alpha3))
-        // {
-        //     CurrentCardSelectedInteraction(2,true);
-        // }else if (Input.GetKeyDown(KeyCode.Alpha4))
-        // {
-        //     CurrentCardSelectedInteraction(3,true);
-        // }else if (Input.GetKeyDown(KeyCode.Alpha5))
-        // {
-        //     CurrentCardSelectedInteraction(4,true);
+        //     var card = hit.transform.GetComponentInParent<Card>();
+        //     if(card)
+        //         CurrentCardSelectedInteraction(card.Id,true);
         // }
+        // else if(_isDragging == false)
+        // {
+        //         CurrentCardSelectedInteraction(5,false);
+        // }
+        //
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            CurrentCardSelectedInteraction(0,true);
+        }else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            CurrentCardSelectedInteraction(1,true);
+        }else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            CurrentCardSelectedInteraction(2,true);
+        }else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            CurrentCardSelectedInteraction(3,true);
+        }else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            CurrentCardSelectedInteraction(4,true);
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
            CurrentCardSelectedInteraction(5,false);
