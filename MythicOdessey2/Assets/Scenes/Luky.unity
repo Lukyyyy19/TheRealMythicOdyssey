@@ -6281,6 +6281,9 @@ MonoBehaviour:
     _attackSpeed: 0
     _attackRadius: 6
     debugAttack: 0
+    _enemiesLayer:
+      serializedVersion: 2
+      m_Bits: 2048
   dir: {x: 0, y: 0, z: 0}
   _isAttackPressed: 0
   _isDashPressed: 0

@@ -17,6 +17,8 @@ public class PlayerAttack {
     private GameObject _hitVfx;
 
     private ParticleSystem _slashGo;
+
+    [SerializeField] private LayerMask _enemiesLayer;
     //constructor
     public PlayerAttack(PlayerManager playerManager, Animator animator, Transform transform,GameObject hitVfx,ParticleSystem slashGo){
         _playerManager = playerManager;
@@ -46,8 +48,7 @@ public class PlayerAttack {
         _slashGo.Play();
         _anim.CrossFade("Pepe_Attack", 0.1f);
         //_transform.DORotate(Vector3.up * 359, .3f).OnComplete(()=>_transform.rotation = Quaternion.identity);
-        var collisions = Physics.OverlapSphere(_transform.position, _attackRadius);
-        Debug.Log(collisions.Length);
+        var collisions = Physics.OverlapSphere(_transform.position, _attackRadius,_enemiesLayer);
         Collider _exCol = null;
         foreach (var collision in collisions)
         {
