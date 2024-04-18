@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Luky.unity
     guid: 61f4230e9e5f19443badc508f7aebc3b
+  - enabled: 1
+    path: Assets/Scenes/Player.unity
+    guid: 305d72d887ee73c4dab791ebc18457c6
   m_configObjects: {}

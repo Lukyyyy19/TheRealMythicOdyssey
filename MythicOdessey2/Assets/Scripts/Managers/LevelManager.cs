@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour
         _loadingBar.fillAmount = 0;
         
         var scene = SceneManager.LoadSceneAsync(sceneName);
+        SceneManager.LoadScene(4,LoadSceneMode.Additive);
         scene.allowSceneActivation = false;
         
         _loaderCanvas.SetActive(true);

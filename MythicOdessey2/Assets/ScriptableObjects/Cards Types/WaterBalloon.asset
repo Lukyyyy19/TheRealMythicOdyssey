@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WaterBalloon
   m_EditorClassIdentifier: 
   nameString: WaterBalloon
+  id: 3
   prefab: {fileID: 6800453374092449854, guid: 1883418c4ede85045ba092b5a136ff5d, type: 3}
   box: {fileID: 0}
   prefabGhost: {fileID: 1664621639440174132, guid: a69cbfb99fe5b424b915e6404dc5a180,
@@ -20,3 +21,4 @@ MonoBehaviour:
   width: 1
   height: 1
   manaCost: 4
+  miniObject: {fileID: 0}

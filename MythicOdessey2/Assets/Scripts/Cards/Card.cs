@@ -20,7 +20,7 @@ public class Card : MonoBehaviour, IInteracteable
     private bool _startDrag;
     [SerializeField] private GameObject _cardChild;
     private Vector2Int _mousepos;
-    [SerializeField] private int _id;
+    private int _id;
     [SerializeField] private bool _isSword;
     public bool canInteract = true;
     public int Id => _id;
@@ -36,6 +36,7 @@ public class Card : MonoBehaviour, IInteracteable
         _startRotation = transform.localEulerAngles;
         CardMenuManager.Instance.AddCard(this);
         canInteract = true;
+        _id = prefab.id;
     }
 
 
