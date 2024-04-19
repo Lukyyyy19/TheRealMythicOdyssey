@@ -66,8 +66,8 @@ MonoBehaviour:
   prefab: {fileID: 11400000, guid: 8d8efa0b4a9287a40b55ac419c5ed3a3, type: 2}
   _ghostCard: {fileID: 0}
   _cardChild: {fileID: 1843663105380923859}
-  _id: 4
   _isSword: 0
+  canInteract: 1
 --- !u!95 &595679410447053115
 Animator:
   serializedVersion: 4
@@ -125,6 +125,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 595679410447053114}
     m_Modifications:
+    - target: {fileID: 690547663633274517, guid: eb6435b28bba6f54b806162528bf226c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4116499016833605141, guid: eb6435b28bba6f54b806162528bf226c,
         type: 3}
       propertyPath: m_Name

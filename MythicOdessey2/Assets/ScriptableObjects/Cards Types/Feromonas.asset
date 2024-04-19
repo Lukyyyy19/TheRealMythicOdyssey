@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Feromonas
   m_EditorClassIdentifier: 
   nameString: Enchanted
-  id: 4
+  id: 5
   prefab: {fileID: 7294165201589069881, guid: 72b6d63a1750ba244b679b841574eb11, type: 3}
   box: {fileID: 0}
   prefabGhost: {fileID: 0}

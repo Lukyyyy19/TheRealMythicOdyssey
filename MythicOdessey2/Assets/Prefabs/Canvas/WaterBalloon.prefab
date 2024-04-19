@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 8934522027586546388}
   - component: {fileID: 8934522027586546385}
   - component: {fileID: 8934522027586546391}
-  - component: {fileID: 8934522027586546390}
   - component: {fileID: 8934522027586546389}
   - component: {fileID: 5802739796121250676}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: WaterBalloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6, y: 11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8934522027586546385
@@ -67,151 +66,8 @@ MonoBehaviour:
   prefab: {fileID: 11400000, guid: 76c57a0ba92d56f44bf40f698edaccbe, type: 2}
   _ghostCard: {fileID: 0}
   _cardChild: {fileID: 7651487009793253949}
---- !u!114 &8934522027586546390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8934522027586546411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8934522027586546391}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: Interaction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8934522027586546391}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: DesInteraction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 5
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8934522027586546391}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: FollwoCursor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 14
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8934522027586546391}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: OnEndDarag
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8934522027586546391}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: DesInteraction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8934522027586546391}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: Down
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8934522027586546391}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: Up
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  _isSword: 0
+  canInteract: 1
 --- !u!95 &8934522027586546389
 Animator:
   serializedVersion: 4
@@ -269,10 +125,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8934522027586546388}
     m_Modifications:
+    - target: {fileID: 528313206904927212, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249210129010651053, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329756916977147669, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6120576085857276569, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
         type: 3}
       propertyPath: m_Name
       value: WaterBalloon Card GO
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120576085857276569, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6120576085857276571, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
         type: 3}
@@ -329,7 +205,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6355087410210513420, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384503065038317344, guid: cca4d1cfc46c5a94d8a705ebb12412b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6120576085857276570, guid: cca4d1cfc46c5a94d8a705ebb12412b2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cca4d1cfc46c5a94d8a705ebb12412b2, type: 3}
 --- !u!1 &7651487009793253949 stripped
 GameObject:

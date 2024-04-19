@@ -9,11 +9,11 @@ public class CardMenuManager : MonoBehaviour
 {
     static CardMenuManager _instance;
     public bool menuOpen;
-    public GameObject cardMenu;
+    //public GameObject cardMenu;
     public bool menuClose;
     [SerializeField] private List<Card> _cardList;
     public static CardMenuManager Instance => _instance;
-    [SerializeField]private int _currentCardSelected = 5;
+    [SerializeField]private int _currentCardSelected;
     private bool _isOrdered;
     private bool _isDragging;
     
@@ -24,6 +24,7 @@ public class CardMenuManager : MonoBehaviour
 
     private void Start()
     {
+        _currentCardSelected = _cardList.Count - 1;
        OpenMenu(true);
     }
 
@@ -57,7 +58,7 @@ public class CardMenuManager : MonoBehaviour
     {
         cardTemp.TriggerInstantiateEvent();
         cardTemp.DesInteraction();
-        CurrentCardSelectedInteraction(5,false);
+        CurrentCardSelectedInteraction(_cardList.Count-1,false);
     }
 
     public void OpenMenu(bool open)
@@ -65,11 +66,26 @@ public class CardMenuManager : MonoBehaviour
         // TimeManager.Instance.currentTimeScale = open ? 0.25f : 1;
         // EventManager.instance.TriggerEvent("OnTimeChanged",TimeManager.Instance.currentTimeScale);
         // EventManager.instance.TriggerEvent("OnOpenMenu",open);
-        cardMenu.SetActive(open);
+       // cardMenu.SetActive(open);
 
         if (!_isOrdered)
         {
-            _cardList = _cardList.OrderBy(x => x.Id).ToList();
+            //_cardList = _cardList.OrderBy(x => x.Id).ToList();
+            // Card temp = null;
+            // for (int i = 0; i < _cardList.Count; i++)
+            // {
+            //     if (_cardList[i].Id == 6)
+            //     {
+            //         int x = i;
+            //         temp = _cardList[i];
+            //     }
+            //
+            //     if (i == _cardList.Count - 1)
+            //     {
+            //         _cardList[0] = _cardList[i];
+            //         _cardList[i] = temp;
+            //     }
+            // }
             _isOrdered = true;
         }
         //TimeManager.Instance.currentTimeScale = open ? 0.25f : 1;
@@ -102,10 +118,10 @@ public class CardMenuManager : MonoBehaviour
         _cardList.Add(card);
     }
     
-    public void CloseMenu(bool close)
-    {
-        cardMenu.SetActive(close);
-    }
+    // public void CloseMenu(bool close)
+    // {
+    //     cardMenu.SetActive(close);
+    // }
     public void ChangeSelected()
     {
         //if(!menuOpen)return;
@@ -155,7 +171,7 @@ public class CardMenuManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-           CurrentCardSelectedInteraction(5,false);
+           CurrentCardSelectedInteraction(_cardList.Count-1,false);
         }
     }
 
@@ -163,7 +179,7 @@ public class CardMenuManager : MonoBehaviour
     public Camera uiCam; 
     private void CurrentCardSelectedInteraction(int position,bool hands)
     {
-        if (_currentCardSelected == position) return;
+        if (_currentCardSelected == position || position+1>_cardList.Count) return;
         //PlayerManager.Instance.HasHandsOccupied = hands;
         // if(hands)EventManager.instance.TriggerEvent("OnOpenMenu", true);
         // else
@@ -217,8 +233,8 @@ public class CardMenuManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.instance.AddAction("OnCardBuilt",(x)=>CurrentCardSelectedInteraction(5,false));
-        EventManager.instance.AddAction("HideCardPanel",(x)=>cardMenu.SetActive(false));
-        EventManager.instance.AddAction("ShowCardPanel",(x)=>cardMenu.SetActive(true));
+        EventManager.instance.AddAction("OnCardBuilt",(x)=>CurrentCardSelectedInteraction(_cardList.Count-1,false));
+        // EventManager.instance.AddAction("HideCardPanel",(x)=>cardMenu.SetActive(false));
+        // EventManager.instance.AddAction("ShowCardPanel",(x)=>cardMenu.SetActive(true));
     }
 }

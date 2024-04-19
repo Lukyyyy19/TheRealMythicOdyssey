@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 6751790849718800294}
   - component: {fileID: 6751790849718800292}
   - component: {fileID: 6751790849718800293}
-  - component: {fileID: 6751790849718800314}
   - component: {fileID: 6751790849718800315}
   - component: {fileID: 5550644581464000308}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: BombCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,19 +27,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6751790849718800289}
-  m_LocalRotation: {x: -0.000000029802319, y: 0.000000014901159, z: 0.1776463, w: 0.98409444}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7305518130871442721}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20.465}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.049994, y: -0.30000305}
-  m_SizeDelta: {x: 9, y: 13}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 6, y: 11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6751790849718800292
 CanvasRenderer:
@@ -67,151 +66,8 @@ MonoBehaviour:
   prefab: {fileID: 11400000, guid: 23cca97b661162b42a9925b9d6aca55d, type: 2}
   _ghostCard: {fileID: 0}
   _cardChild: {fileID: 7305518130871442723}
---- !u!114 &6751790849718800314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6751790849718800289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6751790849718800293}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: Interaction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6751790849718800293}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: DesInteraction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6751790849718800293}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: Down
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6751790849718800293}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: Up
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 5
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6751790849718800293}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: FollwoCursor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 14
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 6751790849718800293}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: OnEndDarag
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 6751790849718800293}
-          m_TargetAssemblyTypeName: Card, Assembly-CSharp
-          m_MethodName: DesInteraction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
+  _isSword: 0
+  canInteract: 1
 --- !u!95 &6751790849718800315
 Animator:
   serializedVersion: 4
@@ -269,10 +125,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6751790849718800294}
     m_Modifications:
+    - target: {fileID: 746309814, guid: af17bdcc9459c3740968706024677206, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462804012271245682, guid: af17bdcc9459c3740968706024677206,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3615303590149870065, guid: af17bdcc9459c3740968706024677206,
         type: 3}
       propertyPath: m_Name
       value: Bomb Card GO
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615303590149870065, guid: af17bdcc9459c3740968706024677206,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3615303590149870067, guid: af17bdcc9459c3740968706024677206,
         type: 3}
@@ -282,17 +152,17 @@ PrefabInstance:
     - target: {fileID: 3615303590149870067, guid: af17bdcc9459c3740968706024677206,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3615303590149870067, guid: af17bdcc9459c3740968706024677206,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3615303590149870067, guid: af17bdcc9459c3740968706024677206,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3615303590149870067, guid: af17bdcc9459c3740968706024677206,
         type: 3}
@@ -344,7 +214,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4534362469383168356, guid: af17bdcc9459c3740968706024677206,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534362470084744274, guid: af17bdcc9459c3740968706024677206,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9072960788101458385, guid: af17bdcc9459c3740968706024677206,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3615303590149870066, guid: af17bdcc9459c3740968706024677206, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: af17bdcc9459c3740968706024677206, type: 3}
 --- !u!4 &7305518130871442721 stripped
 Transform:

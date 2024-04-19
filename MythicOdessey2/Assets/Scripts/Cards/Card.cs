@@ -23,7 +23,7 @@ public class Card : MonoBehaviour, IInteracteable
     private int _id;
     [SerializeField] private bool _isSword;
     public bool canInteract = true;
-    public int Id => _id;
+    public int Id => prefab.id;
 
     public bool IsSword => _isSword;
 
@@ -36,7 +36,8 @@ public class Card : MonoBehaviour, IInteracteable
         _startRotation = transform.localEulerAngles;
         CardMenuManager.Instance.AddCard(this);
         canInteract = true;
-        _id = prefab.id;
+        if(prefab)
+            _id = prefab.id;
     }
 
 
@@ -46,16 +47,16 @@ public class Card : MonoBehaviour, IInteracteable
 
     public void DesInteraction()
     {
-        transform.localPosition =
-            _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
+        // transform.localPosition =
+        //     _startPos; //new Vector3(transform.localPosition.x, transform.localPosition.y - 10, transform.localPosition.z);
         _currentCard = false;
     }
 
     public void Interaction()
     {
         if (!canInteract) return;
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1,
-            transform.localPosition.z);
+        // transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 1,
+        //     transform.localPosition.z);
         _currentCard = true;
     }
 
@@ -65,7 +66,7 @@ public class Card : MonoBehaviour, IInteracteable
     {
         _cardChild.SetActive(false);
         //_image.color = Color.clear;
-        transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
+        //transform.SetParent(CardMenuManager.Instance.cardMenu.transform.parent);
         // Vector3 newPos;
         // newPos.x = Helper.GetMouseWorldPosition().x;
         // newPos.y = Helper.GetMouseWorldPosition().y;
@@ -116,7 +117,7 @@ public class Card : MonoBehaviour, IInteracteable
         _startDrag = false;
         TriggerInstantiateEvent();
 
-        transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
+        //transform.SetParent(CardMenuManager.Instance.cardMenu.transform);
         Up();
     }
 
